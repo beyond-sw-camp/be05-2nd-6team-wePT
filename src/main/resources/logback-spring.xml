@@ -16,12 +16,17 @@
             <pattern>${CONSOLE_PATTERN2}</pattern>
         </encoder>
     </appender>
+    <appender name="console-infolog" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d %5p %m%n</Pattern>
+        </encoder>
+    </appender>
 
     <!-- Logger -->
     <logger name="jdbc" level="OFF" appender-ref="STDOUT" />
     <logger name="jdbc.sqlonly" level="DEBUG" appender-ref="STDOUT" />
     <logger name="jdbc.sqltiming" level="OFF" appender-ref="STDOUT" />
-    <logger name="jdbc.resultsettable" level="INFO" appender-ref="STDOUT" />
+    <logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog" />
     <logger name="org.hibernate.SQL" level="DEBUG" appender-ref="STDOUT"/>
     <logger name="org.encore.apartment.community" level="DEBUG" appender-ref="STDOUT" />
 
