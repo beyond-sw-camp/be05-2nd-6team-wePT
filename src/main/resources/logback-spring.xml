@@ -25,18 +25,15 @@
     </appender>
 
     <!-- Logger -->
-    <logger name="jdbc" level="OFF" appender-ref="STDOUT"/>
-    <logger name="jdbc.sqlonly" level="DEBUG" appender-ref="STDOUT"/>
-    <logger name="jdbc.sqltiming" level="OFF" appender-ref="STDOUT"/>
-    <logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog"/>
+    <logger name="jdbc" level="OFF" appender-ref="STDOUT" />
+    <logger name="jdbc.sqlonly" level="DEBUG" appender-ref="STDOUT" />
+    <logger name="jdbc.sqltiming" level="OFF" appender-ref="STDOUT" />
+    <logger name="jdbc.resultsettable" level="INFO" appender-ref="console-infolog" />
     <logger name="org.hibernate.SQL" level="DEBUG" appender-ref="STDOUT"/>
-    <logger name="org.encore.apartment.community" level="DEBUG" appender-ref="STDOUT"/>
-    // logback-spring.xml
-    <logger name="org.hibernate.orm.jdbc.bind" level="TRACE"/>
-
+    <logger name="org.encore.apartment.community" level="DEBUG" appender-ref="STDOUT" />
 
     <!-- Root Logger -->
     <root level="INFO">
-        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>
