@@ -7,6 +7,8 @@ import org.encore.apartment.community.domain.apartment.data.dto.RequestApartment
 import org.encore.apartment.community.domain.apartment.data.dto.ResponseApartmentDto;
 import org.encore.apartment.community.domain.apartment.data.dto.UpdateApartmentDto;
 import org.encore.apartment.community.domain.apartment.service.ApartmentService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,36 +30,42 @@ public class ApartmentController {
 	private ApartmentService service;
 
 	@PostMapping("/insert")
-	public void insertApartmentInfo(@RequestBody RequestApartmentDto params) {
+	public ResponseEntity<Void> insertApartmentInfo(@RequestBody RequestApartmentDto params) {
 		service.insertApartmentInfo(params);
 		log.info("ApartmentController insertApartmentInfo = {}", params);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@GetMapping("/find/{id}")
-	public Optional<ResponseApartmentDto> findApartmentInfo(@PathVariable Long id) {
+	public ResponseEntity<Optional<ResponseApartmentDto>> findApartmentInfo(@PathVariable Long id) {
 		Optional<ResponseApartmentDto> dto = service.findApartmentInfo(id);
 		log.info("ApartmentController findApartmentInfo = {}", dto);
 
-		return dto;
+		return new ResponseEntity<Optional<ResponseApartmentDto>>(dto, HttpStatus.OK);
 	}
 
 	@GetMapping("/list")
-	public List<ResponseApartmentDto> findApartmentInfoList() {
+	public ResponseEntity<List<ResponseApartmentDto>> findApartmentInfoList() {
 		List<ResponseApartmentDto> dto = service.findApartmentInfoList();
 		log.info("ApartmentController findApartmentInfoList = {}", dto);
 
-		return dto;
+		return new ResponseEntity<List<ResponseApartmentDto>>(dto, HttpStatus.OK);
 	}
 
 	@PutMapping("/update")
-	public void updateApartmentInfo(@RequestBody UpdateApartmentDto params) {
+	public ResponseEntity<Void> updateApartmentInfo(@RequestBody UpdateApartmentDto params) {
 		log.info("ApartmentController updateApartmentInfo = {}", params);
 		service.updateApartmentInfo(params);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public void deleteApartmentInfo(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteApartmentInfo(@PathVariable Long id) {
 		log.info("ApartmentController deleteApartmentInfo = {}", id);
 		service.deleteApartmentInfo(id);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
