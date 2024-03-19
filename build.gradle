@@ -38,12 +38,15 @@ dependencies {
 	// Lombok
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 	// Swagger
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 
 	/* Choice H2 & Mysql */
 	// H2
 //	runtimeOnly 'com.h2database:h2'
+	testImplementation 'com.h2database:h2'
 
 	// MySQL
 	runtimeOnly 'com.mysql:mysql-connector-j'
