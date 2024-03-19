@@ -10,6 +10,7 @@ import org.encore.apartment.community.domain.apartment.data.dto.UpdateApartmentD
 import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
 import org.encore.apartment.community.domain.apartment.data.repository.ApartmentRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,8 +45,10 @@ public class ApartmentServiceImpl implements ApartmentService {
 	}
 
 	@Override
-	public void updateApartmentInfo(UpdateApartmentDto params) {
-		apartmentRepository.updateEntity(params.getApartmentId(), params.getApartmentName(), params.getApartmentAddress(), params.getApartmentTotalHousehold());
+	@Transactional
+	public void updateApartmentInfoById(Long id, UpdateApartmentDto params) {
+		Apartment apartment = apartmentRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 아파트 정보가 없습니다."));
+		apartment.update(apartment.getApartmentName(), apartment.getApartmentAddress(), apartment.getApartmentTotalHousehold());
 		log.info("updateApartmentInfo = {}", params);
 	}
 

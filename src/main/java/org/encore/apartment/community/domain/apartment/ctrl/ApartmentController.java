@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/apartment")
+@RequestMapping("/api/apartment")
 public class ApartmentController {
 
 	@Resource(name = "apartment")
@@ -53,10 +52,10 @@ public class ApartmentController {
 		return new ResponseEntity<List<ResponseApartmentDto>>(dto, HttpStatus.OK);
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<Void> updateApartmentInfo(@RequestBody UpdateApartmentDto params) {
+	@PostMapping("/update/{id}")
+	public ResponseEntity<Void> updateApartmentInfo(@PathVariable("id") Long id, @RequestBody UpdateApartmentDto params) {
 		log.info("ApartmentController updateApartmentInfo = {}", params);
-		service.updateApartmentInfo(params);
+		service.updateApartmentInfoById(id, params);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}

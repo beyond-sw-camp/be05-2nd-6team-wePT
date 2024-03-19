@@ -16,11 +16,11 @@ public class RequestApartmentDto {
 	private String apartmentAddress;
 	private Integer apartmentTotalHousehold;
 
-	public static Apartment toEntity(RequestApartmentDto requestApartmentDto) {
+	public static Apartment toEntity(RequestApartmentDto dto) {
 		return Apartment.builder()
-			.apartmentName(requestApartmentDto.apartmentName)
-			.apartmentAddress(requestApartmentDto.apartmentAddress)
-			.apartmentTotalHousehold(requestApartmentDto.apartmentTotalHousehold)
+			.apartmentName(dto.apartmentName)
+			.apartmentAddress(dto.apartmentAddress)
+			.apartmentTotalHousehold(dto.apartmentTotalHousehold)
 			.build();
 	}
 }

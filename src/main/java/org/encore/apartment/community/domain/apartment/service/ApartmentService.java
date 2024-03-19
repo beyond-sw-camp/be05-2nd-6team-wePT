@@ -14,7 +14,7 @@ public interface ApartmentService {
 
 	public List<ResponseApartmentDto> findApartmentInfoList();
 
-	public void updateApartmentInfo(UpdateApartmentDto params);
+	public void updateApartmentInfoById(Long id, UpdateApartmentDto params);
 
 	public void deleteApartmentInfo(Long id);
 }

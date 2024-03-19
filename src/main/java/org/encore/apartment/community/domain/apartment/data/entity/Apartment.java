@@ -42,4 +42,10 @@ public class Apartment {
 		this.apartmentTotalHousehold = apartmentTotalHousehold;
 	}
 
+	public void update(String apartmentName, String apartmentAddress, Integer apartmentTotalHousehold) {
+		this.apartmentName = apartmentName;
+		this.apartmentAddress = apartmentAddress;
+		this.apartmentTotalHousehold = apartmentTotalHousehold;
+	}
+
 }
