@@ -15,20 +15,20 @@ public class MatchingCategory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "apartment_id")
-    private Long matching_id;
+    @Column(name = "matchingCategory_id")
+    private Long matchingCategoryId;
 
     @NotBlank
-    @Column(name = "matching_name")
-    private String matchingName;
+    @Column(name = "matchingCategory_name")
+    private String matchingCategoryName;
 
     @Builder
-    public MatchingCategory(String matchingName) {
-        this.matchingName = matchingName;
+    public MatchingCategory(String matchingCategoryName) {
+        this.matchingCategoryName = matchingCategoryName;
     }
 
 
-    public void update(String matchingName){
-        this.matchingName = matchingName;
+    public void update(String matchingCategoryName){
+        this.matchingCategoryName = matchingCategoryName;
     }
 }

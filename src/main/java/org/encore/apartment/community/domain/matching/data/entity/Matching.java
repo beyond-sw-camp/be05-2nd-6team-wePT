@@ -67,4 +67,6 @@ public class Matching {
 		this.matchingUpdatedAt = matchingUpdatedAt;
 	}
 
+
+
 }
