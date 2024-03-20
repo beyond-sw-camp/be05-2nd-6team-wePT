@@ -1,4 +1,4 @@
-package org.encore.apartment.community.domain.user.data.entity;
+package org.encore.apartment.community.domain.matching.data.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

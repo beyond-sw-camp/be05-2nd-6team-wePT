@@ -1,8 +1,8 @@
-package org.encore.apartment.community.domain.user.service;
+package org.encore.apartment.community.domain.matching.service;
 
 import java.util.Optional;
 
-import org.encore.apartment.community.domain.user.data.dto.MatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.MatchingDto;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;

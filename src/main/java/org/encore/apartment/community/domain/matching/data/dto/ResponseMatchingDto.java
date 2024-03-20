@@ -1,10 +1,9 @@
-package org.encore.apartment.community.domain.user.data.dto
+package org.encore.apartment.community.domain.matching.data.dto
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.Getter;
-import org.encore.apartment.community.domain.user.data.entity.Matching;
+import org.encore.apartment.community.domain.matching.data.entity.Matching;
 
 @Data
 public class ResponseMatchingDto {
