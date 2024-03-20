@@ -1,11 +1,12 @@
 package org.encore.apartment.community.domain.user.data.dto
 
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
 import org.encore.apartment.community.domain.user.data.entity.Matching;
 
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+
 @Getter
-class MatchingDto {
+class RequestMatchingDto {
 
     @NotNull
     private Integer matchingId;
@@ -20,7 +21,7 @@ class MatchingDto {
     private Integer matchingHeadCountLimit;
 
 
-    public static Matching toEntity(MatchingDto matchingDto) {
+    public static Matching toEntity(RequestMatchingDto matchingDto) {
         return Matching.builder()
                 .matchingId(matchingDto.getMatchingId())
                 .mathcingMatchingId(matchingDto.getMathcingMatchingId())
