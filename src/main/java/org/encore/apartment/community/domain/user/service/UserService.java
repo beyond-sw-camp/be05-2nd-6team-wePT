@@ -1,12 +1,15 @@
 package org.encore.apartment.community.domain.user.service;
 
-import java.util.Optional;
-
-import org.encore.apartment.community.domain.user.data.dto.UserDto;
-import org.encore.apartment.community.domain.user.data.entity.User;
+import org.encore.apartment.community.domain.user.data.dto.user.RequestUserDto;
+import org.encore.apartment.community.domain.user.data.dto.user.ResponseUserDto;
+import org.encore.apartment.community.domain.user.data.dto.user.UpdateRequestUserDto;
 
 public interface UserService {
-	public void createUser(UserDto params);
+	public Long createUser(RequestUserDto params);
 
-	public Optional<UserDto> readUser(String userId);
+	public ResponseUserDto findUserInfo(Long idx);
+
+	public Long updateUserInfo(UpdateRequestUserDto params);
+
+	public Long deleteUser(Long idx);
 }
