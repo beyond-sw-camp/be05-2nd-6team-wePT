@@ -1,4 +1,4 @@
-package org.encore.apartment.community.domain.matching.data.dto
+package org.encore.apartment.community.domain.matching.data.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -9,7 +9,7 @@ import org.encore.apartment.community.domain.matching.data.entity.Matching;
 public class ResponseMatchingDto {
 
     @NotNull
-    private Long matchingId;
+    private Integer matchingId;
 
     @NotBlank
     private Integer mathcingMatchingId;

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,33 +18,43 @@ public class Matching {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idx;
-
-	@NotNull
 	@Column(name = "matching_id")
-	private Integer matchingId;
+	private Long matching_id;
 
-	@NotNull
+	@NotBlank
 	@Column(name = "matching_matching_id")
-	private String matchingMatchingId;
+	private Integer matchingMatchingId;
 
-	@NotNull
+	@NotBlank
 	@Column(name = "matching_owner_id")
 	private String matchingOwnerId;
 
-	@NotNull
+	@NotBlank
 	@Column(name = "matching_head_count_limit")
 	private Integer matchingHeadCountLimit;
 
+	@NotBlank
+	@Column(name = "matching_accomplished_yn")
+	private String matchingAccomplishedYn;
+
+	@NotBlank
+	@Column(name = "matching_created_at")
+	private String matchingCreatedAt;
+
+	@NotBlank
+	@Column(name = "matching_updated_at")
+	private String matchingUpdatedAt;
+
 	@Builder
 	public Matching(
-		Long idx, Integer matchingId, String matchingMatchingId,
-		String matchingOwnerId, Integer matchingHeadCountLimit) {
-		this.idx = idx;
-		this.matchingId = matchingId;
+		Integer matchingMatchingId, String matchingOwnerId, Integer matchingHeadCountLimit,
+		String matchingAccomplishedYn, String matchingCreatedAt, String matchingUpdatedAt) {
 		this.matchingMatchingId = matchingMatchingId;
 		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
+		this.matchingAccomplishedYn = matchingAccomplishedYn;
+		this.matchingCreatedAt = matchingCreatedAt;
+		this.matchingUpdatedAt = matchingUpdatedAt;
 	}
 
 }

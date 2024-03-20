@@ -12,7 +12,7 @@ class RequestMatchingDto {
     private Integer matchingId;
 
     @NotBlank
-    private Integer mathcingMatchingId;
+    private Integer matchingMatchingId;
 
     @NotBlank
     private String matchingOwnerId;
@@ -35,7 +35,7 @@ class RequestMatchingDto {
     public static Matching toEntity(RequestMatchingDto dto) {
         return Matching.builder()
                 .matchingId(dto.matchingId)
-                .mathcingMatchingId(dto.mathcingMatchingId)
+                .matchingMatchingId(dto.matchingMatchingId)
                 .matchingOwnerId(dto.matchingOwnerId)
                 .matchingHeadCountLimit(dto.matchingHeadCountLimit)
                 .matching_accomplished_yn(dto.matching_accomplished_yn)
