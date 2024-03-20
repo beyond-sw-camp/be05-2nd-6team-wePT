@@ -9,7 +9,7 @@ import org.encore.apartment.community.domain.matching.data.entity.Matching;
 public class ResponseMatchingDto {
 
     @NotNull
-    private Integer matchingId;
+    private Long matchingId;
 
     @NotBlank
     private Integer mathcingMatchingId;
@@ -31,13 +31,13 @@ public class ResponseMatchingDto {
 
 
     public ResponseMatchingDto(Matching params) {
-                this.matchingId = params.getmatchingId();
-                this.mathcingMatchingId = params.getmathcingMatchingId();
-                this.matchingOwnerId = params.getmatchingOwnerId();
-                this.matchingHeadCountLimit = params.getmatchingHeadCountLimit();
-                this.matching_accomplished_yn = params.getmatching_accomplished_yn();
-                this.matching_created_at = params.getmatching_created_at();
-                this.matching_updated_at = params.getmatching_updated_at();
+                this.matchingId = params.getMatching_id();
+                this.mathcingMatchingId = params.getMatchingMatchingId();
+                this.matchingOwnerId = params.getMatchingOwnerId();
+                this.matchingHeadCountLimit = params.getMatchingHeadCountLimit();
+                this.matching_accomplished_yn = params.getMatchingAccomplishedYn();
+                this.matching_created_at = params.getMatchingCreatedAt();
+                this.matching_updated_at = params.getMatchingUpdatedAt();
 
     }
 

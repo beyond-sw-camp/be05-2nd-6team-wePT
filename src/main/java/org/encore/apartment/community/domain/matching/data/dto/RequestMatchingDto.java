@@ -1,12 +1,13 @@
 package org.encore.apartment.community.domain.matching.data.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Data;
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 
 import lombok.Getter;
 
-@Getter
-class RequestMatchingDto {
+@Data
+public class RequestMatchingDto {
 
     @NotBlank
     private Integer matchingId;
@@ -34,13 +35,12 @@ class RequestMatchingDto {
 
     public static Matching toEntity(RequestMatchingDto dto) {
         return Matching.builder()
-                .matchingId(dto.matchingId)
                 .matchingMatchingId(dto.matchingMatchingId)
                 .matchingOwnerId(dto.matchingOwnerId)
                 .matchingHeadCountLimit(dto.matchingHeadCountLimit)
-                .matching_accomplished_yn(dto.matching_accomplished_yn)
-                .matching_created_at(dto.matching_created_at)
-                .matching_updated_at(dto.matching_updated_at)
+                .matchingAccomplishedYn(dto.matching_accomplished_yn)
+                .matchingCreatedAt(dto.matching_created_at)
+                .matchingUpdatedAt(dto.matching_updated_at)
                 .build();
 
     }
