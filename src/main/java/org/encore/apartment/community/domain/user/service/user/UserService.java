@@ -1,4 +1,4 @@
-package org.encore.apartment.community.domain.user.service;
+package org.encore.apartment.community.domain.user.service.user;
 
 import org.encore.apartment.community.domain.user.data.dto.user.RequestUserDto;
 import org.encore.apartment.community.domain.user.data.dto.user.ResponseUserDto;
