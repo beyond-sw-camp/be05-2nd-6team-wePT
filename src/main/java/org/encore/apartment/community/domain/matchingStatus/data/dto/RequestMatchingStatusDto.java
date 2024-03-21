@@ -1,10 +1,9 @@
 package org.encore.apartment.community.domain.matchingStatus.data.dto;
 
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
-import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
 
 import jakarta.validation.constraints.NotBlank;
+import org.encore.apartment.community.domain.matchingStatus.data.entity.MatchingStatus;
 
 
 @Data
