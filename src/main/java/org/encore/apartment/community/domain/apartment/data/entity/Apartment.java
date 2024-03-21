@@ -23,15 +23,13 @@ public class Apartment {
 	@Column(name = "apartment_id")
 	private Long apartmentId;
 
-	@NotBlank
-	@Column(name = "apartment_name")
+	@Column(name = "apartment_name", nullable = false)
 	private String apartmentName;
 
-	@NotBlank
-	@Column(name = "apartment_address")
+	@Column(name = "apartment_address", nullable = false)
 	private String apartmentAddress;
 
-	@Column(name = "apartment_total_household")
+	@Column(name = "apartment_total_household", columnDefinition = "int default 0")
 	@ColumnDefault("0")
 	private Integer apartmentTotalHousehold;
 
