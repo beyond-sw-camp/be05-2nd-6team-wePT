@@ -1,7 +1,10 @@
 package org.encore.apartment.community.domain.matchingCategory.data.entity;
 
-
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -13,22 +16,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MatchingCategory {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "matchingCategory_id")
-    private Long matchingCategoryId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "matchingCategory_id")
+	private Long matchingCategoryId;
 
-    @NotBlank
-    @Column(name = "matchingCategory_name")
-    private String matchingCategoryName;
+	@NotBlank
+	@Column(name = "matchingCategory_name")
+	private String matchingCategoryName;
 
-    @Builder
-    public MatchingCategory(String matchingCategoryName) {
-        this.matchingCategoryName = matchingCategoryName;
-    }
+	@Builder
+	public MatchingCategory(String matchingCategoryName) {
+		this.matchingCategoryName = matchingCategoryName;
+	}
 
-
-    public void update(String matchingCategoryName){
-        this.matchingCategoryName = matchingCategoryName;
-    }
+	public void update(String matchingCategoryName) {
+		this.matchingCategoryName = matchingCategoryName;
+	}
 }
