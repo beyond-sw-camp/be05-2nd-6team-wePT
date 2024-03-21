@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +18,7 @@ public class Matching {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "matching_id")
-	private Long matching_id;
+	private Long matchingId;
 
 	@NotBlank
 	@Column(name = "matching_matching_id")
@@ -58,7 +57,7 @@ public class Matching {
 	}
 
 	public void update(Integer matchingMatchingId, String matchingOwnerId, Integer matchingHeadCountLimit,
-					   String matchingAccomplishedYn, String matchingCreatedAt, String matchingUpdatedAt){
+		String matchingAccomplishedYn, String matchingCreatedAt, String matchingUpdatedAt) {
 		this.matchingMatchingId = matchingMatchingId;
 		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
@@ -66,7 +65,5 @@ public class Matching {
 		this.matchingCreatedAt = matchingCreatedAt;
 		this.matchingUpdatedAt = matchingUpdatedAt;
 	}
-
-
 
 }
