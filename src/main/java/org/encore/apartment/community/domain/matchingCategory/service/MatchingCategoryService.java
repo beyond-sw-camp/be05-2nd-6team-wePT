@@ -3,9 +3,10 @@ package org.encore.apartment.community.domain.matchingCategory.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.encore.apartment.community.domain.matchingCategory.data.dto.RequestMatchingCategoryDto;
+
 import org.encore.apartment.community.domain.matchingCategory.data.dto.ResponseMatchingCategoryDto;
 import org.encore.apartment.community.domain.matchingCategory.data.dto.UpdateMatchingCategoryDto;
+import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestMatchingCategoryDto;
 
 public interface MatchingCategoryService {
 

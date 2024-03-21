@@ -29,7 +29,7 @@ public class ResponseMatchingDto {
 
 	public ResponseMatchingDto(Matching params) {
 		this.matchingId = params.getMatchingId();
-		this.matchingMatchingCategoryId = params.getMatchingMatchingId();
+		this.matchingMatchingCategoryId = params.getMatchingMatchingCategoryId();
 		this.matchingOwnerId = params.getMatchingOwnerId();
 		this.matchingHeadCountLimit = params.getMatchingHeadCountLimit();
 		this.matchingAccomplishedYn = params.getMatchingAccomplishedYn();
