@@ -12,6 +12,8 @@ public interface MatchingCategoryService {
 
 	public void insertMatchingCategoryInfo(RequestMatchingCategoryDto params);
 
+	void insertMatchingCategoryInfo(org.encore.apartment.community.domain.matchingCategory.data.dto.RequestMatchingCategoryDto params);
+
 	public Optional<ResponseMatchingCategoryDto> findMatchingCategoryInfo(Long id);
 
 	public List<ResponseMatchingCategoryDto> findMatchingCategoryInfoList();
