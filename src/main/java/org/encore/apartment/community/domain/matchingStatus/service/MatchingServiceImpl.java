@@ -16,13 +16,5 @@ public class MatchingServiceImpl implements MatchingService {
 
 	private final MatchingRepository matchingRepository;
 
-	@Override
-	public void createMatching(MatchingDto params) {
 
-	}
-
-	@Override
-	public Optional<MatchingDto> readMatching(String matchingId) {
-		return Optional.empty();
-	}
 }
