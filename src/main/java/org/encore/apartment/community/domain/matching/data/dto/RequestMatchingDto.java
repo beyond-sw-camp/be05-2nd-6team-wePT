@@ -9,8 +9,7 @@ import lombok.Getter;
 @Data
 public class RequestMatchingDto {
 
-    @NotBlank
-    private Integer matchingId;
+
 
     @NotBlank
     private Integer matching_matchingCategory_id;
@@ -21,14 +20,9 @@ public class RequestMatchingDto {
     @NotBlank
     private Integer matchingHeadCountLimit;
 
-    @NotBlank
-    private String matching_accomplished_yn;
 
-    @NotBlank
-    private String matching_created_at;
 
-    @NotBlank
-    private String matching_updated_at;
+
 
 
 
@@ -38,9 +32,6 @@ public class RequestMatchingDto {
                 .matchingMatchingId(dto.matching_matchingCategory_id)
                 .matchingOwnerId(dto.matchingOwnerId)
                 .matchingHeadCountLimit(dto.matchingHeadCountLimit)
-                .matchingAccomplishedYn(dto.matching_accomplished_yn)
-                .matchingCreatedAt(dto.matching_created_at)
-                .matchingUpdatedAt(dto.matching_updated_at)
                 .build();
 
     }
