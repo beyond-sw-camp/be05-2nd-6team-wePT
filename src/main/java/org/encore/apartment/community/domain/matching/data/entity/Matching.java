@@ -21,8 +21,8 @@ public class Matching {
 	private Long matchingId;
 
 	@NotBlank
-	@Column(name = "matching_matching_id")
-	private Integer matchingMatchingId;
+	@Column(name = "matching_matchingCategory_id")
+	private Integer matchingMatchingCategoryId;
 
 	@NotBlank
 	@Column(name = "matching_owner_id")
@@ -48,7 +48,7 @@ public class Matching {
 	public Matching(
 		Integer matchingMatchingId, String matchingOwnerId, Integer matchingHeadCountLimit,
 		String matchingAccomplishedYn, String matchingCreatedAt, String matchingUpdatedAt) {
-		this.matchingMatchingId = matchingMatchingId;
+		this.matchingMatchingCategoryId = matchingMatchingId;
 		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 		this.matchingAccomplishedYn = matchingAccomplishedYn;
@@ -58,7 +58,7 @@ public class Matching {
 
 	public void update(Integer matchingMatchingId, String matchingOwnerId, Integer matchingHeadCountLimit,
 		String matchingAccomplishedYn, String matchingCreatedAt, String matchingUpdatedAt) {
-		this.matchingMatchingId = matchingMatchingId;
+		this.matchingMatchingCategoryId = matchingMatchingId;
 		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 		this.matchingAccomplishedYn = matchingAccomplishedYn;
