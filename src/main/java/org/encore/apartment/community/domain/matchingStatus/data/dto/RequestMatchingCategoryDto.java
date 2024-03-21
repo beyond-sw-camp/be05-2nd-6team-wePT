@@ -1,17 +1,21 @@
 package org.encore.apartment.community.domain.matchingStatus.data.dto;
 
+import jakarta.persistence.ManyToOne;
+import lombok.Data;
 import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class RequestMatchingCategoryDto {
+
+@Data
+public class RequestMatchingStatusDto {
 
 	@NotBlank
-	private String matchingCategoryName;
+	private String matchingStatusFollowerId;
 
-	public static MatchingCategory toEntity(RequestMatchingCategoryDto dto) {
-		return MatchingCategory.builder()
-			.matchingCategoryName(dto.matchingCategoryName)
+	public static MatchingStatus toEntity(RequestMatchingStatusDto dto) {
+		return MatchingStatus.builder()
+			.matchingStatusFollowerId(dto.matchingStatusFollowerId)
 			.build();
 	}
 }
