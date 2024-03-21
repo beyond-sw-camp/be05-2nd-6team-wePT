@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/api/matchingCategory")
 public class matchingCategoryController {
 
-	@Resource(name = "apartment")
+	@Resource(name = "matchingCategory")
 	private MatchingCategoryService service;
 
 	@PostMapping("/insert")
