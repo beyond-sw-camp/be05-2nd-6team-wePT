@@ -13,7 +13,7 @@ public class ResponseMatchingDto {
 	private Long matchingId;
 
 	@NotBlank
-	private Integer mathcingMatchingId;
+	private Integer matchingMatchingCategoryId;
 
 	@NotBlank
 	private String matchingOwnerId;
@@ -29,7 +29,7 @@ public class ResponseMatchingDto {
 
 	public ResponseMatchingDto(Matching params) {
 		this.matchingId = params.getMatchingId();
-		this.mathcingMatchingId = params.getMatchingMatchingId();
+		this.matchingMatchingCategoryId = params.getMatchingMatchingId();
 		this.matchingOwnerId = params.getMatchingOwnerId();
 		this.matchingHeadCountLimit = params.getMatchingHeadCountLimit();
 		this.matchingAccomplishedYn = params.getMatchingAccomplishedYn();
