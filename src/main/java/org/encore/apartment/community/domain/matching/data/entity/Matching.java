@@ -56,14 +56,10 @@ public class Matching {
 		this.matchingUpdatedAt = matchingUpdatedAt;
 	}
 
-	public void update(Integer matchingMatchingId, String matchingOwnerId, Integer matchingHeadCountLimit,
-		String matchingAccomplishedYn, String matchingCreatedAt, String matchingUpdatedAt) {
-		this.matchingMatchingCategoryId = matchingMatchingId;
-		this.matchingOwnerId = matchingOwnerId;
+	public void update(Integer matchingMatchingCategoryId, Integer matchingHeadCountLimit) {
+		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
-		this.matchingAccomplishedYn = matchingAccomplishedYn;
-		this.matchingCreatedAt = matchingCreatedAt;
-		this.matchingUpdatedAt = matchingUpdatedAt;
+
 	}
 
 }

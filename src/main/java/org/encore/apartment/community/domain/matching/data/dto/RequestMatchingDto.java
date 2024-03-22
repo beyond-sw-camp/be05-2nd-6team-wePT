@@ -8,19 +8,16 @@ import lombok.Data;
 @Data
 public class RequestMatchingDto {
 
-	@NotBlank
-	private Long matchingMatchingCategoryId;
+	private Integer matchingMatchingCategoryId;
 
-	@NotBlank
-	private String matchingOwnerId;
+
 
 	@NotBlank
 	private Integer matchingHeadCountLimit;
 
 	public static Matching toEntity(RequestMatchingDto dto) {
 		return Matching.builder()
-			.matchingMatchingId(dto.matching_matchingCategory_id)
-			.matchingOwnerId(dto.matchingOwnerId)
+			.matchingMatchingId(dto.matchingMatchingCategoryId)
 			.matchingHeadCountLimit(dto.matchingHeadCountLimit)
 			.build();
 

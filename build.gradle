@@ -35,9 +35,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	// Validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	// Lombok
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+	// Lombok -> matchingserviceimpl 내 @RequiredArgsConstructor 오류(error: constructor MatchingServiceImpl(MatchingRepository) is already defined in class MatchingServiceImpl)로 인해서 1.18.20 추가
+	compileOnly 'org.projectlombok:lombok:1.18.21'
+
+	//@Slf4j 로그 적용시  log symbol: variable log 에러 발생 -> 1.18.12 추가
+	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	// Swagger
