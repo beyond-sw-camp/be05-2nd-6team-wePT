@@ -10,7 +10,6 @@ import org.encore.apartment.community.domain.user.data.dto.membership.ResponseMe
 import org.encore.apartment.community.domain.user.data.entity.Membership;
 import org.encore.apartment.community.domain.user.data.entity.User;
 import org.encore.apartment.community.domain.user.data.repository.MembershipRepository;
-import org.encore.apartment.community.domain.user.data.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;

@@ -3,11 +3,10 @@ package org.encore.apartment.community.domain.matchingStatus.ctrl;
 import java.util.List;
 import java.util.Optional;
 
-
-import org.encore.apartment.community.domain.matchingCategory.data.dto.ResponseMatchingCategoryDto;
-import org.encore.apartment.community.domain.matchingCategory.data.dto.UpdateMatchingCategoryDto;
-import org.encore.apartment.community.domain.matchingCategory.service.MatchingCategoryService;
-import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestMatchingCategoryDto;
+import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestMatchingStatusDto;
+import org.encore.apartment.community.domain.matchingStatus.data.dto.ResponseMatchingStatusDto;
+import org.encore.apartment.community.domain.matchingStatus.data.dto.UpdateMatchingStatusDto;
+import org.encore.apartment.community.domain.matchingStatus.service.MatchingStatusService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,7 +54,7 @@ public class matchingStatusController {
 
 	@PostMapping("/update/{id}")
 	public ResponseEntity<Void> updateMatchingStatusInfo(@PathVariable("id") Long id,
-														   @RequestBody UpdateMatchingStatusDto params) {
+		@RequestBody UpdateMatchingStatusDto params) {
 		log.info("MatchingStatusController updateMatchingStatusInfo = {}", params);
 		service.updateMatchingStatusInfoById(id, params);
 
