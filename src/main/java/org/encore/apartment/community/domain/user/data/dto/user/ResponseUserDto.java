@@ -21,7 +21,7 @@ public class ResponseUserDto {
 	private String apartmentAddress;
 
 	public ResponseUserDto(User user) {
-		this.userIdx = user.getUserIdx();
+//		this.userIdx = user.getUserIdx();
 		this.userId = user.getUserId();
 		this.userNickname = user.getUserNickname();
 		this.userEmail = user.getUserEmail();

@@ -21,7 +21,7 @@ public class ResponseMembershipDto {
 
 	public ResponseMembershipDto(Membership params, String userId, String userNickname) {
 		this.membershipId = params.getMembershipId();
-		this.userIdx = params.getUser().getUserIdx();
+//		this.userIdx = params.getUser().getUserIdx();
 		this.membershipJoinDate = params.getMembershipJoinDate();
 		this.membershipExpiredDate = params.getMembershipExpiredDate();
 		this.userId = userId;

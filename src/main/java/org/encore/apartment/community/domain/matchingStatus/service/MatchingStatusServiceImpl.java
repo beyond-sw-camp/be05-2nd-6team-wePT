@@ -43,14 +43,16 @@ public class MatchingStatusServiceImpl implements MatchingStatusService {
 
 		return matchingStatusList.stream().map(ResponseMatchingStatusDto::new).collect(Collectors.toList());
 	}
-
+	
+	
+//	업데이트 할만한 정보가 없어 구현하지 않음
 	@Override
 	public void updateMatchingStatusInfoById(Long id, UpdateMatchingStatusDto params) {
-		MatchingStatus matchingStatus = matchingStatusRepository.findById(id)
-			.orElseThrow(() -> new IllegalArgumentException("해당 매칭현황 정보가 없습니다."));
-		matchingStatus.update(matchingStatus.getMatchingStatusMatchingId(),
-			matchingStatus.getMatchingStatusFollowerId());
-		log.info("updateMatchingStatusInfo = {}", params);
+//		MatchingStatus matchingStatus = matchingStatusRepository.findById(id)
+//			.orElseThrow(() -> new IllegalArgumentException("해당 매칭현황 정보가 없습니다."));
+//		matchingStatus.update(matchingStatus.getMatchingStatusMatchingId(),
+//			matchingStatus.getMatchingStatusFollowerId());
+//		log.info("updateMatchingStatusInfo = {}", params);
 	}
 
 	@Override
