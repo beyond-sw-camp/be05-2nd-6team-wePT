@@ -12,13 +12,13 @@ public class ResponseMatchingDto {
 	@NotNull
 	private Long matchingId;
 
-	@NotBlank
+	@NotNull
 	private Integer matchingMatchingCategoryId;
 
 	@NotBlank
 	private String matchingOwnerId;
 
-	@NotBlank
+	@NotNull
 	private Integer matchingHeadCountLimit;
 
 	private String matchingAccomplishedYn;

@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ public class Matching {
 	@Column(name = "matching_id")
 	private Long matchingId;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "matching_matchingCategory_id")
 	private Integer matchingMatchingCategoryId;
 
@@ -28,7 +29,7 @@ public class Matching {
 	@Column(name = "matching_owner_id")
 	private String matchingOwnerId;
 
-	@NotBlank
+	@NotNull
 	@Column(name = "matching_head_count_limit")
 	private Integer matchingHeadCountLimit;
 

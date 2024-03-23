@@ -3,9 +3,7 @@ package org.encore.apartment.community.domain.matching.ctrl;
 import jakarta.annotation.Resource;
 
 
-import org.encore.apartment.community.domain.apartment.data.dto.ResponseApartmentDto;
-import org.encore.apartment.community.domain.apartment.data.dto.UpdateApartmentDto;
-import org.encore.apartment.community.domain.matching.data.dto.RequestMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.RequestSearchMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.service.MatchingService;
@@ -27,7 +25,7 @@ public class MatchingController {
 	private MatchingService service;
 
 	@PostMapping("/insert")
-	public ResponseEntity<Void> insertMatchingInfo(@RequestBody RequestMatchingDto params) {
+	public ResponseEntity<Void> insertMatchingInfo(@RequestBody RequestSearchMatchingDto params) {
 		service.insertMatchingInfo(params);
 		log.info("MatchingController insertMatchingInfo = {}", params);
 

@@ -5,7 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
-import org.encore.apartment.community.domain.matching.data.dto.RequestMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.RequestSearchMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
@@ -25,8 +25,8 @@ public class MatchingServiceImpl implements MatchingService {
 
 
 	@Override
-	public void insertMatchingInfo(RequestMatchingDto params) {
-		Matching matching = RequestMatchingDto.toEntity(params);
+	public void insertMatchingInfo(RequestSearchMatchingDto params) {
+		Matching matching = RequestSearchMatchingDto.toEntity(params);
 		matchingRepository.save(matching);
 		log.info("insertMatchingInfo = {}", matching);
 	}
