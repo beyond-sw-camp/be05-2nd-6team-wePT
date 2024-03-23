@@ -36,11 +36,12 @@ dependencies {
 	// Validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	// Lombok -> matchingserviceimpl 내 @RequiredArgsConstructor 오류(error: constructor MatchingServiceImpl(MatchingRepository) is already defined in class MatchingServiceImpl)로 인해서 1.18.20 추가
-	compileOnly 'org.projectlombok:lombok:1.18.21'
+//	compileOnly 'org.projectlombok:lombok:1.18.21'
+	compileOnly 'org.projectlombok:lombok'
 
 	//@Slf4j 로그 적용시  log symbol: variable log 에러 발생 -> 1.18.12 추가
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
-
+//	annotationProcessor 'org.projectlombok:lombok:1.18.20'
+	annotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	// Swagger
