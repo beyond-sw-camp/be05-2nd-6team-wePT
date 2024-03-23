@@ -34,15 +34,15 @@ public class Matching {
 	private Integer matchingHeadCountLimit;
 
 	@NotBlank
-	@Column(name = "matching_accomplished_yn")
+	@Column(name = "matching_accomplished_yn", columnDefinition = "String default N")
 	private String matchingAccomplishedYn;
 
 	@NotBlank
-	@Column(name = "matching_created_at")
+	@Column(name = "matching_created_at", nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 	private String matchingCreatedAt;
 
 	@NotBlank
-	@Column(name = "matching_updated_at")
+	@Column(name = "matching_updated_at",nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 	private String matchingUpdatedAt;
 
 	@Builder

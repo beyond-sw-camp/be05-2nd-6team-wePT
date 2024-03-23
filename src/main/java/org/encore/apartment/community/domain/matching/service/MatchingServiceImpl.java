@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 
+import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.RequestSearchMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
+
 
 @Slf4j
 @Service("matching")
@@ -25,8 +28,8 @@ public class MatchingServiceImpl implements MatchingService {
 
 
 	@Override
-	public void insertMatchingInfo(RequestSearchMatchingDto params) {
-		Matching matching = RequestSearchMatchingDto.toEntity(params);
+	public void insertMatchingInfo(RequestInsertMatchingDto params) {
+		Matching matching = RequestInsertMatchingDto.toEntity(params);
 		matchingRepository.save(matching);
 		log.info("insertMatchingInfo = {}", matching);
 	}
