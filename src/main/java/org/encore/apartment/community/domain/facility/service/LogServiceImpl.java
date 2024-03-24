@@ -23,9 +23,11 @@ public class LogServiceImpl implements LogService {
 
     //추가 (exit_time = null) -> userID & facilityID 필요
     public void addLog(Integer facilityId, String userId){
+        Date date = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
         Log add = Log.builder()
                 .logFacilityId(facilityId)
                 .logUserId(userId)
+                .logEntryTime(date)
                 .build();
         logRepository.save(add);
     }

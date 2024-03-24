@@ -3,6 +3,7 @@ package org.encore.apartment.community.domain.facility.ctrl;
 import jakarta.annotation.Resource;
 import org.encore.apartment.community.domain.facility.data.dto.LogDto;
 import org.encore.apartment.community.domain.facility.data.dto.RealtimeFacilityDto;
+import org.encore.apartment.community.domain.facility.data.dto.ReservationDto;
 import org.encore.apartment.community.domain.facility.service.LogService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +21,11 @@ public class LogController {
     private LogService service;
 
     //추가 (exit_time = null) -> userID & facilityID 필요
+    @PostMapping(value = "/addLog/{facilityId}/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Void> createReservation(@PathVariable("facilityId") String facilityId, @PathVariable("userId") String userId) {
+        service.addLog(Integer.parseInt(facilityId), userId);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 
     //조회 (전체 확인용)
     @GetMapping(value = "/info", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -36,7 +42,7 @@ public class LogController {
     }
 
     //사용자 아이디로 조회 (exit_time = null) 만약 dto가 1개 이상 출력되면 오류(중복 입장)
-    @GetMapping(value = "/infoFacility/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/infouser/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<LogDto>> readAllByUsers(@PathVariable("userId") String userId) {
         List<LogDto> list = service.readAllByUsers(userId);
         return new ResponseEntity<List<LogDto>>(list, HttpStatus.OK);

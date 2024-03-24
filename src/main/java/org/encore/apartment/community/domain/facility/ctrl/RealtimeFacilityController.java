@@ -20,6 +20,7 @@ public class RealtimeFacilityController {
     @Resource(name = "realtimefacility")
     private RealtimeFacilityService service;
 
+    //기본은 다 0으로 넣어주기
     // 전체 시설의 사용자 수 조회
     @GetMapping(value = "/info", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RealtimeFacilityDto>> userCnt() {
