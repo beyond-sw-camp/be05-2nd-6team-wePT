@@ -1,16 +1,9 @@
 package org.encore.apartment.community.domain.matchingStatus.data.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Getter
 @Entity
@@ -25,8 +18,8 @@ public class MatchingStatus {
     private String matchingStatusFollowerId;
 
     @Builder
-    public MatchingStatus(String matchingStatusFollowerId) {
-
+    public MatchingStatus(Long matchingStatusMatchingId, String matchingStatusFollowerId) {
+        this.matchingStatusMatchingId = matchingStatusMatchingId;
         this.matchingStatusFollowerId = matchingStatusFollowerId;
     }
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestInsertMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.ResponseMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.UpdateMatchingStatusDto;
@@ -22,11 +23,12 @@ public class MatchingStatusServiceImpl implements MatchingStatusService {
 	private final MatchingStatusRepository matchingStatusRepository;
 
 	@Override
-	public void insertMatchingStatusInfo(RequestMatchingStatusDto params) {
-		MatchingStatus matchingStatus = RequestMatchingStatusDto.toEntity(params);
+	public void insertMatchingStatusInfo(RequestInsertMatchingStatusDto params) {
+		MatchingStatus matchingStatus = RequestInsertMatchingStatusDto.toEntity(params);
 		matchingStatusRepository.save(matchingStatus);
 		log.info("insertMatchingStatusInfo = {}", matchingStatus);
 	}
+
 
 	@Override
 	public Optional<ResponseMatchingStatusDto> findMatchingStatusInfo(Long id) {

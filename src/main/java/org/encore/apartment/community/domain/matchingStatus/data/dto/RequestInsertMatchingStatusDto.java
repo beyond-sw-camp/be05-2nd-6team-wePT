@@ -3,31 +3,24 @@ package org.encore.apartment.community.domain.matchingStatus.data.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.encore.apartment.community.domain.matching.data.entity.Matching;
+
+import lombok.NonNull;
+import org.encore.apartment.community.domain.matchingStatus.data.entity.MatchingStatus;
 
 
 @Data
 public class RequestInsertMatchingStatusDto {
 
-    @NotNull
-    private Integer matchingMatchingCategoryId;
+
+    private Long matchingStatusMatchingId;
 
     @NotBlank
-    private String matchingOwnerId;
+    private String matchingStatusFollowerId;
 
-    @NotNull
-    private Integer matchingHeadCountLimit;
-
-
-
-
-
-    public static Matching toEntity(RequestInsertMatchingStatusDto requestInsertMatchingDto) {
-        return Matching.builder()
-                .matchingAccomplishedYn(false)
-                .matchingMatchingCategoryId(requestInsertMatchingDto.getMatchingMatchingCategoryId())
-                .matchingOwnerId(requestInsertMatchingDto.getMatchingOwnerId())
-                .matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
+    public static MatchingStatus toEntity(RequestInsertMatchingStatusDto requestInsertMatchingStatusDto) {
+        return MatchingStatus.builder()
+                .matchingStatusMatchingId(requestInsertMatchingStatusDto.getMatchingStatusMatchingId())
+                .matchingStatusFollowerId(requestInsertMatchingStatusDto.getMatchingStatusFollowerId())
                 .build();
     }
 }

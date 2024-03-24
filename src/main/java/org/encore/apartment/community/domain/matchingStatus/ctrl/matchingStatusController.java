@@ -3,6 +3,7 @@ package org.encore.apartment.community.domain.matchingStatus.ctrl;
 import java.util.List;
 import java.util.Optional;
 
+import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestInsertMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.ResponseMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.UpdateMatchingStatusDto;
@@ -29,7 +30,7 @@ public class matchingStatusController {
 	private MatchingStatusService service;
 
 	@PostMapping("/insert")
-	public ResponseEntity<Void> insertMatchingStatusInfo(@RequestBody RequestMatchingStatusDto params) {
+	public ResponseEntity<Void> insertMatchingStatusInfo(@RequestBody RequestInsertMatchingStatusDto params) {
 		service.insertMatchingStatusInfo(params);
 		log.info("MatchingStatusController insertMatchingStatusInfo = {}", params);
 
