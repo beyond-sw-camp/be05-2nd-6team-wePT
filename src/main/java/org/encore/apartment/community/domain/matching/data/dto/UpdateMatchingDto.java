@@ -2,23 +2,28 @@ package org.encore.apartment.community.domain.matching.data.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import org.encore.apartment.community.domain.matching.data.entity.Matching;
 
+@Data
 public class UpdateMatchingDto {
-	@NotNull
-	private Long matchingId;
 
-	@NotBlank
+
+
 	private Integer matchingMatchingCategoryId;
 
-	@NotBlank
-	private String matchingOwnerId;
 
-	@NotBlank
 	private Integer matchingHeadCountLimit;
-	@NotBlank
-	private String matchingAccomplishedYn;
-	
-	private String matchingCreatedAt;
 
-	private String matchingUpdatedAt;
+
+
+
+	public static Matching toEntity(UpdateMatchingDto updateMatchingDto) {
+		return Matching.builder()
+				.matchingMatchingCategoryId(updateMatchingDto.getMatchingMatchingCategoryId())
+				.matchingHeadCountLimit(updateMatchingDto.getMatchingHeadCountLimit())
+
+				.build();
+	}
+
 }

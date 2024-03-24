@@ -54,8 +54,12 @@ public class MatchingServiceImpl implements MatchingService {
 	@Override
 	public void updateMatchingInfoById(Long id, UpdateMatchingDto params) {
 		Matching matching = matchingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 매칭 정보가 없습니다."));
-		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
+//		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
 
+//		update가 안되어 matching에 setter 추가하고 아래와 같이 새로운 3개 line 추가함
+		matching.setMatchingMatchingCategoryId(params.getMatchingMatchingCategoryId());
+		matching.setMatchingHeadCountLimit(params.getMatchingHeadCountLimit());
+		matchingRepository.save(matching);
 		log.info("updateApartmentInfo = {}", params);
 
 	}
