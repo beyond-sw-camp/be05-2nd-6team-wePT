@@ -7,13 +7,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.sql.Timestamp;
 
 @Getter
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Matching {
 
 	@Id
@@ -21,35 +27,41 @@ public class Matching {
 	@Column(name = "matching_id")
 	private Long matchingId;
 
-	@NotNull
+
 	@Column(name = "matching_matchingCategory_id")
 	private Integer matchingMatchingCategoryId;
 
-	@NotBlank
+
 	@Column(name = "matching_owner_id")
 	private String matchingOwnerId;
 
-	@NotNull
+
 	@Column(name = "matching_head_count_limit")
 	private Integer matchingHeadCountLimit;
 
-	@NotBlank
-	@Column(name = "matching_accomplished_yn", columnDefinition = "String default N")
-	private String matchingAccomplishedYn;
 
-	@NotBlank
-	@Column(name = "matching_created_at", nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
-	private String matchingCreatedAt;
+//	@Column(name = "matching_accomplished_yn",   columnDefinition = "boolean default false")
+//	private Boolean matchingAccomplishedYn;
 
-	@NotBlank
-	@Column(name = "matching_updated_at",nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
-	private String matchingUpdatedAt;
+	@Column(name = "matching_accomplished_yn", columnDefinition = "boolean default false")
+	private Boolean matchingAccomplishedYn;
+
+
+	@Column(name = "matching_created_at",columnDefinition = "timestamp default CURRENT_TIMESTAMP")
+	@CreationTimestamp
+	private Timestamp matchingCreatedAt;
+
+
+	@Column(name = "matching_updated_at", columnDefinition = "timestamp default CURRENT_TIMESTAMP")
+	@CreationTimestamp
+	private Timestamp  matchingUpdatedAt;
 
 	@Builder
 	public Matching(
-		Integer matchingMatchingId, String matchingOwnerId, Integer matchingHeadCountLimit,
-		String matchingAccomplishedYn, String matchingCreatedAt, String matchingUpdatedAt) {
-		this.matchingMatchingCategoryId = matchingMatchingId;
+		Integer matchingMatchingId, Integer matchingMatchingCategoryId,String matchingOwnerId, Integer matchingHeadCountLimit,
+		Boolean matchingAccomplishedYn, Timestamp  matchingCreatedAt, Timestamp  matchingUpdatedAt) {
+		this.matchingId=matchingId;
+		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
 		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 		this.matchingAccomplishedYn = matchingAccomplishedYn;
@@ -59,6 +71,13 @@ public class Matching {
 
 	public void update(Integer matchingMatchingCategoryId, Integer matchingHeadCountLimit) {
 		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
+		this.matchingHeadCountLimit = matchingHeadCountLimit;
+
+	}
+
+	public void insert(RequestInsertMatchingDto params) {
+		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
+		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 
 	}

@@ -9,17 +9,14 @@ import lombok.Data;
 public class RequestSearchMatchingDto {
 
 	@NotNull
-	private Integer matchingMatchingCategoryId;
+	private Long matchingId;
 
 
 
-	@NotNull
-	private Integer matchingHeadCountLimit;
 
-	public static Matching toEntity(RequestSearchMatchingDto dto) {
+	public static Matching toEntity(RequestSearchMatchingDto requestSearchMatchingDto) {
 		return Matching.builder()
-			.matchingMatchingId(dto.matchingMatchingCategoryId)
-			.matchingHeadCountLimit(dto.matchingHeadCountLimit)
+//			.matchingId(requestSearchMatchingDto.getMatchingId())
 			.build();
 
 	}

@@ -53,9 +53,10 @@ public class MatchingServiceImpl implements MatchingService {
 
 	@Override
 	public void updateMatchingInfoById(Long id, UpdateMatchingDto params) {
-		 Matching matching = matchingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 매칭 정보가 없습니다."));
-		 matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
-		 log.info("updateApartmentInfo = {}", params);
+		Matching matching = matchingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 매칭 정보가 없습니다."));
+		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
+
+		log.info("updateApartmentInfo = {}", params);
 
 	}
 

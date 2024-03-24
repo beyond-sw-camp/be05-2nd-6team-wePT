@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.sql.Timestamp;
+
 @Data
 public class ResponseMatchingDto {
 
@@ -21,11 +23,11 @@ public class ResponseMatchingDto {
 	@NotNull
 	private Integer matchingHeadCountLimit;
 
-	private String matchingAccomplishedYn;
+	private Boolean matchingAccomplishedYn;
 
-	private String matchingCreatedAt;
+	private Timestamp matchingCreatedAt;
 
-	private String matchingUpdatedAt;
+	private Timestamp  matchingUpdatedAt;
 
 	public ResponseMatchingDto(Matching params) {
 		this.matchingId = params.getMatchingId();
