@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +33,7 @@ public class MatchingController {
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<ResponseMatchingDto>> findMatchingInfo(@PathVariable Long id) {
+	public ResponseEntity<Optional<ResponseMatchingDto>> findMatchingInfo(@PathVariable(value = "id") Long id) {
 		Optional<ResponseMatchingDto> dto = service.findMatchingInfo(id);
 		log.info("MatchingController findMatchingInfo = {}", dto);
 
@@ -50,7 +49,7 @@ public class MatchingController {
 	}
 
 	@PostMapping("/update/{id}")
-	public ResponseEntity<Void> updateMatchingInfo(@PathVariable("id") Long id, @RequestBody UpdateMatchingDto params) {
+	public ResponseEntity<Void> updateMatchingInfo(@PathVariable(value = "id") Long id, @RequestBody UpdateMatchingDto params) {
 		log.info("MatchingController updateMatchingInfo = {}", params);
 		service.updateMatchingInfoById(id, params);
 
