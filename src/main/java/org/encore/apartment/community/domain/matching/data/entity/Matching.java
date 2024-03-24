@@ -28,7 +28,7 @@ public class Matching {
 	private Long matchingId;
 
 
-	@Column(name = "matching_matchingCategory_id")
+	@Column(name = "matching_matching_category_id")
 	private Integer matchingMatchingCategoryId;
 
 
@@ -43,7 +43,7 @@ public class Matching {
 //	@Column(name = "matching_accomplished_yn",   columnDefinition = "boolean default false")
 //	private Boolean matchingAccomplishedYn;
 
-	@Column(name = "matching_accomplished_yn", columnDefinition = "boolean default false")
+	@Column(name = "matching_accomplished_yn",columnDefinition = "boolean default false")
 	private Boolean matchingAccomplishedYn;
 
 

@@ -32,7 +32,7 @@ dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 //	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	// Thymeleaf
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
 	// Validation
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	// Lombok

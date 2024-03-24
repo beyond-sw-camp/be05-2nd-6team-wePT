@@ -28,6 +28,7 @@ public class RequestInsertMatchingDto {
 
     public static Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
         return Matching.builder()
+                .matchingAccomplishedYn(false)
                 .matchingMatchingCategoryId(requestInsertMatchingDto.getMatchingMatchingCategoryId())
                 .matchingOwnerId(requestInsertMatchingDto.getMatchingOwnerId())
                 .matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
