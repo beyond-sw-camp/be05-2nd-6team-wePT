@@ -22,3 +22,22 @@ INSERT INTO Apartment (apartment_name, apartment_address, apartment_total_househ
     ('강동아파트', '서울특별시 강동구 천호대로 1313', 140);
 
 
+--     reservation_facility_id int          not null,
+--     reservation_id          int auto_increment
+--         primary key,
+--     reservation_end_time    datetime(6)  not null,
+--     reservation_start_time  datetime(6)  not null,
+--     reservation_user_id     varchar(255) not null
+INSERT INTO Reservation (reservation_facility_id, reservation_start_time, reservation_end_time, reservation_user_id)
+VALUES
+    (1, '2024-03-22 02:25:49', '2024-03-24 02:25:49', 'string'),
+    (1, '2024-03-23 02:25:49', '2024-03-24 02:25:49', 'example'),
+    (2, '2024-03-24 02:25:49', '2024-03-24 02:25:49', 'string'),
+    (2, '2024-03-24 02:25:49', '2024-03-24 02:25:49', 'example'),
+    (3, '2024-03-26 02:25:49', '2024-03-26 03:25:49', 'string');
+
+
+
+
+
+

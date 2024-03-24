@@ -25,9 +25,10 @@ public class FacilityServiceImpl implements FacilityService {
         log.info("facility saved : {}", facility);
     }
 
+    // Entity -> Dto
     @Override
     public List<FacilityDto> readAllFacility(){
         List<Facility> list = facilityRepository.findAll();
-        return list.stream().map().collect(Collectors.toList());
+        return list.stream().map(FacilityDto::new).collect(Collectors.toList());
     }
 }

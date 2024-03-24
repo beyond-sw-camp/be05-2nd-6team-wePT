@@ -13,23 +13,19 @@ import lombok.NoArgsConstructor;
 public class Facility {
 
     @Id
-    @Column(name = "facility_id")
-    private String facilityId;
+    @Column(name = "facility_id", nullable = false)
+    private Integer facilityId;
 
-    @NotNull
-    @Column(name = "facility_name")
+    @Column(name = "facility_name", nullable = false)
     private String facilityName;
 
-    @NotNull
-    @Column(name = "facility_operating_time")
+    @Column(name = "facility_operating_time", nullable = false)
     private Integer facilityOperatingTime;
 
-    @NotNull
-    @Column(name = "facility_membership_yn")
+    @Column(name = "facility_membership_yn", nullable = false)
     private String facilityMembershipYn;
 
-    @NotNull
-    @Column(name = "facility_fee")
+    @Column(name = "facility_fee", nullable = false)
     private Integer facilityFee;
 
     @Column(name = "facility_reservation_availble_time")
@@ -37,7 +33,7 @@ public class Facility {
 
     @Builder
     public Facility(
-            String facilityId,
+            Integer facilityId,
             String facilityName,
             Integer facilityOperatingTime,
             String facilityMembershipYn,

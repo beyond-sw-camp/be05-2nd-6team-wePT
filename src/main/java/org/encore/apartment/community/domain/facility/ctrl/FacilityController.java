@@ -32,5 +32,4 @@ public class FacilityController {
         List<FacilityDto> list = service.readAllFacility();
         return new ResponseEntity<List<FacilityDto>>(list, HttpStatus.OK);
     }
-
 }

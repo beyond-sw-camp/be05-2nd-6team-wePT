@@ -9,7 +9,7 @@ import org.encore.apartment.community.domain.facility.data.entity.Facility;
 @Setter
 public class FacilityDto {
     @NotNull
-    private String facilityId;
+    private Integer facilityId;
 
     @NotNull
     private String facilityName;
@@ -25,15 +25,24 @@ public class FacilityDto {
 
     private Integer facilityReservationAvailbleTime;
 
-    public static Facility toEntity(FacilityDto userDto) {
+    public static Facility toEntity(FacilityDto facilityDto) {
         return Facility.builder()
-                .facilityId(userDto.getFacilityId())
-                .facilityName(userDto.getFacilityName())
-                .facilityOperatingTime(userDto.getFacilityOperatingTime())
-                .facilityMembershipYn(userDto.getFacilityMembershipYn())
-                .facilityFee(userDto.getFacilityFee())
-                .facilityReservationAvailbleTime(userDto.getFacilityReservationAvailbleTime())
+                .facilityId(facilityDto.getFacilityId())
+                .facilityName(facilityDto.getFacilityName())
+                .facilityOperatingTime(facilityDto.getFacilityOperatingTime())
+                .facilityMembershipYn(facilityDto.getFacilityMembershipYn())
+                .facilityFee(facilityDto.getFacilityFee())
+                .facilityReservationAvailbleTime(facilityDto.getFacilityReservationAvailbleTime())
                 .build();
+    }
+
+    public FacilityDto(Facility facility) {
+        this.facilityId = facility.getFacilityId();
+        this.facilityName = facility.getFacilityName();
+        this.facilityFee = facility.getFacilityFee();
+        this.facilityOperatingTime = facility.getFacilityOperatingTime();
+        this.facilityMembershipYn = facility.getFacilityMembershipYn();
+        this.facilityReservationAvailbleTime = facility.getFacilityReservationAvailbleTime();
     }
 }
 
