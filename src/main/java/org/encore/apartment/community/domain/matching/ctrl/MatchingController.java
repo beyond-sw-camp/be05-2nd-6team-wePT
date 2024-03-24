@@ -57,7 +57,7 @@ public class MatchingController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Void> deleteMatchingInfo(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteMatchingInfo(@PathVariable(value = "id") Long id) {
 		log.info("MatchingController deleteMatchingInfo = {}", id);
 		service.deleteMatchingInfo(id);
 
