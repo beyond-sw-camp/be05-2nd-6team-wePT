@@ -43,7 +43,7 @@ public class RealtimeFacilityController {
     }
 
     //사용자수 업데이트 (모든 시설)
-    @PostMapping(value = "/updateAll", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/update-all", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Void> updateAll(){
         service.updateUserCntAll();
         return new ResponseEntity<Void>(HttpStatus.OK);
