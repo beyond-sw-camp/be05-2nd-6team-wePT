@@ -5,8 +5,9 @@ import java.util.Optional;
 
 import org.encore.apartment.community.domain.apartment.data.dto.RequestApartmentDto;
 import org.encore.apartment.community.domain.apartment.data.dto.ResponseApartmentDto;
-import org.encore.apartment.community.domain.apartment.data.dto.UpdateApartmentDto;
+import org.encore.apartment.community.domain.apartment.data.dto.UpdateRequestApartmentDto;
 import org.encore.apartment.community.domain.apartment.service.ApartmentService;
+import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,11 +54,10 @@ public class ApartmentController {
 	}
 
 	@PostMapping("/update/{id}")
-	public ResponseEntity<Void> updateApartmentInfo(@PathVariable("id") Long id, @RequestBody UpdateApartmentDto params) {
+	public ApiResponse<ResponseApartmentDto> updateApartmentInfo(@PathVariable("id") Long id, @RequestBody UpdateRequestApartmentDto params) {
 		log.info("ApartmentController updateApartmentInfo = {}", params);
-		service.updateApartmentInfoById(id, params);
 
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return ApiResponse.createSuccess(service.updateApartmentInfoById(id, params));
 	}
 
 	@DeleteMapping("/delete/{id}")
