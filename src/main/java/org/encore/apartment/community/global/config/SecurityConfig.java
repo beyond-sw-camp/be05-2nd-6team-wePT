@@ -19,11 +19,12 @@ public class SecurityConfig {
 		"/",
 		"/api-docs/**",
 		"/swagger-ui/**",
-		"/v3/**", "/sign-in",
+		"/v3/**",
+		"/sign-in",
 		"/user/sign-up",
-		"/user/**",
-		"/apartment/**",
-		"/member/**"
+		// "/user/**",
+		// "/apartment/**",
+		// "/member/**"
 	};
 
 	@Bean
