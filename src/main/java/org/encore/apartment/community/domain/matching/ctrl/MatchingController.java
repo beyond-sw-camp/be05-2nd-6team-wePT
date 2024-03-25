@@ -1,20 +1,24 @@
 package org.encore.apartment.community.domain.matching.ctrl;
 
-import jakarta.annotation.Resource;
-
+import java.util.List;
+import java.util.Optional;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
-import org.encore.apartment.community.domain.matching.data.dto.RequestSearchMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.service.MatchingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -49,7 +53,8 @@ public class MatchingController {
 	}
 
 	@PostMapping("/update/{id}")
-	public ResponseEntity<Void> updateMatchingInfo(@PathVariable(value = "id") Long id, @RequestBody UpdateMatchingDto params) {
+	public ResponseEntity<Void> updateMatchingInfo(@PathVariable(value = "id") Long id,
+		@RequestBody UpdateMatchingDto params) {
 		log.info("MatchingController updateMatchingInfo = {}", params);
 		service.updateMatchingInfoById(id, params);
 
@@ -57,7 +62,7 @@ public class MatchingController {
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Void> deleteMatchingInfo(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteMatchingInfo(@PathVariable(value = "id") Long id) {
 		log.info("MatchingController deleteMatchingInfo = {}", id);
 		service.deleteMatchingInfo(id);
 

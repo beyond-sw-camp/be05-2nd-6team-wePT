@@ -3,6 +3,7 @@ package org.encore.apartment.community.domain.matching.data.entity;
 import java.sql.Timestamp;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
@@ -40,7 +41,10 @@ public class Matching {
 	//	@Column(name = "matching_accomplished_yn",   columnDefinition = "boolean default false")
 	//	private Boolean matchingAccomplishedYn;
 
-	@Column(name = "matching_accomplished_yn", columnDefinition = "boolean default false")
+	@Column(name = "matching_accomplished_yn"
+		, columnDefinition = "boolean default false"
+	)
+	@ColumnDefault("false")
 	private Boolean matchingAccomplishedYn;
 
 	@Column(name = "matching_created_at", columnDefinition = "timestamp default CURRENT_TIMESTAMP")
