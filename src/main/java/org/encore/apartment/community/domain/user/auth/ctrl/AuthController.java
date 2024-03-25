@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping
@@ -25,8 +27,8 @@ public class AuthController {
 
 	@Operation(summary = "로그인")
 	@PostMapping("/sign-in")
-	public ApiResponse<UserResponseDto> signIn(@RequestBody SignInRequestDto params) {
-		SignInResponseDto signInResponseDto = authService.signIn(params);
-		return ApiResponse.createSuccess(userService.findUserInfo(signInResponseDto.userIdx()));
+	public ApiResponse<SignInResponseDto> signIn(@RequestBody SignInRequestDto params) {
+		log.debug("==== AuthController signIn() params: {}", params);
+		return ApiResponse.createSuccess(authService.signIn(params));
 	}
 }
