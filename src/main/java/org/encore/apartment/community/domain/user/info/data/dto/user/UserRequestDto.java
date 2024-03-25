@@ -1,6 +1,7 @@
 package org.encore.apartment.community.domain.user.info.data.dto.user;
 
 import org.encore.apartment.community.domain.user.info.data.entity.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -38,10 +39,10 @@ public class UserRequestDto {
 
 	private Long apartmentId;
 
-	public static User toEntity(UserRequestDto userRequestDto) {
+	public static User toEntity(UserRequestDto userRequestDto, PasswordEncoder encoder) {
 		return User.builder()
 					.userId(userRequestDto.getUserId())
-					.userPassword(userRequestDto.getUserPassword())
+					.userPassword(encoder.encode(userRequestDto.getUserPassword()))
 					.userNickname(userRequestDto.getUserNickname())
 					.userEmail(userRequestDto.getUserEmail())
 					.userMobile(userRequestDto.getUserMobile())

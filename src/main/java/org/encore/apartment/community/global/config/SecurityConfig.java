@@ -15,7 +15,16 @@ import lombok.val;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	private final String [] allowedUrls = {"/", "/api-docs/**", "/swagger-ui/**", "/v3/**", "/sign-in" };
+	private final String [] allowedUrls = {
+		"/",
+		"/api-docs/**",
+		"/swagger-ui/**",
+		"/v3/**", "/sign-in",
+		"/user/sign-up",
+		"/user/**",
+		"/apartment/**",
+		"/member/**"
+	};
 
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

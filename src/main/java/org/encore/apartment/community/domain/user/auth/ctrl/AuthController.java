@@ -18,7 +18,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping
 public class AuthController {
+
 	private final AuthService authService;
+
 	private final UserService userService;
 
 	@Operation(summary = "로그인")
