@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.ResponseClosedMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.service.MatchingService;
@@ -43,6 +44,16 @@ public class MatchingController {
 
 		return new ResponseEntity<Optional<ResponseMatchingDto>>(dto, HttpStatus.OK);
 	}
+
+	@GetMapping("/find/closed")
+	public ResponseEntity<List<ResponseClosedMatchingDto>> findClosedMatchingInfo() {
+		List<ResponseClosedMatchingDto> dto = service.findClosedMatchingInfo();
+		log.info("MatchingController findMatchingInfo = {}", dto);
+
+		return new ResponseEntity<List<ResponseClosedMatchingDto>>(dto, HttpStatus.OK);
+	}
+
+
 
 	@GetMapping("/list")
 	public ResponseEntity<List<ResponseMatchingDto>> findMatchingInfoList() {

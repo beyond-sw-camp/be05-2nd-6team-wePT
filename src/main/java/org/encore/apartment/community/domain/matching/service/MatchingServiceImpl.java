@@ -5,10 +5,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.ResponseClosedMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.matching.data.repository.MatchingRepository;
+import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
 import org.encore.apartment.community.domain.matchingCategory.data.repository.MatchingCategoryRepository;
 import org.encore.apartment.community.domain.user.data.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -52,9 +54,20 @@ public class MatchingServiceImpl implements MatchingService {
 	}
 
 	@Override
+	public List<ResponseClosedMatchingDto> findClosedMatchingInfo() {
+//		List<Matching> matchingList = matchingRepository.findAll();
+//		log.info("findClosedMatchingInfoList = {}", matchingList);
+//		return matchingList.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
+		return null;
+	}
+
+
+
+
+	@Override
 	public List<ResponseMatchingDto> findMatchingInfoList() {
 		List<Matching> matchingList = matchingRepository.findAll();
-		log.info("findApartmentInfoList = {}", matchingList);
+		log.info("findMatchingInfoList = {}", matchingList);
 
 		return matchingList.stream().map(ResponseMatchingDto::new).collect(Collectors.toList());
 	}
@@ -69,7 +82,7 @@ public class MatchingServiceImpl implements MatchingService {
 		matching.setMatchingMatchingCategoryId((params.getMatchingMatchingCategoryId()));
 		matching.setMatchingHeadCountLimit(params.getMatchingHeadCountLimit());
 		matchingRepository.save(matching);
-		log.info("updateApartmentInfo = {}", params);
+		log.info("updateMatchingInfo = {}", params);
 
 	}
 
