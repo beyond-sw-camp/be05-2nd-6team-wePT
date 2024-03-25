@@ -3,14 +3,19 @@ package org.encore.apartment.community.domain.matching.data.entity;
 import java.sql.Timestamp;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
+import org.encore.apartment.community.domain.user.data.entity.User;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,11 +34,13 @@ public class Matching {
 	@Column(name = "matching_id")
 	private Long matchingId;
 
-	@Column(name = "matching_matching_category_id")
-	private Integer matchingMatchingCategoryId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "matchingCategory_id")
+	private MatchingCategory matchingMatchingCategoryId;
 
-	@Column(name = "matching_owner_id")
-	private String matchingOwnerId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id")
+	private User matchingOwnerId;
 
 	@Column(name = "matching_head_count_limit")
 	private Integer matchingHeadCountLimit;
@@ -57,7 +64,7 @@ public class Matching {
 
 	@Builder
 	public Matching(
-		Integer matchingMatchingId, Integer matchingMatchingCategoryId, String matchingOwnerId,
+		Long matchingId, MatchingCategory matchingMatchingCategoryId, User matchingOwnerId,
 		Integer matchingHeadCountLimit,
 		Boolean matchingAccomplishedYn, Timestamp matchingCreatedAt, Timestamp matchingUpdatedAt) {
 		this.matchingId = matchingId;
@@ -69,7 +76,7 @@ public class Matching {
 		this.matchingUpdatedAt = matchingUpdatedAt;
 	}
 
-	public void update(Integer matchingMatchingCategoryId, Integer matchingHeadCountLimit) {
+	public void update(MatchingCategory matchingMatchingCategoryId, Integer matchingHeadCountLimit) {
 		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 

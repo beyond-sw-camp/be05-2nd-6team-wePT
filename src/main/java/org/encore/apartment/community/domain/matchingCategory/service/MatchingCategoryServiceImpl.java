@@ -4,16 +4,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.encore.apartment.community.domain.matchingCategory.data.dto.RequestMatchingCategoryDto;
+import org.encore.apartment.community.domain.matchingCategory.data.dto.RequestInsertMatchingCategoryDto;
 import org.encore.apartment.community.domain.matchingCategory.data.dto.ResponseMatchingCategoryDto;
 import org.encore.apartment.community.domain.matchingCategory.data.dto.UpdateMatchingCategoryDto;
 import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
 import org.encore.apartment.community.domain.matchingCategory.data.repository.MatchingCategoryRepository;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service("matchingCategory")
@@ -21,14 +20,13 @@ import org.springframework.stereotype.Service;
 public class MatchingCategoryServiceImpl implements MatchingCategoryService {
 	private final MatchingCategoryRepository matchingCategoryRepository;
 
-
 	@Override
-	public void insertMatchingCategoryInfo(RequestMatchingCategoryDto params) {
-		MatchingCategory matchingCategory = RequestMatchingCategoryDto.toEntity(params);
+	public void insertMatchingCategoryInfo(RequestInsertMatchingCategoryDto params) {
+		MatchingCategory matchingCategory = RequestInsertMatchingCategoryDto.toEntity(params);
 		matchingCategoryRepository.save(matchingCategory);
 		log.info("insertMatchingCategoryInfo = {}", matchingCategory);
-	}
 
+	}
 
 	@Override
 	public Optional<ResponseMatchingCategoryDto> findMatchingCategoryInfo(Long id) {

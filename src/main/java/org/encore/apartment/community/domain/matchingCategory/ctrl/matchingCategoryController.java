@@ -3,12 +3,10 @@ package org.encore.apartment.community.domain.matchingCategory.ctrl;
 import java.util.List;
 import java.util.Optional;
 
-
-import org.encore.apartment.community.domain.matchingCategory.data.dto.RequestMatchingCategoryDto;
+import org.encore.apartment.community.domain.matchingCategory.data.dto.RequestInsertMatchingCategoryDto;
 import org.encore.apartment.community.domain.matchingCategory.data.dto.ResponseMatchingCategoryDto;
 import org.encore.apartment.community.domain.matchingCategory.data.dto.UpdateMatchingCategoryDto;
 import org.encore.apartment.community.domain.matchingCategory.service.MatchingCategoryService;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,7 +29,7 @@ public class matchingCategoryController {
 	private MatchingCategoryService service;
 
 	@PostMapping("/insert")
-	public ResponseEntity<Void> insertMatchingCategoryInfo(@RequestBody RequestMatchingCategoryDto params) {
+	public ResponseEntity<Void> insertMatchingCategoryInfo(@RequestBody RequestInsertMatchingCategoryDto params) {
 		service.insertMatchingCategoryInfo(params);
 		log.info("MatchingCategoryController insertMatchingCategoryInfo = {}", params);
 
