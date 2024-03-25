@@ -1,6 +1,6 @@
-package org.encore.apartment.community.domain.user.data.repository;
+package org.encore.apartment.community.domain.user.info.repository;
 
-import org.encore.apartment.community.domain.user.data.entity.User;
+import org.encore.apartment.community.domain.user.info.data.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

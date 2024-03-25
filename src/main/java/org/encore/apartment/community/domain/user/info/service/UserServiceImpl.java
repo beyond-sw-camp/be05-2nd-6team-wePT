@@ -1,14 +1,13 @@
-package org.encore.apartment.community.domain.user.service.user;
+package org.encore.apartment.community.domain.user.info.service;
 
 import java.util.Optional;
 
 import org.encore.apartment.community.domain.apartment.data.repository.ApartmentRepository;
-import org.encore.apartment.community.domain.user.data.dto.user.RequestUserDto;
-import org.encore.apartment.community.domain.user.data.dto.user.ResponseUserDto;
-import org.encore.apartment.community.domain.user.data.dto.user.UpdateRequestUserDto;
-import org.encore.apartment.community.domain.user.data.entity.User;
-import org.encore.apartment.community.domain.user.data.repository.UserRepository;
-import org.encore.apartment.community.domain.user.service.user.UserService;
+import org.encore.apartment.community.domain.user.info.data.dto.user.RequestUserDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.ResponseUserDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UpdateRequestUserDto;
+import org.encore.apartment.community.domain.user.info.data.entity.User;
+import org.encore.apartment.community.domain.user.info.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

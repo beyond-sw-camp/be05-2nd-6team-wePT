@@ -1,7 +1,7 @@
-package org.encore.apartment.community.domain.user.data.dto.user;
+package org.encore.apartment.community.domain.user.info.data.dto.user;
 
 import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
-import org.encore.apartment.community.domain.user.data.entity.User;
+import org.encore.apartment.community.domain.user.info.data.entity.User;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package org.encore.apartment.community.domain.user.data.dto.user;
+package org.encore.apartment.community.domain.user.info.data.dto.user;
 
 import java.time.LocalDateTime;
 

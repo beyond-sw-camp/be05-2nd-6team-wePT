@@ -1,9 +1,8 @@
-package org.encore.apartment.community.domain.user.data.dto.membership;
+package org.encore.apartment.community.domain.user.membership.data.dto;
 
 import java.time.LocalDateTime;
 
-import org.encore.apartment.community.domain.user.data.entity.Membership;
-import org.encore.apartment.community.domain.user.data.entity.User;
+import org.encore.apartment.community.domain.user.membership.data.entity.Membership;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
