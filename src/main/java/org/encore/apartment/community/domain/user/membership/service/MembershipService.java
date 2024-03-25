@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.encore.apartment.community.domain.user.membership.data.dto.ResponseMembershipDto;
+import org.encore.apartment.community.domain.user.membership.data.dto.MembershipResponseDto;
 import org.encore.apartment.community.domain.user.membership.data.entity.Membership;
 import org.encore.apartment.community.domain.user.info.data.entity.User;
 import org.encore.apartment.community.domain.user.membership.repository.MembershipRepository;
@@ -33,31 +33,31 @@ public class MembershipService {
 		});
 	}
 
-	public ResponseMembershipDto findMembership(Long idx) {
+	public MembershipResponseDto findMembership(Long idx) {
 		Optional<Membership> membership = membershipRepository.findByUserIdx(idx);
 		if (Objects.nonNull(membership)) {
 			Optional<User> user = userRepository.findById(membership.get().getUser().getUserIdx());
-			return new ResponseMembershipDto(membership.get(), user.get().getUserId(), user.get().getUserNickname());
+			return new MembershipResponseDto(membership.get(), user.get().getUserId(), user.get().getUserNickname());
 		}
 		return null;
 	}
 
-	public List<ResponseMembershipDto> findMembershipList() {
+	public List<MembershipResponseDto> findMembershipList() {
 		List<Membership> membershipList = membershipRepository.findAll();
 
 		return membershipList.stream().map(membership -> {
 			Optional<User> user = userRepository.findById(membership.getUser().getUserIdx());
-			return new ResponseMembershipDto(membership, user.get().getUserId(), user.get().getUserNickname());
+			return new MembershipResponseDto(membership, user.get().getUserId(), user.get().getUserNickname());
 		}).collect(Collectors.toList());
 	}
 
-	public ResponseMembershipDto updateMembership(Long idx) {
+	public MembershipResponseDto updateMembership(Long idx) {
 		Optional<Membership> membership = membershipRepository.findByUserIdx(idx);
 		if (Objects.nonNull(membership)) {
 			membership.get().updateMembershipDate(LocalDateTime.now());
 			membershipRepository.save(membership.get());
 			Optional<User> user = userRepository.findById(membership.get().getUser().getUserIdx());
-			return new ResponseMembershipDto(membership.get(), user.get().getUserId(), user.get().getUserNickname());
+			return new MembershipResponseDto(membership.get(), user.get().getUserId(), user.get().getUserNickname());
 		}
 		return null;
 	}

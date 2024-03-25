@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 
 @Getter
-public class RequestUserDto {
+public class UserRequestDto {
 
 	@NotBlank
 	private String userId;
@@ -38,16 +38,16 @@ public class RequestUserDto {
 
 	private Long apartmentId;
 
-	public static User toEntity(RequestUserDto requestUserDto) {
+	public static User toEntity(UserRequestDto userRequestDto) {
 		return User.builder()
-					.userId(requestUserDto.getUserId())
-					.userPassword(requestUserDto.getUserPassword())
-					.userNickname(requestUserDto.getUserNickname())
-					.userEmail(requestUserDto.getUserEmail())
-					.userMobile(requestUserDto.getUserMobile())
-					.userBuildingNumber(requestUserDto.getUserBuildingNumber())
-					.userHouseNumber(requestUserDto.getUserHouseNumber())
-					.userHeadHouseHoldYn(requestUserDto.getUserHeadHouseHoldYn())
+					.userId(userRequestDto.getUserId())
+					.userPassword(userRequestDto.getUserPassword())
+					.userNickname(userRequestDto.getUserNickname())
+					.userEmail(userRequestDto.getUserEmail())
+					.userMobile(userRequestDto.getUserMobile())
+					.userBuildingNumber(userRequestDto.getUserBuildingNumber())
+					.userHouseNumber(userRequestDto.getUserHouseNumber())
+					.userHeadHouseHoldYn(userRequestDto.getUserHeadHouseHoldYn())
 					.build();
 	}
 }

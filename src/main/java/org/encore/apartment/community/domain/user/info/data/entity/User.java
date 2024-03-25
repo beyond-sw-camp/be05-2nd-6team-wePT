@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 
 import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
-import org.encore.apartment.community.domain.user.info.data.dto.user.UpdateRequestUserDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UserUpdateRequestDto;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -94,7 +94,7 @@ public class User implements UserDetails {
 		this.deleteYn = deleteYn;
 	}
 
-	public void update(UpdateRequestUserDto params) {
+	public void update(UserUpdateRequestDto params) {
 		this.userNickname = params.getUserNickname();
 		this.userEmail = params.getUserEmail();
 		this.userMobile = params.getUserMobile();

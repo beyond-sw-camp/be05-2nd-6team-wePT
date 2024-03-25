@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class ResponseMembershipDto {
+public class MembershipResponseDto {
 	private Long membershipId;
 	private Long userIdx;
 	private LocalDateTime membershipJoinDate;
@@ -18,7 +18,7 @@ public class ResponseMembershipDto {
 	private String userId;
 	private String userNickname;
 
-	public ResponseMembershipDto(Membership params, String userId, String userNickname) {
+	public MembershipResponseDto(Membership params, String userId, String userNickname) {
 		this.membershipId = params.getMembershipId();
 		this.userIdx = params.getUser().getUserIdx();
 		this.membershipJoinDate = params.getMembershipJoinDate();

@@ -2,7 +2,7 @@ package org.encore.apartment.community.domain.user.membership.ctrl;
 
 import java.util.List;
 
-import org.encore.apartment.community.domain.user.membership.data.dto.ResponseMembershipDto;
+import org.encore.apartment.community.domain.user.membership.data.dto.MembershipResponseDto;
 import org.encore.apartment.community.domain.user.membership.service.MembershipService;
 import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/membership")
+@RequestMapping("/membership")
 @RequiredArgsConstructor
 public class MembershipController {
 
@@ -37,20 +37,20 @@ public class MembershipController {
 	}
 
 	@GetMapping("/list")
-	public ApiResponse<List<ResponseMembershipDto>> findMembershipList() {
+	public ApiResponse<List<MembershipResponseDto>> findMembershipList() {
 		return ApiResponse.createSuccess(membershipService.findMembershipList());
 	}
 
 	@GetMapping("/find")
-	public ApiResponse<ResponseMembershipDto> findMembership(@RequestParam Long idx) {
-		ResponseMembershipDto result = membershipService.findMembership(idx);
+	public ApiResponse<MembershipResponseDto> findMembership(@RequestParam Long idx) {
+		MembershipResponseDto result = membershipService.findMembership(idx);
 
 		return ApiResponse.createSuccess(result);
 	}
 
 	@PostMapping("/update")
-	public ApiResponse<ResponseMembershipDto> updateMembership(@RequestBody Long idx) {
-		ResponseMembershipDto result = membershipService.updateMembership(idx);
+	public ApiResponse<MembershipResponseDto> updateMembership(@RequestBody Long idx) {
+		MembershipResponseDto result = membershipService.updateMembership(idx);
 
 		return ApiResponse.createSuccess(result);
 	}
