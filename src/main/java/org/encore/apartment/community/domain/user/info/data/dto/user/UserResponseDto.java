@@ -6,7 +6,7 @@ import org.encore.apartment.community.domain.user.info.data.entity.User;
 import lombok.Data;
 
 @Data
-public class ResponseUserDto {
+public class UserResponseDto {
 	private Long userIdx;
 	private String userId;
 	private String userNickname;
@@ -20,7 +20,7 @@ public class ResponseUserDto {
 	private String apartmentName;
 	private String apartmentAddress;
 
-	public ResponseUserDto(User user) {
+	public UserResponseDto(User user) {
 		this.userIdx = user.getUserIdx();
 		this.userId = user.getUserId();
 		this.userNickname = user.getUserNickname();

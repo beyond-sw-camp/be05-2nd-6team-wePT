@@ -3,9 +3,9 @@ package org.encore.apartment.community.domain.user.info.service;
 import java.util.Optional;
 
 import org.encore.apartment.community.domain.apartment.data.repository.ApartmentRepository;
-import org.encore.apartment.community.domain.user.info.data.dto.user.RequestUserDto;
-import org.encore.apartment.community.domain.user.info.data.dto.user.ResponseUserDto;
-import org.encore.apartment.community.domain.user.info.data.dto.user.UpdateRequestUserDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UserRequestDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UserResponseDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UserUpdateRequestDto;
 import org.encore.apartment.community.domain.user.info.data.entity.User;
 import org.encore.apartment.community.domain.user.info.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -25,8 +25,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public Long createUser(RequestUserDto params) {
-		User user = RequestUserDto.toEntity(params);
+	public Long createUser(UserRequestDto params) {
+		User user = UserRequestDto.toEntity(params);
 		apartmentRepository.findById(params.getApartmentId()).ifPresent(user::setApartment);
 		log.info("createUser = {}", user);
 
@@ -34,17 +34,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public ResponseUserDto findUserInfo(Long idx) {
+	public UserResponseDto findUserInfo(Long idx) {
 		Optional<User> user = userRepository.findById(idx);
-		ResponseUserDto responseUserDto = new ResponseUserDto(user.get());
-		responseUserDto.setApartmentInfo(user.get().getApartment());
+		UserResponseDto userResponseDto = new UserResponseDto(user.get());
+		userResponseDto.setApartmentInfo(user.get().getApartment());
 		log.info("findUserInfo = {}", user);
 
-		return responseUserDto;
+		return userResponseDto;
 	}
 
 	@Override
-	public Long updateUserInfo(UpdateRequestUserDto params) {
+	public Long updateUserInfo(UserUpdateRequestDto params) {
 		Optional<User> user = userRepository.findById(params.getUserIdx());
 		user.ifPresent(u -> u.update(params));
 		log.info("updateUserInfo = {}", user);

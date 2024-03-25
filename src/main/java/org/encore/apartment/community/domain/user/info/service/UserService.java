@@ -1,15 +1,15 @@
 package org.encore.apartment.community.domain.user.info.service;
 
-import org.encore.apartment.community.domain.user.info.data.dto.user.RequestUserDto;
-import org.encore.apartment.community.domain.user.info.data.dto.user.ResponseUserDto;
-import org.encore.apartment.community.domain.user.info.data.dto.user.UpdateRequestUserDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UserRequestDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UserResponseDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UserUpdateRequestDto;
 
 public interface UserService {
-	public Long createUser(RequestUserDto params);
+	public Long createUser(UserRequestDto params);
 
-	public ResponseUserDto findUserInfo(Long idx);
+	public UserResponseDto findUserInfo(Long idx);
 
-	public Long updateUserInfo(UpdateRequestUserDto params);
+	public Long updateUserInfo(UserUpdateRequestDto params);
 
 	public Long deleteUser(Long idx);
 }

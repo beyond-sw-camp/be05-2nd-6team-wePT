@@ -1,14 +1,12 @@
 package org.encore.apartment.community.domain.user.info.data.dto.user;
 
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 
 @Getter
-public class UpdateRequestUserDto {
+public class UserUpdateRequestDto {
 
 	private Long userIdx;
 
