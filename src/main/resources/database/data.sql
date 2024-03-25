@@ -21,6 +21,56 @@ INSERT INTO Apartment (apartment_name, apartment_address, apartment_total_househ
     ('서대문아파트', '서울특별시 서대문구 신촌로 1212', 100),
     ('강동아파트', '서울특별시 강동구 천호대로 1313', 140);
 
+
+
+--     reservation_facility_id int          not null,
+--     reservation_id          int auto_increment
+--         primary key,
+--     reservation_end_time    datetime(6)  not null,
+--     reservation_start_time  datetime(6)  not null,
+--     reservation_user_id     varchar(255) not null
+INSERT INTO reservation (reservation_facility_id, reservation_start_time, reservation_end_time,
+                         reservation_user_id, reservation_headcount)
+VALUES
+    (4, '2024-03-22 02:25:49', '2024-03-24 02:25:49', 'string', 2),
+    (4, '2024-03-23 02:25:49', '2024-03-24 02:25:49', 'example', 3),
+    (5, '2024-03-24 02:25:49', '2024-03-24 02:25:49', 'string', 3),
+    (5, '2024-03-24 02:25:49', '2024-03-24 02:25:49', 'example', 4),
+    (6, '2024-03-26 02:25:49', '2024-03-26 03:25:49', 'string', 3);
+
+
+-- facility 기본 값
+--     facility_fee                       int          not null,
+--     facility_id                        int          not null
+--     facility_operating_time            int          not null,
+--     facility_reservation_availble_time int          null,
+--     facility_membership_yn             varchar(255) not null,
+--     facility_name                      varchar(255) not null
+--      수영장0, 헬스장0, 스크린골프장, 테니스장, 바베큐장, 영화관, 독서실0, 회의실
+INSERT INTO facility (facility_id, facility_name,
+                             facility_reservation_availble_time, facility_operating_time,
+                             facility_membership_yn, facility_fee)
+VALUES
+    (1, '수영장', 24, 522, true, 100000),
+    (2, '헬스장', 24, 522, true, 100000),
+    (3, '독서실', 24, 724, true, 100000),
+    (4, '스크린골프장', 2, 522, false, 30000),
+    (5, '테니스장', 2, 522, false, 30000),
+    (6, '바베큐장', 3, 1622, false, 30000),
+    (7, '영화관', 3, 724, false, 30000),
+    (8, '회의실', 2, 724, false, 30000);
+
+-- realtimefacility 기본 값
+--     realtime_facility_current_users int not null,
+--     realtime_facility_id            int not null
+
+INSERT INTO realtime_facility (realtime_facility_id, realtime_facility_current_users)
+VALUES
+    (1, 0),
+    (2, 0),
+    (3, 0);
+
+=======
 -- User 테이블 더미데이터
 INSERT INTO User (user_id, user_password, user_nickname, user_email, user_mobile, user_building_number, user_house_number, user_head_household_yn, created_at, updated_at, delete_yn, apartment_id)
 VALUES
@@ -64,3 +114,4 @@ VALUES
     ('emma_zhang_2', 'passwordghi', 'EmmaZhang', 'emma2@example.com', '010-2267-2345', 37, 238, true, CURRENT_TIMESTAMP, NULL, false,4),
     ('logan_chen_2', 'passwordjkl', 'LoganChen', 'logan2@example.com', '010-4775-3456', 39, 239, true, CURRENT_TIMESTAMP, NULL, false,5),
     ('charlotte_li_2', 'passwordmno', 'CharlotteLi', 'charlotte2@example.com', '010-3063-4567', 41, 240, true, CURRENT_TIMESTAMP,NULL, false, 1);
+
