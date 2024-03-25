@@ -8,6 +8,7 @@ import org.encore.apartment.community.domain.user.info.data.dto.user.UserRespons
 import org.encore.apartment.community.domain.user.info.data.dto.user.UserUpdateRequestDto;
 import org.encore.apartment.community.domain.user.info.data.entity.User;
 import org.encore.apartment.community.domain.user.info.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +24,12 @@ public class UserServiceImpl implements UserService {
 
 	private final ApartmentRepository apartmentRepository;
 
+	private final PasswordEncoder encoder;
+
 	@Override
 	@Transactional
 	public Long createUser(UserRequestDto params) {
-		User user = UserRequestDto.toEntity(params);
+		User user = UserRequestDto.toEntity(params, encoder);
 		apartmentRepository.findById(params.getApartmentId()).ifPresent(user::setApartment);
 		log.info("createUser = {}", user);
 
