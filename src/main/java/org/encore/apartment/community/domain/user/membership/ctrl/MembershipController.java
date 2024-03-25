@@ -1,9 +1,9 @@
-package org.encore.apartment.community.domain.user.ctrl;
+package org.encore.apartment.community.domain.user.membership.ctrl;
 
 import java.util.List;
 
-import org.encore.apartment.community.domain.user.data.dto.membership.ResponseMembershipDto;
-import org.encore.apartment.community.domain.user.service.membership.MembershipService;
+import org.encore.apartment.community.domain.user.membership.data.dto.ResponseMembershipDto;
+import org.encore.apartment.community.domain.user.membership.service.MembershipService;
 import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

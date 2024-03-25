@@ -1,11 +1,11 @@
-package org.encore.apartment.community.domain.user.ctrl;
+package org.encore.apartment.community.domain.user.info.ctrl;
 
 import java.util.Map;
 
-import org.encore.apartment.community.domain.user.data.dto.user.RequestUserDto;
-import org.encore.apartment.community.domain.user.data.dto.user.ResponseUserDto;
-import org.encore.apartment.community.domain.user.data.dto.user.UpdateRequestUserDto;
-import org.encore.apartment.community.domain.user.service.user.UserService;
+import org.encore.apartment.community.domain.user.info.data.dto.user.RequestUserDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.ResponseUserDto;
+import org.encore.apartment.community.domain.user.info.data.dto.user.UpdateRequestUserDto;
+import org.encore.apartment.community.domain.user.info.service.UserService;
 import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;

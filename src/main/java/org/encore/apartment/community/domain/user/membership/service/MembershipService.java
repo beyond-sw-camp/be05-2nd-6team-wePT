@@ -1,4 +1,4 @@
-package org.encore.apartment.community.domain.user.service.membership;
+package org.encore.apartment.community.domain.user.membership.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.encore.apartment.community.domain.user.data.dto.membership.ResponseMembershipDto;
-import org.encore.apartment.community.domain.user.data.entity.Membership;
-import org.encore.apartment.community.domain.user.data.entity.User;
-import org.encore.apartment.community.domain.user.data.repository.MembershipRepository;
-import org.encore.apartment.community.domain.user.data.repository.UserRepository;
+import org.encore.apartment.community.domain.user.membership.data.dto.ResponseMembershipDto;
+import org.encore.apartment.community.domain.user.membership.data.entity.Membership;
+import org.encore.apartment.community.domain.user.info.data.entity.User;
+import org.encore.apartment.community.domain.user.membership.repository.MembershipRepository;
+import org.encore.apartment.community.domain.user.info.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
