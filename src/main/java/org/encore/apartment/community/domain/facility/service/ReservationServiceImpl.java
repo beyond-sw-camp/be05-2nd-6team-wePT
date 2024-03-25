@@ -2,7 +2,6 @@ package org.encore.apartment.community.domain.facility.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.encore.apartment.community.domain.facility.data.dto.ReservationAllDto;
 import org.encore.apartment.community.domain.facility.data.dto.ReservationDto;
 import org.encore.apartment.community.domain.facility.data.entity.Reservation;
 import org.encore.apartment.community.domain.facility.data.repository.ReservationRepository;
@@ -72,6 +71,7 @@ public class ReservationServiceImpl implements ReservationService{
                         .reservationFacilityId(res.getReservationId())
                         .reservationStartTime(res.getReservationStartTime())
                         .reservationEndTime(res.getReservationEndTime())
+                        .reservationHeadcount(res.getReservationHeadcount())
                         .deleteYn(true)
                         .build();
                 reservationRepository.save(input);

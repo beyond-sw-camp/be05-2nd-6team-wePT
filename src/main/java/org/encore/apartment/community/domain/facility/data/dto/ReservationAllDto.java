@@ -29,6 +29,9 @@ public class ReservationAllDto {
     private Date reservationEndTime;
 
     @NotNull
+    private Integer reservationHeadcount;
+
+    @NotNull
     private Boolean deleteYn;
 
     public static Reservation toEntity(ReservationAllDto reservationAllDto) {
@@ -38,9 +41,10 @@ public class ReservationAllDto {
                 .reservationFacilityId(reservationAllDto.getReservationFacilityId())
                 .reservationStartTime(reservationAllDto.getReservationStartTime())
                 .reservationEndTime(reservationAllDto.getReservationEndTime())
+                .reservationHeadcount(reservationAllDto.getReservationHeadcount())
                 .deleteYn(reservationAllDto.getDeleteYn())
                 .build();
-    }
+    }//
 
     public ReservationAllDto(Reservation reservation) {
         this.reservationId = reservation.getReservationId();
@@ -48,6 +52,7 @@ public class ReservationAllDto {
         this.reservationFacilityId = reservation.getReservationFacilityId();
         this.reservationStartTime = reservation.getReservationStartTime();
         this.reservationEndTime = reservation.getReservationEndTime();
+        this.reservationHeadcount = reservation.getReservationHeadcount();
         this.deleteYn = reservation.getDeleteYn();
     }
 }

@@ -43,10 +43,15 @@ public class LogServiceImpl implements LogService {
     @Override
     public List<LogDto> readAllByFacilityUsers(Integer facilityId){
         List<Log> list = logRepository.findAllByLogFacilityId(facilityId);
-        return list.stream().map(LogDto::new).collect(Collectors.toList());
+        List<Log> res = new ArrayList<>();
+        for (Log log : list){
+            if (log.getLogExitTime() == null)
+                res.add(log);
+        }
+        return res.stream().map(LogDto::new).collect(Collectors.toList());
     }
 
-    //사용자 아이디로 조회 (exit_time = null)
+    //사용자 아이디로 조회 (exit_time = null) -> 이게 size가 2 이상이면 중복
     @Override
     public List<LogDto> readAllByUsers(String userId){
         List<Log> list = logRepository.findAllByLogUserId(userId);
@@ -58,9 +63,9 @@ public class LogServiceImpl implements LogService {
         return res.stream().map(LogDto::new).collect(Collectors.toList());
     }
 
-    //수정 (exit_time = sysdate) userId
+    //수정 (exit_time = sysdate) userId 나감
     @Override
-    public void updateUserNums(String userId){
+    public void updateUserExit(String userId){
         Date date = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
         if (readAllByUsers(userId).size() == 1) {
             List<Log> list = logRepository.findAllByLogUserId(userId);

@@ -22,6 +22,6 @@ public interface LogService {
     //사용자 아이디로 조회 (exit_time = null)
     public List<LogDto> readAllByUsers(String userId);
 
-    //수정 (exit_time = sysdate) facility_id
-    public void updateUserNums(String userId);
+    //수정 : 사용자가 나가는 경우 (exit_time = sysdate) facility_id
+    public void updateUserExit(String userId);
 }

@@ -21,7 +21,7 @@ public class LogController {
     private LogService service;
 
     //추가 (exit_time = null) -> userID & facilityID 필요
-    @PostMapping(value = "/addLog/{facilityId}/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/entry/{facilityId}/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Void> createReservation(@PathVariable("facilityId") String facilityId, @PathVariable("userId") String userId) {
         service.addLog(Integer.parseInt(facilityId), userId);
         return new ResponseEntity<Void>(HttpStatus.OK);
@@ -49,9 +49,9 @@ public class LogController {
     }
 
     //수정 (exit_time = sysdate) facility_id
-    @PostMapping(value = "/update/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/out/{userId}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Void> updateUserNums(@PathVariable("userId") String userId){
-        service.updateUserNums(userId);
+        service.updateUserExit(userId);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }

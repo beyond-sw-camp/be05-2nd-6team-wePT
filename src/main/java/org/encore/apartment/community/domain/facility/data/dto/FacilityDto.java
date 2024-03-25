@@ -18,7 +18,7 @@ public class FacilityDto {
     private Integer facilityOperatingTime;
 
     @NotNull
-    private String facilityMembershipYn;
+    private Boolean facilityMembershipYn;
 
     @NotNull
     private Integer facilityFee;

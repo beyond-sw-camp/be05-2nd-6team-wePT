@@ -35,11 +35,17 @@ public class RealtimeFacilityController {
         return new ResponseEntity<RealtimeFacilityDto>(dto, HttpStatus.OK);
     }
 
-    //사용자수 업데이트
+    //사용자수 업데이트 (특정 시설)
     @PostMapping(value = "/update/{realtimeFacilityId}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Void> deleteMyReservation(@PathVariable("realtimeFacilityId") String realtimeFacilityId){
+    public ResponseEntity<Void> updateByFacilityId(@PathVariable("realtimeFacilityId") String realtimeFacilityId){
         service.updateUserCnt(Integer.parseInt(realtimeFacilityId));
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 
+    //사용자수 업데이트 (모든 시설)
+    @PostMapping(value = "/updateAll", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Void> updateAll(){
+        service.updateUserCntAll();
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 }

@@ -12,6 +12,9 @@ public interface RealtimeFacilityService {
     // 특정 시설의 사용자 수 조회
     public RealtimeFacilityDto userCntFacilityId(Integer facilityId);
 
-    //사용자 수 업데이트
+    //사용자 수 업데이트 (특정 시설)
     public void updateUserCnt(Integer facilityId);
+
+    //사용자 수 업데이트 (전체 시설)
+    public void updateUserCntAll();
 }

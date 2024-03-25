@@ -33,6 +33,9 @@ public class Reservation {
     @Column(name = "reservation_end_time", nullable = false)
     private Date reservationEndTime;
 
+    @Column(name = "reservation_headcount", nullable = false)
+    private Integer reservationHeadcount;
+
     @Column(name = "delete_yn", columnDefinition = "boolean default false")
     private Boolean deleteYn;
 
@@ -44,6 +47,7 @@ public class Reservation {
             Integer reservationFacilityId,
             Date reservationStartTime,
             Date reservationEndTime,
+            Integer reservationHeadcount,
             Boolean deleteYn
     ) {
         this.reservationId = reservationId;
@@ -51,6 +55,7 @@ public class Reservation {
         this.reservationFacilityId = reservationFacilityId;
         this.reservationStartTime = reservationStartTime;
         this.reservationEndTime = reservationEndTime;
+        this.reservationHeadcount = reservationHeadcount;
         if (deleteYn == null)
             this.deleteYn = getDeleteYn();
         else

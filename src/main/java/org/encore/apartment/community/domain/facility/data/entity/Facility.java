@@ -23,7 +23,7 @@ public class Facility {
     private Integer facilityOperatingTime;
 
     @Column(name = "facility_membership_yn", nullable = false)
-    private String facilityMembershipYn;
+    private Boolean facilityMembershipYn;
 
     @Column(name = "facility_fee", nullable = false)
     private Integer facilityFee;
@@ -36,7 +36,7 @@ public class Facility {
             Integer facilityId,
             String facilityName,
             Integer facilityOperatingTime,
-            String facilityMembershipYn,
+            Boolean facilityMembershipYn,
             Integer facilityFee,
             Integer facilityReservationAvailbleTime
     ){
