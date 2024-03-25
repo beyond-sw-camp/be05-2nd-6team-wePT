@@ -1,18 +1,20 @@
 package org.encore.apartment.community.domain.matching.data.entity;
 
+import java.sql.Timestamp;
+
+import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.*;
-import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
-
-import java.sql.Timestamp;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 // updatebyid가 안되어 setter 추가
@@ -26,40 +28,35 @@ public class Matching {
 	@Column(name = "matching_id")
 	private Long matchingId;
 
-
 	@Column(name = "matching_matching_category_id")
 	private Integer matchingMatchingCategoryId;
-
 
 	@Column(name = "matching_owner_id")
 	private String matchingOwnerId;
 
-
 	@Column(name = "matching_head_count_limit")
 	private Integer matchingHeadCountLimit;
 
+	//	@Column(name = "matching_accomplished_yn",   columnDefinition = "boolean default false")
+	//	private Boolean matchingAccomplishedYn;
 
-//	@Column(name = "matching_accomplished_yn",   columnDefinition = "boolean default false")
-//	private Boolean matchingAccomplishedYn;
-
-	@Column(name = "matching_accomplished_yn",columnDefinition = "boolean default false")
+	@Column(name = "matching_accomplished_yn", columnDefinition = "boolean default false")
 	private Boolean matchingAccomplishedYn;
 
-
-	@Column(name = "matching_created_at",columnDefinition = "timestamp default CURRENT_TIMESTAMP")
+	@Column(name = "matching_created_at", columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 	@CreationTimestamp
 	private Timestamp matchingCreatedAt;
 
-
 	@Column(name = "matching_updated_at", columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 	@CreationTimestamp
-	private Timestamp  matchingUpdatedAt;
+	private Timestamp matchingUpdatedAt;
 
 	@Builder
 	public Matching(
-		Integer matchingMatchingId, Integer matchingMatchingCategoryId,String matchingOwnerId, Integer matchingHeadCountLimit,
-		Boolean matchingAccomplishedYn, Timestamp  matchingCreatedAt, Timestamp  matchingUpdatedAt) {
-		this.matchingId=matchingId;
+		Integer matchingMatchingId, Integer matchingMatchingCategoryId, String matchingOwnerId,
+		Integer matchingHeadCountLimit,
+		Boolean matchingAccomplishedYn, Timestamp matchingCreatedAt, Timestamp matchingUpdatedAt) {
+		this.matchingId = matchingId;
 		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
 		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;

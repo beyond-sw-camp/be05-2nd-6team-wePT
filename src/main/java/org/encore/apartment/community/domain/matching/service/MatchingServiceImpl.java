@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
-import org.encore.apartment.community.domain.matching.data.dto.RequestSearchMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
@@ -16,16 +14,12 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
-
 @Slf4j
 @Service("matching")
 @RequiredArgsConstructor
 public class MatchingServiceImpl implements MatchingService {
 
 	private final MatchingRepository matchingRepository;
-
-
 
 	@Override
 	public void insertMatchingInfo(RequestInsertMatchingDto params) {
@@ -36,27 +30,28 @@ public class MatchingServiceImpl implements MatchingService {
 
 	@Override
 	public Optional<ResponseMatchingDto> findMatchingInfo(Long id) {
-		 Optional<Matching> matching = matchingRepository.findById(id);
-		 log.info("findMatchingInfo = {}", matching);
+		Optional<Matching> matching = matchingRepository.findById(id);
+		log.info("findMatchingInfo = {}", matching);
 
-		 return matching.map(ResponseMatchingDto::new);
+		return matching.map(ResponseMatchingDto::new);
 
 	}
 
 	@Override
 	public List<ResponseMatchingDto> findMatchingInfoList() {
-		 List<Matching> matchingList = matchingRepository.findAll();
-		 log.info("findApartmentInfoList = {}", matchingList);
+		List<Matching> matchingList = matchingRepository.findAll();
+		log.info("findApartmentInfoList = {}", matchingList);
 
-		 return matchingList.stream().map(ResponseMatchingDto::new).collect(Collectors.toList());
+		return matchingList.stream().map(ResponseMatchingDto::new).collect(Collectors.toList());
 	}
 
 	@Override
 	public void updateMatchingInfoById(Long id, UpdateMatchingDto params) {
-		Matching matching = matchingRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 매칭 정보가 없습니다."));
-//		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
+		Matching matching = matchingRepository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("해당 매칭 정보가 없습니다."));
+		//		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
 
-//		update가 안되어 matching에 setter 추가하고 아래와 같이 새로운 3개 line 추가함
+		//		update가 안되어 matching에 setter 추가하고 아래와 같이 새로운 3개 line 추가함
 		matching.setMatchingMatchingCategoryId(params.getMatchingMatchingCategoryId());
 		matching.setMatchingHeadCountLimit(params.getMatchingHeadCountLimit());
 		matchingRepository.save(matching);
@@ -70,3 +65,5 @@ public class MatchingServiceImpl implements MatchingService {
 		log.info("deleteMatchingInfo = {}", id);
 	}
 }
+
+
