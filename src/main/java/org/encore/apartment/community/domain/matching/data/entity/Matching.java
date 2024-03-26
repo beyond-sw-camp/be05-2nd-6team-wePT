@@ -3,8 +3,6 @@ package org.encore.apartment.community.domain.matching.data.entity;
 import java.sql.Timestamp;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
-import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
-import org.encore.apartment.community.domain.user.data.entity.User;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -22,29 +20,6 @@ import lombok.Setter;
 @Getter
 // updatebyid가 안되어 setter 추가
 @Setter
-// @NamedEntityGraphs({
-// 	@NamedEntityGraph(
-// 		name = "matchingWithCategoryAndOwner",
-// 		attributeNodes = {
-// 			@NamedAttributeNode(value = "matchingCategoryId", subgraph = "matchingCategory"),
-// 			@NamedAttributeNode(value = "userId", subgraph = "matchingOwner")
-// 		},
-// 		subgraphs = {
-// 			@NamedSubgraph(
-// 				name = "matchingCategory",
-// 				attributeNodes = {
-// 					@NamedAttributeNode("matchingCategoryId")
-// 				}
-// 			),
-// 			@NamedSubgraph(
-// 				name = "matchingOwner",
-// 				attributeNodes = {
-// 					@NamedAttributeNode("userId")
-// 				}
-// 			)
-// 		}
-// 	)
-// })
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Matching {
@@ -54,14 +29,11 @@ public class Matching {
 	@Column(name = "matching_id")
 	private Long matchingId;
 
-	// @ManyToOne(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "matchingCategory_id")
+	@Column(name = "matching_matching_category_id")
+	private Integer matchingMatchingCategoryId;
 
-	private MatchingCategory matchingCategoryId;
-
-	// @ManyToOne(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "user_id")
-	private User userId;
+	@Column(name = "matching_owner_id")
+	private String matchingOwnerId;
 
 	@Column(name = "matching_head_count_limit")
 	private Integer matchingHeadCountLimit;
@@ -85,27 +57,27 @@ public class Matching {
 
 	@Builder
 	public Matching(
-		Long matchingId, MatchingCategory matchingCategoryId, User userId,
+		Integer matchingMatchingId, Integer matchingMatchingCategoryId, String matchingOwnerId,
 		Integer matchingHeadCountLimit,
 		Boolean matchingAccomplishedYn, Timestamp matchingCreatedAt, Timestamp matchingUpdatedAt) {
 		this.matchingId = matchingId;
-		this.matchingCategoryId = matchingCategoryId;
-		this.userId = userId;
+		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
+		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 		this.matchingAccomplishedYn = matchingAccomplishedYn;
 		this.matchingCreatedAt = matchingCreatedAt;
 		this.matchingUpdatedAt = matchingUpdatedAt;
 	}
 
-	public void update(MatchingCategory matchingCategoryId, Integer matchingHeadCountLimit) {
-		this.matchingCategoryId = matchingCategoryId;
+	public void update(Integer matchingMatchingCategoryId, Integer matchingHeadCountLimit) {
+		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 
 	}
 
 	public void insert(RequestInsertMatchingDto params) {
-		this.matchingCategoryId = matchingCategoryId;
-		this.userId = userId;
+		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
+		this.matchingOwnerId = matchingOwnerId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 
 	}

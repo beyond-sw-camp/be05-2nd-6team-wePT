@@ -1,7 +1,5 @@
 package org.encore.apartment.community.domain.matchingCategory.data.entity;
 
-import org.encore.apartment.community.domain.matchingCategory.data.dto.RequestInsertMatchingCategoryDto;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,12 +26,7 @@ public class MatchingCategory {
 	private String matchingCategoryName;
 
 	@Builder
-	public MatchingCategory(Long matchingCategoryId, String matchingCategoryName) {
-		this.matchingCategoryId = matchingCategoryId;
-		this.matchingCategoryName = matchingCategoryName;
-	}
-
-	public void insert(RequestInsertMatchingCategoryDto params) {
+	public MatchingCategory(String matchingCategoryName) {
 		this.matchingCategoryName = matchingCategoryName;
 	}
 
