@@ -17,10 +17,10 @@ public class ResponseMatchingDto {
 	private Long matchingId;
 
 	@NotNull
-	private MatchingCategory matchingMatchingCategoryId;
+	private MatchingCategory matchingCategoryId;
 
 	@NotBlank
-	private User matchingOwnerId;
+	private User userId;
 
 	@NotNull
 	private Integer matchingHeadCountLimit;
@@ -31,12 +31,10 @@ public class ResponseMatchingDto {
 
 	private Timestamp matchingUpdatedAt;
 
-
-
 	public ResponseMatchingDto(Matching params) {
 		this.matchingId = params.getMatchingId();
-		this.matchingMatchingCategoryId = params.getMatchingMatchingCategoryId();
-		this.matchingOwnerId = params.getMatchingOwnerId();
+		this.matchingCategoryId = params.getMatchingCategoryId();
+		this.userId = params.getUserId();
 		this.matchingHeadCountLimit = params.getMatchingHeadCountLimit();
 		this.matchingAccomplishedYn = params.getMatchingAccomplishedYn();
 		this.matchingCreatedAt = params.getMatchingCreatedAt();

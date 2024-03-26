@@ -6,10 +6,10 @@ import lombok.Data;
 @Data
 public class RequestInsertMatchingStatusDto {
 
-	private Long matchingStatusMatchingId;
+	private Long matchingId;
 
 	@NotBlank
-	private String matchingStatusFollowerId;
+	private String userId;
 
 	// public static MatchingStatus toEntity(RequestInsertMatchingStatusDto requestInsertMatchingStatusDto) {
 	//     return MatchingStatus.builder()

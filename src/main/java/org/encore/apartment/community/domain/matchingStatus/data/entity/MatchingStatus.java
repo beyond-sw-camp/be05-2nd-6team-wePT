@@ -30,21 +30,21 @@ public class MatchingStatus {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "matching_id")
-	private Matching matchingStatusMatchingId;
+	private Matching matchingId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User matchingStatusFollowerId;
+	private User userId;
 
 	@Builder
-	public MatchingStatus(Matching matchingStatusMatchingId, User matchingStatusFollowerId) {
-		this.matchingStatusMatchingId = matchingStatusMatchingId;
-		this.matchingStatusFollowerId = matchingStatusFollowerId;
+	public MatchingStatus(Matching matchingId, User userId) {
+		this.matchingId = matchingId;
+		this.userId = userId;
 	}
 
-	public void update(User matchingStatusFollowerId) {
+	public void update(User userId) {
 
-		this.matchingStatusFollowerId = matchingStatusFollowerId;
+		this.userId = userId;
 	}
 }
 

@@ -27,10 +27,10 @@ public class MatchingStatusServiceImpl implements MatchingStatusService {
 
 	public MatchingStatus toEntity(RequestInsertMatchingStatusDto requestInsertMatchingStatusDto) {
 		return MatchingStatus.builder()
-			.matchingStatusMatchingId(
-				matchingRepository.findById(requestInsertMatchingStatusDto.getMatchingStatusMatchingId()).get())
-			.matchingStatusFollowerId(
-				userRepository.findByUserId(requestInsertMatchingStatusDto.getMatchingStatusFollowerId()).get())
+			.matchingId(
+				matchingRepository.findById(requestInsertMatchingStatusDto.getMatchingId()).get())
+			.userId(
+				userRepository.findByUserId(requestInsertMatchingStatusDto.getUserId()).get())
 			.build();
 	}
 

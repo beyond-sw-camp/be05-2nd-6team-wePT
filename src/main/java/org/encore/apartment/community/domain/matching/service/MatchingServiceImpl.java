@@ -31,9 +31,9 @@ public class MatchingServiceImpl implements MatchingService {
 	public Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
 		return Matching.builder()
 			.matchingAccomplishedYn(false)
-			.matchingMatchingCategoryId(
-				matchingCategoryRepository.findById(requestInsertMatchingDto.getMatchingMatchingCategoryId()).get())
-			.matchingOwnerId(userRepository.findByUserId(requestInsertMatchingDto.getMatchingOwnerId()).get())
+			.matchingCategoryId(
+				matchingCategoryRepository.findById(requestInsertMatchingDto.getMatchingCategoryId()).get())
+			.userId(userRepository.findByUserId(requestInsertMatchingDto.getUserId()).get())
 			.matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
 			.build();
 	}
@@ -69,7 +69,7 @@ public class MatchingServiceImpl implements MatchingService {
 		//		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
 
 		//		update가 안되어 matching에 setter 추가하고 아래와 같이 새로운 3개 line 추가함
-		matching.setMatchingMatchingCategoryId((params.getMatchingMatchingCategoryId()));
+		matching.setMatchingCategoryId((params.getMatchingCategoryId()));
 		matching.setMatchingHeadCountLimit(params.getMatchingHeadCountLimit());
 		matchingRepository.save(matching);
 		log.info("updateApartmentInfo = {}", params);

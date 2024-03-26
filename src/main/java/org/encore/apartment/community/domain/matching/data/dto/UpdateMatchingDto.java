@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateMatchingDto {
 
-	private MatchingCategory matchingMatchingCategoryId;
+	private MatchingCategory matchingCategoryId;
 
 	private Integer matchingHeadCountLimit;
 

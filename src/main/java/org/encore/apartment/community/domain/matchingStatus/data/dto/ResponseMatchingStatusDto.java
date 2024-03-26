@@ -12,14 +12,14 @@ import lombok.Data;
 public class ResponseMatchingStatusDto {
 
 	@NotNull
-	private Matching matchingStatusMatchingId;
+	private Matching matchingId;
 
 	@NotBlank
-	private User matchingStatusFollowerId;
+	private User userId;
 
 	public ResponseMatchingStatusDto(MatchingStatus params) {
-		this.matchingStatusMatchingId = params.getMatchingStatusMatchingId();
-		this.matchingStatusFollowerId = params.getMatchingStatusFollowerId();
+		this.matchingId = params.getMatchingId();
+		this.userId = params.getUserId();
 
 	}
 

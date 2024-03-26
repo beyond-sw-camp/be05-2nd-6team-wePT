@@ -8,10 +8,10 @@ import lombok.Data;
 public class RequestInsertMatchingDto {
 
 	@NotNull
-	private Long matchingMatchingCategoryId;
+	private Long matchingCategoryId;
 
 	@NotBlank
-	private String matchingOwnerId;
+	private String userId;
 
 	@NotNull
 	private Integer matchingHeadCountLimit;
