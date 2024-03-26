@@ -8,7 +8,7 @@ import org.encore.apartment.community.domain.apartment.data.dto.RequestApartment
 import org.encore.apartment.community.domain.apartment.data.dto.ResponseApartmentDto;
 import org.encore.apartment.community.domain.apartment.data.dto.UpdateRequestApartmentDto;
 import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
-import org.encore.apartment.community.domain.apartment.data.repository.ApartmentRepository;
+import org.encore.apartment.community.domain.apartment.repository.ApartmentRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
