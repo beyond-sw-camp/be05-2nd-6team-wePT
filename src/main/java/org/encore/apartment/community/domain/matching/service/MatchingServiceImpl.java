@@ -84,10 +84,12 @@ public class MatchingServiceImpl implements MatchingService {
 
 	@Override
 	public List<ResponseClosedMatchingDto> findClosedMatchingInfo() {
-		List<ResponseClosedMatchingDto> matching = matchingRepository.findClosedMatchingInfo();
-		log.info("findClosedMatchingInfoList={}", matching);
-		return matching.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
+		List<Matching> matching = matchingRepository.findClosedMatchingInfo();
 
+		System.out.println("::::::::::::::::::::;" + matching);
+		log.info("findClosedMatchingInfoList={}", matching);
+		// return matching.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
+		return null;
 	}
 
 }
