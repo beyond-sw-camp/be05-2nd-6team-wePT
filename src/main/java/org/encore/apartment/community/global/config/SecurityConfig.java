@@ -1,30 +1,34 @@
 package org.encore.apartment.community.global.config;
 
+import org.encore.apartment.community.domain.security.JwtAuthenticationEntryPoint;
+import org.encore.apartment.community.domain.security.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import lombok.val;
+import lombok.RequiredArgsConstructor;
 
 @Configuration
-@EnableWebSecurity
+@EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
+	private final JwtAuthenticationEntryPoint entryPoint;
+
 	private final String [] allowedUrls = {
 		"/",
-		"/api-docs/**",
+		// "/api-docs/**",
 		"/swagger-ui/**",
 		"/v3/**",
-		"/sign-in",
-		"/user/sign-up",
-		// "/user/**",
-		// "/apartment/**",
-		// "/member/**"
+		// "/sign-in",
+		// "/user/sign-up",
 	};
 
 	@Bean
@@ -38,6 +42,8 @@ public class SecurityConfig {
 			.sessionManagement(sessionManagement ->
 				sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			)	// 세션을 사용하지 않으므로 STATELESS 설정
+			.addFilterBefore(jwtAuthenticationFilter, BasicAuthenticationFilter.class)
+			.exceptionHandling(handler -> handler.authenticationEntryPoint(entryPoint))
 			.build();
 	}
 

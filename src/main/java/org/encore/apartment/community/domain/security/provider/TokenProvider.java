@@ -1,4 +1,4 @@
-package org.encore.apartment.community.domain.user.auth.provider;
+package org.encore.apartment.community.domain.security.provider;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -52,6 +52,21 @@ public class TokenProvider {
 			.setIssuedAt(Timestamp.valueOf(LocalDateTime.now()))
 			.setExpiration(Date.from(Instant.now().plus(expirationHours, ChronoUnit.HOURS)))
 			.compact();
+	}
+
+	/**
+	 * JWT 토큰 유효성 검사 및 제목 반환(복호화 함수)
+	 * @param token
+	 * @return
+	 */
+
+	public String validateTokenAndGetSubject(String token) {
+		return Jwts.parserBuilder()
+			.setSigningKey(secretKey.getBytes())
+			.build()
+			.parseClaimsJws(token)
+			.getBody()
+			.getSubject();
 	}
 
 }
