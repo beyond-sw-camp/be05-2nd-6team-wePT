@@ -1,4 +1,4 @@
-package org.encore.apartment.community.domain.apartment.data.repository;
+package org.encore.apartment.community.domain.apartment.repository;
 
 import java.util.Optional;
 
