@@ -31,6 +31,8 @@ public class ResponseMatchingDto {
 
 	private Timestamp matchingUpdatedAt;
 
+
+
 	public ResponseMatchingDto(Matching params) {
 		this.matchingId = params.getMatchingId();
 		this.matchingMatchingCategoryId = params.getMatchingMatchingCategoryId();

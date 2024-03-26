@@ -21,12 +21,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 // updatebyid가 안되어 setter 추가
 @Setter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString(exclude = "matchingCategory")
 public class Matching {
 
 	@Id

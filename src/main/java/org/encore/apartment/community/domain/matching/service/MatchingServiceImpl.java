@@ -5,11 +5,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.ResponseClosedMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.matching.data.repository.MatchingRepository;
 import org.encore.apartment.community.domain.matchingCategory.data.repository.MatchingCategoryRepository;
+import org.encore.apartment.community.domain.matchingStatus.data.repository.MatchingStatusRepository;
 import org.encore.apartment.community.domain.user.data.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ public class MatchingServiceImpl implements MatchingService {
 	private final MatchingRepository matchingRepository;
 	private final MatchingCategoryRepository matchingCategoryRepository;
 	private final UserRepository userRepository;
+	private final MatchingStatusRepository matchingStatusRepository;
 
 	public Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
 		return Matching.builder()
@@ -78,6 +81,15 @@ public class MatchingServiceImpl implements MatchingService {
 		matchingRepository.deleteById(id);
 		log.info("deleteMatchingInfo = {}", id);
 	}
+
+	@Override
+	public List<ResponseClosedMatchingDto> findClosedMatchingInfo() {
+		List<ResponseClosedMatchingDto> matching = matchingRepository.findClosedMatchingInfo();
+		log.info("findClosedMatchingInfoList={}", matching);
+		return matching.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
+
+	}
+
 }
 
 
