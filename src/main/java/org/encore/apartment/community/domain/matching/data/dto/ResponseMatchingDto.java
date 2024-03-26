@@ -1,12 +1,14 @@
 package org.encore.apartment.community.domain.matching.data.dto;
 
+import java.sql.Timestamp;
+
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
+import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
+import org.encore.apartment.community.domain.user.data.entity.User;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import java.sql.Timestamp;
 
 @Data
 public class ResponseMatchingDto {
@@ -15,10 +17,10 @@ public class ResponseMatchingDto {
 	private Long matchingId;
 
 	@NotNull
-	private Integer matchingMatchingCategoryId;
+	private MatchingCategory matchingMatchingCategoryId;
 
 	@NotBlank
-	private String matchingOwnerId;
+	private User matchingOwnerId;
 
 	@NotNull
 	private Integer matchingHeadCountLimit;
@@ -27,12 +29,12 @@ public class ResponseMatchingDto {
 
 	private Timestamp matchingCreatedAt;
 
-	private Timestamp  matchingUpdatedAt;
+	private Timestamp matchingUpdatedAt;
 
 	public ResponseMatchingDto(Matching params) {
 		this.matchingId = params.getMatchingId();
-		this.matchingMatchingCategoryId = params.getMatchingCategoryId();
-		this.matchingOwnerId = params.getUserId();
+		this.matchingMatchingCategoryId = params.getMatchingMatchingCategoryId();
+		this.matchingOwnerId = params.getMatchingOwnerId();
 		this.matchingHeadCountLimit = params.getMatchingHeadCountLimit();
 		this.matchingAccomplishedYn = params.getMatchingAccomplishedYn();
 		this.matchingCreatedAt = params.getMatchingCreatedAt();

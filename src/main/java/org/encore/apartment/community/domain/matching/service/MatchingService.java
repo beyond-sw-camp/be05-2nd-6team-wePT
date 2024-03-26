@@ -4,15 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 
-import org.encore.apartment.community.domain.matching.data.dto.*;
+import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.RequestSearchMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 
 public interface MatchingService {
 
 	public void insertMatchingInfo(RequestInsertMatchingDto params);
 
 	public Optional<ResponseMatchingDto> findMatchingInfo(Long id);
-
-	public List<ResponseClosedMatchingDto> findClosedMatchingInfo();
 
 	public List<ResponseMatchingDto> findMatchingInfoList();
 

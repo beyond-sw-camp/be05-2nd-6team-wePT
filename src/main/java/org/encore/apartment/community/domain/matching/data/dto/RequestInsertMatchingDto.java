@@ -1,7 +1,5 @@
 package org.encore.apartment.community.domain.matching.data.dto;
 
-import org.encore.apartment.community.domain.matching.data.entity.Matching;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -10,7 +8,7 @@ import lombok.Data;
 public class RequestInsertMatchingDto {
 
 	@NotNull
-	private Integer matchingMatchingCategoryId;
+	private Long matchingMatchingCategoryId;
 
 	@NotBlank
 	private String matchingOwnerId;
@@ -18,12 +16,12 @@ public class RequestInsertMatchingDto {
 	@NotNull
 	private Integer matchingHeadCountLimit;
 
-	public static Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
-		return Matching.builder()
-			.matchingAccomplishedYn(false)
-			.matchingMatchingCategoryId(requestInsertMatchingDto.getMatchingMatchingCategoryId())
-			.matchingOwnerId(requestInsertMatchingDto.getMatchingOwnerId())
-			.matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
-			.build();
-	}
+	// public static Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
+	// 	return Matching.builder()
+	// 		.matchingAccomplishedYn(false)
+	// 		.matchingMatchingCategoryId(requestInsertMatchingDto.getMatchingMatchingCategoryId())
+	// 		.matchingOwnerId(requestInsertMatchingDto.getMatchingOwnerId())
+	// 		.matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
+	// 		.build();
+	// }
 }

@@ -9,6 +9,8 @@ import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingD
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.matching.data.repository.MatchingRepository;
+import org.encore.apartment.community.domain.matchingCategory.data.repository.MatchingCategoryRepository;
+import org.encore.apartment.community.domain.user.data.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -20,10 +22,22 @@ import lombok.extern.slf4j.Slf4j;
 public class MatchingServiceImpl implements MatchingService {
 
 	private final MatchingRepository matchingRepository;
+	private final MatchingCategoryRepository matchingCategoryRepository;
+	private final UserRepository userRepository;
+
+	public Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
+		return Matching.builder()
+			.matchingAccomplishedYn(false)
+			.matchingMatchingCategoryId(
+				matchingCategoryRepository.findById(requestInsertMatchingDto.getMatchingMatchingCategoryId()).get())
+			.matchingOwnerId(userRepository.findByUserId(requestInsertMatchingDto.getMatchingOwnerId()).get())
+			.matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
+			.build();
+	}
 
 	@Override
 	public void insertMatchingInfo(RequestInsertMatchingDto params) {
-		Matching matching = RequestInsertMatchingDto.toEntity(params);
+		Matching matching = toEntity(params);
 		matchingRepository.save(matching);
 		log.info("insertMatchingInfo = {}", matching);
 	}
@@ -52,7 +66,7 @@ public class MatchingServiceImpl implements MatchingService {
 		//		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
 
 		//		update가 안되어 matching에 setter 추가하고 아래와 같이 새로운 3개 line 추가함
-		matching.setMatchingMatchingCategoryId(params.getMatchingMatchingCategoryId());
+		matching.setMatchingMatchingCategoryId((params.getMatchingMatchingCategoryId()));
 		matching.setMatchingHeadCountLimit(params.getMatchingHeadCountLimit());
 		matchingRepository.save(matching);
 		log.info("updateApartmentInfo = {}", params);
