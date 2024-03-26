@@ -33,8 +33,8 @@ public class ResponseMatchingDto {
 
 	public ResponseMatchingDto(Matching params) {
 		this.matchingId = params.getMatchingId();
-		this.matchingMatchingCategoryId = params.getMatchingMatchingCategoryId();
-		this.matchingOwnerId = params.getMatchingOwnerId();
+		this.matchingMatchingCategoryId = params.getMatchingCategoryId();
+		this.matchingOwnerId = params.getUserId();
 		this.matchingHeadCountLimit = params.getMatchingHeadCountLimit();
 		this.matchingAccomplishedYn = params.getMatchingAccomplishedYn();
 		this.matchingCreatedAt = params.getMatchingCreatedAt();

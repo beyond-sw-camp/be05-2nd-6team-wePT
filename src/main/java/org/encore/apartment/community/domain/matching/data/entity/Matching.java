@@ -10,12 +10,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,6 +22,29 @@ import lombok.Setter;
 @Getter
 // updatebyid가 안되어 setter 추가
 @Setter
+// @NamedEntityGraphs({
+// 	@NamedEntityGraph(
+// 		name = "matchingWithCategoryAndOwner",
+// 		attributeNodes = {
+// 			@NamedAttributeNode(value = "matchingCategoryId", subgraph = "matchingCategory"),
+// 			@NamedAttributeNode(value = "userId", subgraph = "matchingOwner")
+// 		},
+// 		subgraphs = {
+// 			@NamedSubgraph(
+// 				name = "matchingCategory",
+// 				attributeNodes = {
+// 					@NamedAttributeNode("matchingCategoryId")
+// 				}
+// 			),
+// 			@NamedSubgraph(
+// 				name = "matchingOwner",
+// 				attributeNodes = {
+// 					@NamedAttributeNode("userId")
+// 				}
+// 			)
+// 		}
+// 	)
+// })
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Matching {
@@ -34,13 +54,14 @@ public class Matching {
 	@Column(name = "matching_id")
 	private Long matchingId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "matchingCategory_id")
-	private MatchingCategory matchingMatchingCategoryId;
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// @JoinColumn(name = "matchingCategory_id")
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User matchingOwnerId;
+	private MatchingCategory matchingCategoryId;
+
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// @JoinColumn(name = "user_id")
+	private User userId;
 
 	@Column(name = "matching_head_count_limit")
 	private Integer matchingHeadCountLimit;
@@ -64,27 +85,27 @@ public class Matching {
 
 	@Builder
 	public Matching(
-		Long matchingId, MatchingCategory matchingMatchingCategoryId, User matchingOwnerId,
+		Long matchingId, MatchingCategory matchingCategoryId, User userId,
 		Integer matchingHeadCountLimit,
 		Boolean matchingAccomplishedYn, Timestamp matchingCreatedAt, Timestamp matchingUpdatedAt) {
 		this.matchingId = matchingId;
-		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
-		this.matchingOwnerId = matchingOwnerId;
+		this.matchingCategoryId = matchingCategoryId;
+		this.userId = userId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 		this.matchingAccomplishedYn = matchingAccomplishedYn;
 		this.matchingCreatedAt = matchingCreatedAt;
 		this.matchingUpdatedAt = matchingUpdatedAt;
 	}
 
-	public void update(MatchingCategory matchingMatchingCategoryId, Integer matchingHeadCountLimit) {
-		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
+	public void update(MatchingCategory matchingCategoryId, Integer matchingHeadCountLimit) {
+		this.matchingCategoryId = matchingCategoryId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 
 	}
 
 	public void insert(RequestInsertMatchingDto params) {
-		this.matchingMatchingCategoryId = matchingMatchingCategoryId;
-		this.matchingOwnerId = matchingOwnerId;
+		this.matchingCategoryId = matchingCategoryId;
+		this.userId = userId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
 
 	}

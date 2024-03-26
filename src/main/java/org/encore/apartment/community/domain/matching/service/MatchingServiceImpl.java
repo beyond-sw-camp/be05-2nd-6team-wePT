@@ -10,7 +10,6 @@ import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingD
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.matching.data.repository.MatchingRepository;
-import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
 import org.encore.apartment.community.domain.matchingCategory.data.repository.MatchingCategoryRepository;
 import org.encore.apartment.community.domain.user.data.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -30,9 +29,9 @@ public class MatchingServiceImpl implements MatchingService {
 	public Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
 		return Matching.builder()
 			.matchingAccomplishedYn(false)
-			.matchingMatchingCategoryId(
+			.matchingCategoryId(
 				matchingCategoryRepository.findById(requestInsertMatchingDto.getMatchingMatchingCategoryId()).get())
-			.matchingOwnerId(userRepository.findByUserId(requestInsertMatchingDto.getMatchingOwnerId()).get())
+			.userId(userRepository.findByUserId(requestInsertMatchingDto.getMatchingOwnerId()).get())
 			.matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
 			.build();
 	}
@@ -55,14 +54,11 @@ public class MatchingServiceImpl implements MatchingService {
 
 	@Override
 	public List<ResponseClosedMatchingDto> findClosedMatchingInfo() {
-//		List<Matching> matchingList = matchingRepository.findAll();
-//		log.info("findClosedMatchingInfoList = {}", matchingList);
-//		return matchingList.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
+		//		List<Matching> matchingList = matchingRepository.findAll();
+		//		log.info("findClosedMatchingInfoList = {}", matchingList);
+		//		return matchingList.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
 		return null;
 	}
-
-
-
 
 	@Override
 	public List<ResponseMatchingDto> findMatchingInfoList() {
@@ -79,7 +75,7 @@ public class MatchingServiceImpl implements MatchingService {
 		//		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
 
 		//		update가 안되어 matching에 setter 추가하고 아래와 같이 새로운 3개 line 추가함
-		matching.setMatchingMatchingCategoryId((params.getMatchingMatchingCategoryId()));
+		matching.setMatchingCategoryId((params.getMatchingMatchingCategoryId()));
 		matching.setMatchingHeadCountLimit(params.getMatchingHeadCountLimit());
 		matchingRepository.save(matching);
 		log.info("updateMatchingInfo = {}", params);
