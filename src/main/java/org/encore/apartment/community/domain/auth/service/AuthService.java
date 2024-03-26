@@ -1,10 +1,10 @@
 package org.encore.apartment.community.domain.auth.service;
 
-import static java.lang.String.*;
-
 import org.encore.apartment.community.domain.auth.dto.SignInRequestDto;
 import org.encore.apartment.community.domain.auth.dto.SignInResponseDto;
+import org.encore.apartment.community.domain.auth.dto.entity.UserRefreshToken;
 import org.encore.apartment.community.domain.security.provider.TokenProvider;
+import org.encore.apartment.community.domain.auth.repository.UserRefreshTokenRepository;
 import org.encore.apartment.community.domain.user.data.entity.User;
 import org.encore.apartment.community.domain.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,18 +19,28 @@ public class AuthService {
 
 	private final UserRepository userRepository;
 
+	private final UserRefreshTokenRepository userRefreshTokenRepository;
+
 	private final PasswordEncoder encoder;
 
 	private final TokenProvider tokenProvider;
 
-	@Transactional(readOnly = true)
+	@Transactional
 	public SignInResponseDto signIn(SignInRequestDto request) {
 		User member =  userRepository.findByUserId(request.userId())
 				.filter(it -> encoder.matches(request.userPassword(), it.getUserPassword()))
 				.orElseThrow(() -> new IllegalArgumentException("아이디 또는 비밀번호가 일치하지 않습니다."));
 
-		String token = tokenProvider.createToken(String.format("%s", member.getUserId()));
+		String accessToken = tokenProvider.createAccessToken(String.format("%s:%s", member.getUserId(), member.getUserType()));
+		String refreshToken = tokenProvider.createRefreshToken();
 
-		return new SignInResponseDto(member.getUserIdx(), member.getUserId(), valueOf(member.getUserType()), token);
+		// 리프레시 토큰이 이미 있으면 토큰을 갱신하고 없으면 토큰을 추가
+		userRefreshTokenRepository.findById(member.getUserIdx())
+			.ifPresentOrElse(
+				it -> it.updateRefreshToken(refreshToken),
+				() -> userRefreshTokenRepository.save(new UserRefreshToken(member, refreshToken))
+			);
+
+		return new SignInResponseDto(member.getUserIdx(), member.getUserId(), member.getUserType(), accessToken, refreshToken);
 	}
 }

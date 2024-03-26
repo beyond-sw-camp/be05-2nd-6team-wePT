@@ -29,10 +29,10 @@ public class ExceptionResponseHandler {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ApiResponse.createError("접근이 거부되었습니다."));
 	}
 
-	@ExceptionHandler(Exception.class)
-	public ResponseEntity<ApiResponse<?>> handleUnexpectedException() {
-		return ResponseEntity.internalServerError().body(ApiResponse.createError("서버에 문제가 발생했습니다."));
-	}
+	// @ExceptionHandler(Exception.class)
+	// public ResponseEntity<ApiResponse<?>> handleUnexpectedException() {
+	// 	return ResponseEntity.internalServerError().body(ApiResponse.createError("서버에 문제가 발생했습니다."));
+	// }
 
 	@ExceptionHandler(DuplicateKeyException.class)
 	public ResponseEntity<ApiResponse<?>> handleDuplicatedUserException(RuntimeException exception) {

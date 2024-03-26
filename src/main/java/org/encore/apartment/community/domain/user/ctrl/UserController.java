@@ -5,16 +5,17 @@ import java.util.Map;
 import org.encore.apartment.community.domain.user.data.dto.UserRequestDto;
 import org.encore.apartment.community.domain.user.data.dto.UserResponseDto;
 import org.encore.apartment.community.domain.user.data.dto.UserUpdateRequestDto;
+import org.encore.apartment.community.domain.user.data.entity.User;
 import org.encore.apartment.community.domain.user.service.UserService;
 import org.encore.apartment.community.global.annotation.MemberAuthorize;
 import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -42,18 +43,19 @@ public class UserController {
 	@Operation(summary = "회원 정보 조회")
 	@GetMapping(value = "/info", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@MemberAuthorize
-	public ApiResponse<UserResponseDto> getUserInfo(@RequestParam Long idx, @RequestParam String id) {
-		log.info("getUserInfo = {} {}", idx, id);
-		UserResponseDto user = service.findUserInfo(idx);
+	public ApiResponse<UserResponseDto> getUserInfo(@AuthenticationPrincipal org.springframework.security.core.userdetails.User user) {
+		System.out.println("::::::::::::controller " + user.getUsername());
+		log.info("getUserInfo = {} ", user.getUsername());
+		UserResponseDto entity = service.findUserInfo(user.getUsername());
 
-		return ApiResponse.createSuccess(user);
+		return ApiResponse.createSuccess(entity);
 	}
 
 	@Operation(summary = "회원 정보 수정")
 	@PostMapping(value = "/update", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@MemberAuthorize
-	public ApiResponse<Map<String, Long>> updateUserInfo(@RequestBody UserUpdateRequestDto params) {
-		Long idx = service.updateUserInfo(params);
+	public ApiResponse<Map<String, Long>> updateUserInfo(@AuthenticationPrincipal org.springframework.security.core.userdetails.User user, @RequestBody UserUpdateRequestDto params) {
+		Long idx = service.updateUserInfo(user.getUsername(), params);
 		Map<String, Long> map = Map.of("userIdx", idx);
 
 		return ApiResponse.createSuccess(map);
@@ -62,8 +64,8 @@ public class UserController {
 	@Operation(summary = "회원 삭제")
 	@DeleteMapping("/delete")
 	@MemberAuthorize
-	public ApiResponse<Map<String, Long>> deleteUser(@RequestParam Long idx) {
-		Long userIdx = service.deleteUser(idx);
+	public ApiResponse<Map<String, Long>> deleteUser(@AuthenticationPrincipal User user) {
+		Long userIdx = service.deleteUser(user.getUserIdx());
 		Map<String, Long> map = Map.of("userIdx", userIdx);
 
 		return ApiResponse.createSuccess(map);

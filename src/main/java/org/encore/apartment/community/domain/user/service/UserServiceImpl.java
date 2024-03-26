@@ -2,7 +2,7 @@ package org.encore.apartment.community.domain.user.service;
 
 import java.util.Optional;
 
-import org.encore.apartment.community.domain.apartment.data.repository.ApartmentRepository;
+import org.encore.apartment.community.domain.apartment.repository.ApartmentRepository;
 import org.encore.apartment.community.domain.user.data.dto.UserRequestDto;
 import org.encore.apartment.community.domain.user.data.dto.UserResponseDto;
 import org.encore.apartment.community.domain.user.data.dto.UserUpdateRequestDto;
@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserResponseDto findUserInfo(Long idx) {
-		Optional<User> user = userRepository.findById(idx);
+	public UserResponseDto findUserInfo(String userId) {
+		Optional<User> user = userRepository.findByUserId(userId);
 		UserResponseDto userResponseDto = new UserResponseDto(user.get());
 		userResponseDto.setApartmentInfo(user.get().getApartment());
 		log.info("findUserInfo = {}", user);
@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Long updateUserInfo(UserUpdateRequestDto params) {
-		Optional<User> user = userRepository.findById(params.getUserIdx());
+	public Long updateUserInfo(String userId, UserUpdateRequestDto params) {
+		Optional<User> user = userRepository.findByUserId(userId);
 		user.ifPresent(u -> u.update(params));
 		log.info("updateUserInfo = {}", user);
 		userRepository.save(user.get());

@@ -8,8 +8,6 @@ import lombok.Getter;
 @Getter
 public class UserUpdateRequestDto {
 
-	private Long userIdx;
-
 	@NotBlank
 	private String userNickname;
 
