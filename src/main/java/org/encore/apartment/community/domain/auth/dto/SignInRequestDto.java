@@ -7,6 +7,5 @@ public record SignInRequestDto(
 	String userId,
 	@Schema(description = "회원 비밀번호", example = "test1234")
 	String userPassword
-
 ) {
 }

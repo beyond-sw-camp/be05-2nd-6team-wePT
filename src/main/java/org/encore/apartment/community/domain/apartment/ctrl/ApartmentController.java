@@ -7,6 +7,7 @@ import org.encore.apartment.community.domain.apartment.data.dto.RequestApartment
 import org.encore.apartment.community.domain.apartment.data.dto.ResponseApartmentDto;
 import org.encore.apartment.community.domain.apartment.data.dto.UpdateRequestApartmentDto;
 import org.encore.apartment.community.domain.apartment.service.ApartmentService;
+import org.encore.apartment.community.global.annotation.AdminAuthorize;
 import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +47,7 @@ public class ApartmentController {
 	}
 
 	@GetMapping("/list")
+	@AdminAuthorize
 	public ResponseEntity<List<ResponseApartmentDto>> findApartmentInfoList() {
 		List<ResponseApartmentDto> dto = service.findApartmentInfoList();
 		log.info("ApartmentController findApartmentInfoList = {}", dto);
@@ -54,6 +56,7 @@ public class ApartmentController {
 	}
 
 	@PostMapping("/update/{id}")
+	@AdminAuthorize
 	public ApiResponse<ResponseApartmentDto> updateApartmentInfo(@PathVariable("id") Long id, @RequestBody UpdateRequestApartmentDto params) {
 		log.info("ApartmentController updateApartmentInfo = {}", params);
 
@@ -61,6 +64,7 @@ public class ApartmentController {
 	}
 
 	@DeleteMapping("/delete/{id}")
+	@AdminAuthorize
 	public ResponseEntity<Void> deleteApartmentInfo(@PathVariable Long id) {
 		log.info("ApartmentController deleteApartmentInfo = {}", id);
 		service.deleteApartmentInfo(id);
