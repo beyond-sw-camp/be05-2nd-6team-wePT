@@ -1,5 +1,6 @@
 package org.encore.apartment.community.domain.matchingStatus.data.entity;
 
+import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.user.data.entity.User;
 
 import jakarta.persistence.Column;
@@ -27,15 +28,16 @@ public class MatchingStatus {
 	@Column(name = "matchingStatus_idx")
 	private Long matchingStatusIdx;
 
-	@Column(name = "matchingStatus_matching_id")
-	private Long matchingStatusMatchingId;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "matching_id")
+	private Matching matchingStatusMatchingId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User matchingStatusFollowerId;
 
 	@Builder
-	public MatchingStatus(Long matchingStatusMatchingId, User matchingStatusFollowerId) {
+	public MatchingStatus(Matching matchingStatusMatchingId, User matchingStatusFollowerId) {
 		this.matchingStatusMatchingId = matchingStatusMatchingId;
 		this.matchingStatusFollowerId = matchingStatusFollowerId;
 	}

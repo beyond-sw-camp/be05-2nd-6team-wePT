@@ -1,5 +1,6 @@
 package org.encore.apartment.community.domain.matchingStatus.data.dto;
 
+import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.matchingStatus.data.entity.MatchingStatus;
 import org.encore.apartment.community.domain.user.data.entity.User;
 
@@ -11,7 +12,7 @@ import lombok.Data;
 public class ResponseMatchingStatusDto {
 
 	@NotNull
-	private Long matchingStatusMatchingId;
+	private Matching matchingStatusMatchingId;
 
 	@NotBlank
 	private User matchingStatusFollowerId;

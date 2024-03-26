@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.encore.apartment.community.domain.matching.data.repository.MatchingRepository;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestInsertMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.ResponseMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.UpdateMatchingStatusDto;
@@ -22,10 +23,12 @@ public class MatchingStatusServiceImpl implements MatchingStatusService {
 
 	private final MatchingStatusRepository matchingStatusRepository;
 	private final UserRepository userRepository;
+	private final MatchingRepository matchingRepository;
 
 	public MatchingStatus toEntity(RequestInsertMatchingStatusDto requestInsertMatchingStatusDto) {
 		return MatchingStatus.builder()
-			.matchingStatusMatchingId(requestInsertMatchingStatusDto.getMatchingStatusMatchingId())
+			.matchingStatusMatchingId(
+				matchingRepository.findById(requestInsertMatchingStatusDto.getMatchingStatusMatchingId()).get())
 			.matchingStatusFollowerId(
 				userRepository.findByUserId(requestInsertMatchingStatusDto.getMatchingStatusFollowerId()).get())
 			.build();
