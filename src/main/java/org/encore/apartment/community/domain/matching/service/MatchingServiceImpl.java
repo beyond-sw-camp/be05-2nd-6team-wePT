@@ -12,7 +12,7 @@ import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.matching.data.repository.MatchingRepository;
 import org.encore.apartment.community.domain.matchingCategory.data.repository.MatchingCategoryRepository;
 import org.encore.apartment.community.domain.matchingStatus.data.repository.MatchingStatusRepository;
-import org.encore.apartment.community.domain.user.data.repository.UserRepository;
+import org.encore.apartment.community.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
