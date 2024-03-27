@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestInsertMatchingStatusDto;
-import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.ResponseMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.UpdateMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.service.MatchingStatusService;
@@ -18,17 +17,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/matchingStatus")
+@RequestMapping("/matchingStatus")
 public class matchingStatusController {
 
 	@Resource(name = "matchingStatus")
 	private MatchingStatusService service;
 
+	@Operation(summary = "매칭참여정보 삽입")
 	@PostMapping("/insert")
 	public ResponseEntity<Void> insertMatchingStatusInfo(@RequestBody RequestInsertMatchingStatusDto params) {
 		service.insertMatchingStatusInfo(params);

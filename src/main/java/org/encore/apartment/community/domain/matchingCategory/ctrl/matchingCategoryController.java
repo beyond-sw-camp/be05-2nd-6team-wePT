@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/matchingCategory")
+@RequestMapping("/matchingCategory")
 public class matchingCategoryController {
 
 	@Resource(name = "matchingCategory")

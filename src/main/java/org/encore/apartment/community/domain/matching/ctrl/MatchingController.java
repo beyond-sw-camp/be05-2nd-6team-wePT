@@ -39,6 +39,16 @@ public class MatchingController {
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
+	// @Operation(summary = "매칭정보 등록")
+	// @PostMapping("/insert")
+	// public ApiResponse<?> insertMatchingInfo(@RequestBody RequestInsertMatchingDto params) {
+	// 	service.insertMatchingInfo(params);
+	// 	log.info("MatchingController insertMatchingInfo = {}", params);
+	//
+	// 	return ApiResponse.createSuccessWithNoContent();
+	// }
+
+	@Operation(summary = "매칭id로 매칭정보 확인")
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Optional<ResponseMatchingDto>> findMatchingInfo(@PathVariable(value = "id") Long id) {
 		Optional<ResponseMatchingDto> dto = service.findMatchingInfo(id);
@@ -47,6 +57,7 @@ public class MatchingController {
 		return new ResponseEntity<Optional<ResponseMatchingDto>>(dto, HttpStatus.OK);
 	}
 
+	@Operation(summary = " 매칭정보 일괄확인")
 	@GetMapping("/list")
 	public ResponseEntity<List<ResponseMatchingDto>> findMatchingInfoList() {
 		List<ResponseMatchingDto> dto = service.findMatchingInfoList();
@@ -55,6 +66,7 @@ public class MatchingController {
 		return new ResponseEntity<List<ResponseMatchingDto>>(dto, HttpStatus.OK);
 	}
 
+	@Operation(summary = "매칭id로 매칭정보 수정")
 	@PostMapping("/update/{id}")
 	public ResponseEntity<Void> updateMatchingInfo(@PathVariable(value = "id") Long id,
 		@RequestBody UpdateMatchingDto params) {
@@ -64,6 +76,7 @@ public class MatchingController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
+	@Operation(summary = "매칭id로 매칭정보 삭제")
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> deleteMatchingInfo(@PathVariable(value = "id") Long id) {
 		log.info("MatchingController deleteMatchingInfo = {}", id);
@@ -72,6 +85,7 @@ public class MatchingController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
+	@Operation(summary = "매칭아이디, 매칭의 인원제한, 참여인원 수를 리턴하여 매칭마감여부 확인 ")
 	@GetMapping("/find/closed/{id}")
 	public ResponseEntity<ResponseClosedMatchingDto> findClosedMatchingInfo(@PathVariable(value = "id") Long id) {
 		ResponseClosedMatchingDto dto = service.findClosedMatchingInfo(id);

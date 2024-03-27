@@ -35,7 +35,7 @@ public class Matching {
 	private Long matchingId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "matchingCategory_id")
+	@JoinColumn(name = "matchingCategory_id", referencedColumnName = "matchingCategory_id")
 	private MatchingCategory matchingCategoryId;
 
 	@ManyToOne(fetch = FetchType.LAZY)

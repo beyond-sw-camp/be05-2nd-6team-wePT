@@ -29,7 +29,7 @@ public class MatchingStatus {
 	private Long matchingStatusIdx;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "matching_id")
+	@JoinColumn(name = "matching_id", referencedColumnName = "matching_id")
 	private Matching matchingId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
