@@ -1,7 +1,6 @@
 package org.encore.apartment.community.domain.user.data.entity;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 
 import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
 import org.encore.apartment.community.domain.user.common.UserType;
@@ -9,8 +8,6 @@ import org.encore.apartment.community.domain.user.data.dto.UserUpdateRequestDto;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,7 +44,7 @@ public class User {
 	@Column(name = "user_nickname", nullable = false)
 	private String userNickname;
 
-	@Column(name = "user_email")
+	@Column(name = "user_email", nullable = false)
 	private String userEmail;
 
 	@Column(name =  "user_mobile", unique = true, nullable = false)
