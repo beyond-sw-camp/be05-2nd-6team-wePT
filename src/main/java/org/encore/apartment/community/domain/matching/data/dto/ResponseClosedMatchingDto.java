@@ -1,5 +1,7 @@
 package org.encore.apartment.community.domain.matching.data.dto;
 
+import java.util.List;
+
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +19,7 @@ public class ResponseClosedMatchingDto {
 	@NotNull
 	private Integer matchingHeadCountLimit;
 
-	// private List<MatchingStatus> userId;
+	private List<String> userIdList;
 
 	public ResponseClosedMatchingDto(Long matchingId, Integer matchingHeadCountLimit) {
 		this.matchingId = matchingId;
@@ -25,8 +27,16 @@ public class ResponseClosedMatchingDto {
 
 	}
 
+	public ResponseClosedMatchingDto(Long matchingId, Integer matchingHeadCountLimit, List<String> userId) {
+		this.matchingId = matchingId;
+		this.matchingHeadCountLimit = matchingHeadCountLimit;
+		this.userIdList = userId;
+	}
+
 	public ResponseClosedMatchingDto(Matching matching) {
 		this.matchingId = matching.getMatchingId();
 		this.matchingHeadCountLimit = matching.getMatchingHeadCountLimit();
+
 	}
+
 }

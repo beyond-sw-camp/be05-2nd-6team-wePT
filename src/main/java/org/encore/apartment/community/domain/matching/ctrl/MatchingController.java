@@ -70,12 +70,12 @@ public class MatchingController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@GetMapping("/find/closed")
-	public ResponseEntity<List<ResponseClosedMatchingDto>> findClosedMatchingInfo() {
-		List<ResponseClosedMatchingDto> dto = service.findClosedMatchingInfo();
+	@GetMapping("/find/closed/{id}")
+	public ResponseEntity<ResponseClosedMatchingDto> findClosedMatchingInfo(@PathVariable(value = "id") Long id) {
+		ResponseClosedMatchingDto dto = service.findClosedMatchingInfo(id);
 		log.info("MatchingController findClosedMatchingStatusInfoList = {}", dto);
 
-		return new ResponseEntity<List<ResponseClosedMatchingDto>>(dto, HttpStatus.OK);
+		return new ResponseEntity<ResponseClosedMatchingDto>(dto, HttpStatus.OK);
 
 	}
 }

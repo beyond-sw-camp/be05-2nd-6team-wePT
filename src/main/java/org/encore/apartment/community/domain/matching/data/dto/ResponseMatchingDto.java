@@ -31,6 +31,21 @@ public class ResponseMatchingDto {
 
 	private Timestamp matchingUpdatedAt;
 
+	public ResponseMatchingDto(
+		Long matchingId, MatchingCategory matchingCategoryId,
+		User userId, Integer matchingHeadCountLimit,
+		Boolean matchingAccomplishedYn, Timestamp matchingCreatedAt,
+		Timestamp matchingUpdatedAt
+	) {
+		this.matchingId = matchingId;
+		this.matchingCategoryId = matchingCategoryId;
+		this.userId = userId;
+		this.matchingHeadCountLimit = matchingHeadCountLimit;
+		this.matchingAccomplishedYn = matchingAccomplishedYn;
+		this.matchingCreatedAt = matchingCreatedAt;
+		this.matchingUpdatedAt = matchingUpdatedAt;
+	}
+
 	public ResponseMatchingDto(Matching params) {
 		this.matchingId = params.getMatchingId();
 		this.matchingCategoryId = params.getMatchingCategoryId();

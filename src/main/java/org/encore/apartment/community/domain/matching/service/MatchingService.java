@@ -20,5 +20,5 @@ public interface MatchingService {
 
 	public void deleteMatchingInfo(Long id);
 
-	public List<ResponseClosedMatchingDto> findClosedMatchingInfo();
+	public ResponseClosedMatchingDto findClosedMatchingInfo(Long id);
 }

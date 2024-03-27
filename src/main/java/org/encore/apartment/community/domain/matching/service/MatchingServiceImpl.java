@@ -1,5 +1,6 @@
 package org.encore.apartment.community.domain.matching.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.matching.data.repository.MatchingRepository;
 import org.encore.apartment.community.domain.matchingCategory.data.repository.MatchingCategoryRepository;
+import org.encore.apartment.community.domain.matchingStatus.data.entity.MatchingStatus;
 import org.encore.apartment.community.domain.matchingStatus.data.repository.MatchingStatusRepository;
 import org.encore.apartment.community.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -82,13 +84,39 @@ public class MatchingServiceImpl implements MatchingService {
 		log.info("deleteMatchingInfo = {}", id);
 	}
 
-	@Override
-	public List<ResponseClosedMatchingDto> findClosedMatchingInfo() {
-		List<Matching> matching = matchingRepository.findClosedMatchingInfo();
+	// 매칭현황 인원 리스트 만들기
+	//List<User> user = new ArrayList<>();
+	//,matching status repostory 호출
+	// status repository -> findallbymatchingid
+	// entity.getUserId -> List
+	// list (entity) -> list(dto) (return)
 
-		System.out.println("::::::::::::::::::::;" + matching);
+	public List<String> getUsersOfMatching(Long matchingId) {
+		Matching matching = matchingRepository.findById(matchingId).get();
+		List<MatchingStatus> tmp = matchingStatusRepository.findAllByMatchingId(matching);
+		List<String> list = new ArrayList<>();
+		for (MatchingStatus matchingStatus : tmp) {
+			list.add(matchingStatus.getUserId().getUserId());
+		}
+
+		return list;
+	}
+
+	@Override
+	public ResponseClosedMatchingDto findClosedMatchingInfo(Long id) {
+		Optional<Matching> matching = matchingRepository.findById(id);
+		Integer matchingHeadCountLimit = matching.get().getMatchingHeadCountLimit();
+		List<String> list = getUsersOfMatching(id);// 참여한 사용자의 id 리스트
+
 		log.info("findClosedMatchingInfoList={}", matching);
-		return matching.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
+		// return matching.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
+		ResponseClosedMatchingDto dto = new ResponseClosedMatchingDto();
+		dto.setMatchingId(id);
+		dto.setMatchingHeadCountLimit(matchingHeadCountLimit);
+		dto.setUserIdList(list);
+
+		return dto;
+
 	}
 
 }
