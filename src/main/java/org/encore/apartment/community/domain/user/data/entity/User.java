@@ -1,15 +1,21 @@
 package org.encore.apartment.community.domain.user.data.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
-import org.encore.apartment.community.domain.user.data.dto.user.UpdateRequestUserDto;
+import org.encore.apartment.community.domain.user.common.UserType;
+import org.encore.apartment.community.domain.user.data.dto.UserUpdateRequestDto;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,80 +33,85 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_idx")
-    private Long userIdx;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_idx")
+	private Long userIdx;
 
-    @Column(name = "user_id", unique = true, nullable = false)
-    private String userId;
+	@Column(name = "user_id", unique = true, nullable = false)
+	private String userId;
 
-    @Column(name = "user_password", nullable = false)
-    private String userPassword;
+	@Column(name = "user_password", nullable = false)
+	private String userPassword;
 
-    @Column(name = "user_nickname", nullable = false)
-    private String userNickname;
+	@Column(name = "user_nickname", nullable = false)
+	private String userNickname;
 
-    @Column(name = "user_email")
-    private String userEmail;
+	@Column(name = "user_email")
+	private String userEmail;
 
-    @Column(name =  "user_mobile", unique = true, nullable = false)
-    private String userMobile;
+	@Column(name =  "user_mobile", unique = true, nullable = false)
+	private String userMobile;
 
-    @Column(name = "user_building_number", nullable = false)
-    private Integer userBuildingNumber;
+	@Column(name = "user_building_number", nullable = false)
+	private Integer userBuildingNumber;
 
-    @Column(name = "user_house_number", nullable = false)
-    private Integer userHouseNumber;
+	@Column(name = "user_house_number", nullable = false)
+	private Integer userHouseNumber;
 
-    @Column(name = "user_head_household_yn", nullable = false, columnDefinition = "boolean default true")
-    @ColumnDefault("true")
-    private Boolean userHeadHouseHoldYn;
+	@Column(name = "user_head_household_yn", nullable = false, columnDefinition = "boolean default true")
+	@ColumnDefault("true")
+	private Boolean userHeadHouseHoldYn;
 
-    @Column(name = "created_at", nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+	@Column(name = "created_at", nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
+	@CreationTimestamp
+	private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+	@Column(name = "updated_at")
+	@UpdateTimestamp
+	private LocalDateTime updatedAt;
 
-    @Column(name = "delete_yn", columnDefinition = "boolean default false")
-    private Boolean deleteYn;
+	@Column(name = "delete_yn", columnDefinition = "boolean default false")
+	private Boolean deleteYn;
 
-    @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "apartment_id", nullable = false)
-    private Apartment apartment;
+	@Column(name = "user_type")
+	@Enumerated(EnumType.STRING)
+	private UserType userType;
 
-    @Builder
-    public User(
-            String userId, String userPassword, String userNickname, String userEmail, String userMobile,
-            Integer userBuildingNumber, Integer userHouseNumber, Boolean userHeadHouseHoldYn, LocalDateTime createdAt,
-            LocalDateTime updatedAt, Boolean deleteYn) {
-        this.userId = userId;
-        this.userPassword = userPassword;
-        this.userNickname = userNickname;
-        this.userEmail = userEmail;
-        this.userMobile = userMobile;
-        this.userBuildingNumber = userBuildingNumber;
-        this.userHouseNumber = userHouseNumber;
-        this.userHeadHouseHoldYn = userHeadHouseHoldYn;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.deleteYn = deleteYn;
-    }
+	@Setter
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "apartment_id", nullable = false)
+	private Apartment apartment;
 
-    public void update(UpdateRequestUserDto params) {
-        this.userNickname = params.getUserNickname();
-        this.userEmail = params.getUserEmail();
-        this.userMobile = params.getUserMobile();
+	@Builder
+	public User(
+		String userId, String userPassword, String userNickname, String userEmail, String userMobile,
+		Integer userBuildingNumber, Integer userHouseNumber, Boolean userHeadHouseHoldYn, LocalDateTime createdAt,
+		LocalDateTime updatedAt, Boolean deleteYn, UserType userType) {
+		this.userId = userId;
+		this.userPassword = userPassword;
+		this.userNickname = userNickname;
+		this.userEmail = userEmail;
+		this.userMobile = userMobile;
+		this.userBuildingNumber = userBuildingNumber;
+		this.userHouseNumber = userHouseNumber;
+		this.userHeadHouseHoldYn = userHeadHouseHoldYn;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.userType = userType;
+		this.deleteYn = deleteYn;
+	}
 
-        this.updatedAt = LocalDateTime.now();
-    }
+	public void update(UserUpdateRequestDto params) {
+		this.userNickname = params.getUserNickname();
+		this.userEmail = params.getUserEmail();
+		this.userMobile = params.getUserMobile();
 
-    public void updateDeleteYn() {
-        this.deleteYn = true;
-        this.updatedAt = LocalDateTime.now();
-    }
+		this.updatedAt = LocalDateTime.now();
+	}
+
+	public void updateDeleteYn() {
+		this.deleteYn = true;
+		this.updatedAt = LocalDateTime.now();
+	}
 }
