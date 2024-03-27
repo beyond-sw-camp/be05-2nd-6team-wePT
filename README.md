@@ -79,7 +79,153 @@
 <br/><br/>
 
 ## :evergreen_tree:Project Tree
-
+📂community
+ ┣ 📂domain
+ ┃ ┣ 📂admin
+ ┃ ┃ ┣ 📂ctrl
+ ┃ ┃ ┃ ┗ 📜AdminController.java
+ ┃ ┃ ┣ 📂data
+ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┣ 📜AdminDto.java
+ ┃ ┃ ┃ ┃ ┗ 📜AdminNumberRequestDTO.java
+ ┃ ┃ ┃ ┣ 📂entity
+ ┃ ┃ ┃ ┃ ┗ 📜Admin.java
+ ┃ ┃ ┃ ┗ 📂repository
+ ┃ ┃ ┃ ┃ ┗ 📜AdminRepository.java
+ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┣ 📜AdminService.java
+ ┃ ┃ ┃ ┗ 📜AdminServiceImpl.java
+ ┃ ┣ 📂apartment
+ ┃ ┃ ┣ 📂ctrl
+ ┃ ┃ ┃ ┗ 📜ApartmentController.java
+ ┃ ┃ ┣ 📂data
+ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┣ 📜RequestApartmentDto.java
+ ┃ ┃ ┃ ┃ ┣ 📜ResponseApartmentDto.java
+ ┃ ┃ ┃ ┃ ┗ 📜UpdateRequestApartmentDto.java
+ ┃ ┃ ┃ ┗ 📂entity
+ ┃ ┃ ┃ ┃ ┗ 📜Apartment.java
+ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┗ 📜ApartmentRepository.java
+ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┣ 📜ApartmentService.java
+ ┃ ┃ ┃ ┗ 📜ApartmentServiceImpl.java
+ ┃ ┣ 📂auth
+ ┃ ┃ ┣ 📂ctrl
+ ┃ ┃ ┃ ┗ 📜AuthController.java
+ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┣ 📂entity
+ ┃ ┃ ┃ ┃ ┗ 📜UserRefreshToken.java
+ ┃ ┃ ┃ ┣ 📜SignInRequestDto.java
+ ┃ ┃ ┃ ┗ 📜SignInResponseDto.java
+ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┗ 📜UserRefreshTokenRepository.java
+ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┗ 📜AuthService.java
+ ┃ ┣ 📂facility
+ ┃ ┃ ┣ 📂ctrl
+ ┃ ┃ ┃ ┣ 📜FacilityController.java
+ ┃ ┃ ┃ ┣ 📜LogController.java
+ ┃ ┃ ┃ ┣ 📜RealtimeFacilityController.java
+ ┃ ┃ ┃ ┗ 📜ReservationController.java
+ ┃ ┃ ┣ 📂data
+ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┣ 📜FacilityDto.java
+ ┃ ┃ ┃ ┃ ┣ 📜LogDto.java
+ ┃ ┃ ┃ ┃ ┣ 📜RealtimeFacilityDto.java
+ ┃ ┃ ┃ ┃ ┣ 📜ReservationAllDto.java
+ ┃ ┃ ┃ ┃ ┗ 📜ReservationDto.java
+ ┃ ┃ ┃ ┣ 📂entity
+ ┃ ┃ ┃ ┃ ┣ 📜Facility.java
+ ┃ ┃ ┃ ┃ ┣ 📜Log.java
+ ┃ ┃ ┃ ┃ ┣ 📜RealtimeFacility.java
+ ┃ ┃ ┃ ┃ ┗ 📜Reservation.java
+ ┃ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┃ ┣ 📜FacilityRepository.java
+ ┃ ┃ ┃ ┃ ┣ 📜LogRepository.java
+ ┃ ┃ ┃ ┃ ┣ 📜RealtimeFacilityRepository.java
+ ┃ ┃ ┃ ┃ ┗ 📜ReservationRepository.java
+ ┃ ┃ ┃ ┗ 📜.DS_Store
+ ┃ ┃ ┣ 📂service
+ ┃ ┃ ┃ ┣ 📜.DS_Store
+ ┃ ┃ ┃ ┣ 📜FacilityService.java
+ ┃ ┃ ┃ ┣ 📜FacilityServiceImpl.java
+ ┃ ┃ ┃ ┣ 📜LogService.java
+ ┃ ┃ ┃ ┣ 📜LogServiceImpl.java
+ ┃ ┃ ┃ ┣ 📜RealtimeFacilityService.java
+ ┃ ┃ ┃ ┣ 📜RealtimeFacilityServiceImpl.java
+ ┃ ┃ ┃ ┣ 📜ReservationService.java
+ ┃ ┃ ┃ ┗ 📜ReservationServiceImpl.java
+ ┃ ┃ ┗ 📜.DS_Store
+ ┃ ┣ 📂maintenance
+ ┃ ┃ ┣ 📂ctrl
+ ┃ ┃ ┃ ┗ 📜MaintenanceFeeController.java
+ ┃ ┃ ┣ 📂data
+ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┣ 📜ItemPercentage.java
+ ┃ ┃ ┃ ┃ ┣ 📜MaintenanceFeeDto.java
+ ┃ ┃ ┃ ┃ ┗ 📜ResponseMaintenanceFeeDto.java
+ ┃ ┃ ┃ ┣ 📂entity
+ ┃ ┃ ┃ ┃ ┣ 📜MaintenanceFee.java
+ ┃ ┃ ┃ ┃ ┗ 📜MaintenanceFeeId.java
+ ┃ ┃ ┃ ┗ 📂repository
+ ┃ ┃ ┃ ┃ ┗ 📜MaintenanceFeeRepository.java
+ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┣ 📜MaintenanceFeeService.java
+ ┃ ┃ ┃ ┗ 📜MaintenanceFeeServiceImpl.java
+ ┃ ┣ 📂membership
+ ┃ ┃ ┣ 📂ctrl
+ ┃ ┃ ┃ ┗ 📜MembershipController.java
+ ┃ ┃ ┣ 📂data
+ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┗ 📜MembershipResponseDto.java
+ ┃ ┃ ┃ ┗ 📂entity
+ ┃ ┃ ┃ ┃ ┗ 📜Membership.java
+ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┗ 📜MembershipRepository.java
+ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┗ 📜MembershipService.java
+ ┃ ┣ 📂security
+ ┃ ┃ ┣ 📂filter
+ ┃ ┃ ┃ ┗ 📜JwtAuthenticationFilter.java
+ ┃ ┃ ┣ 📂provider
+ ┃ ┃ ┃ ┗ 📜TokenProvider.java
+ ┃ ┃ ┗ 📜JwtAuthenticationEntryPoint.java
+ ┃ ┣ 📂user
+ ┃ ┃ ┣ 📂common
+ ┃ ┃ ┃ ┗ 📜UserType.java
+ ┃ ┃ ┣ 📂ctrl
+ ┃ ┃ ┃ ┗ 📜UserController.java
+ ┃ ┃ ┣ 📂data
+ ┃ ┃ ┃ ┣ 📂dto
+ ┃ ┃ ┃ ┃ ┣ 📜UserDto.java
+ ┃ ┃ ┃ ┃ ┣ 📜UserRequestDto.java
+ ┃ ┃ ┃ ┃ ┣ 📜UserResponseDto.java
+ ┃ ┃ ┃ ┃ ┗ 📜UserUpdateRequestDto.java
+ ┃ ┃ ┃ ┗ 📂entity
+ ┃ ┃ ┃ ┃ ┗ 📜User.java
+ ┃ ┃ ┣ 📂repository
+ ┃ ┃ ┃ ┗ 📜UserRepository.java
+ ┃ ┃ ┗ 📂service
+ ┃ ┃ ┃ ┣ 📜.DS_Store
+ ┃ ┃ ┃ ┣ 📜UserService.java
+ ┃ ┃ ┃ ┗ 📜UserServiceImpl.java
+ ┃ ┣ 📜.DS_Store
+ ┃ ┗ 📜maintenance.zip
+ ┣ 📂global
+ ┃ ┣ 📂annotation
+ ┃ ┃ ┣ 📜AdminAuthorize.java
+ ┃ ┃ ┗ 📜MemberAuthorize.java
+ ┃ ┣ 📂config
+ ┃ ┃ ┣ 📜SecurityConfig.java
+ ┃ ┃ ┗ 📜SwaggerConfig.java
+ ┃ ┣ 📂handler
+ ┃ ┃ ┗ 📜ExceptionResponseHandler.java
+ ┃ ┗ 📂util
+ ┃ ┃ ┗ 📂api
+ ┃ ┃ ┃ ┗ 📜ApiResponse.java
+ ┣ 📜.DS_Store
+ ┗ 📜CommunityApplication.java
 
 
 ## 주요 기능
