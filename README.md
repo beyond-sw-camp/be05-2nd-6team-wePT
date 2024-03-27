@@ -79,7 +79,8 @@
 <br/><br/>
 
 ## :evergreen_tree:Project Tree
-📂community
+```
+📦community
  ┣ 📂domain
  ┃ ┣ 📂admin
  ┃ ┃ ┣ 📂ctrl
@@ -226,6 +227,8 @@
  ┃ ┃ ┃ ┗ 📜ApiResponse.java
  ┣ 📜.DS_Store
  ┗ 📜CommunityApplication.java
+```
+
 
 
 ## 주요 기능
