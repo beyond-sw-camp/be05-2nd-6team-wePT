@@ -23,7 +23,7 @@ public class PostServiceImpl implements PostService{
     private final PostRepository postRepository;
 
     // category 연결
-    private final PostCategoryRepositoty postCategoryRepositoty;
+    // private final PostCategoryRepositoty postCategoryRepositoty;
 
     // create
     @Transactional
@@ -32,27 +32,56 @@ public class PostServiceImpl implements PostService{
         postRepository.save(postRequestDto.ToEntity());
     }
 
+    // 카테고리 이름을 입력 받아서 해당하는 카테고리의 포스트만 리스트에 저장 (출력용)
+    @Override
+    public List<PostResponseDto> getPostListByCategory(Long postCategoryId) {
+        Long CategoryId = postRepository.findCategoryId(postCategoryId);
+        List<Post> all = postRepository.findAllByPostCategoryId(CategoryId);
+        List<PostResponseDto> postDtoList = new ArrayList<>();
+
+        for(Post post : all){
+            if (post.getPostDeleteYn() == false) {
+                PostResponseDto postDto = PostResponseDto.builder()
+                        .postTitle(post.getPostTitle())
+                        .postContent(post.getPostContent())
+                        .postWriterId(post.getPostWriterId())
+                        .postRecommend(post.getPostRecommend())
+                        .postDeleteYn(post.getPostDeleteYn())
+                        .postCategoryId(post.getPostCategoryId())
+                        .postDate(post.getPostDate())
+                        .postId(post.getPostId())
+                        .build();
+
+                postDtoList.add(postDto);
+            }
+        }
+
+        return postDtoList;
+    }
+
 
     // read
     @Transactional
     @Override
-    public List<PostResponseDto> getPostList(PostRequestDto postRequestDto) {
+    public List<PostResponseDto> getPostList() {
         List<Post> all = postRepository.findAll();
         List<PostResponseDto> postDtoList = new ArrayList<>();
 
         for(Post post : all){
-            PostResponseDto postDto = PostResponseDto.builder()
-                    .postTitle(post.getPostTitle())
-                    .postContent(post.getPostContent())
-                    .postWriterId(post.getPostWriterId())
-                    .postRecommend(post.getPostRecommend())
-                    .postDeleteYn(post.getPostDeleteYn())
-                    .postCategoryId(post.getPostCategoryId())
-                    .postDate(post.getPostDate())
-                    .postId(post.getPostId())
-                    .build();
+            if (post.getPostDeleteYn() == false) {
+                PostResponseDto postDto = PostResponseDto.builder()
+                        .postTitle(post.getPostTitle())
+                        .postContent(post.getPostContent())
+                        .postWriterId(post.getPostWriterId())
+                        .postRecommend(post.getPostRecommend())
+                        .postDeleteYn(post.getPostDeleteYn())
+                        .postCategoryId(post.getPostCategoryId())
+                        .postDate(post.getPostDate())
+                        .postId(post.getPostId())
+                        .build();
 
-            postDtoList.add(postDto);
+                postDtoList.add(postDto);
+            }
         }
 
         return postDtoList;
@@ -63,12 +92,17 @@ public class PostServiceImpl implements PostService{
 
         Optional<Post> byId = postRepository.findById(postId);
         Post post = byId.get();
-
-        return PostResponseDto.builder()
-                .postTitle(post.getPostTitle())
-                .postContent(post.getPostContent())
-                .postWriterId(post.getPostWriterId())
-                .build();
+        if (post.getPostDeleteYn() == false) {
+            return PostResponseDto.builder()
+                    .postTitle(post.getPostTitle())
+                    .postContent(post.getPostContent())
+                    .postWriterId(post.getPostWriterId())
+                    .postDate(post.getPostDate())
+                    .postRecommend(post.getPostRecommend())
+                    .build();
+        }else{
+            return null;
+        }
     }
 
 
@@ -80,28 +114,28 @@ public class PostServiceImpl implements PostService{
         Post post = byId.get();
 
         post.update(postUpdateDto.getPostTitle(),
-                    postUpdateDto.getPostContent(),
-                    postUpdateDto.getUpdatedAt());
+                    postUpdateDto.getPostContent());
 
         return postId;
     }
-
-
 
 
     // delete
     @Transactional
     @Override
-    public Long deletePost(Long postId, PostDeleteDto postDeleteDto) {
+    public Long deletePost(Long postId) {
 
         Optional<Post> byId = postRepository.findById(postId);
-        Post post = byId.get();
 
-        post.delete(postDeleteDto.getPostDeleteYn());
+        if(byId.isPresent()){
+            Post post = byId.get();
 
-        return postId;
+            post.delete();
 
+            return postId;
+        }
+
+        return null;
     }
-
 
 }

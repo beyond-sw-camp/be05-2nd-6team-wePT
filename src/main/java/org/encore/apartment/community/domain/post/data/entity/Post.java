@@ -4,16 +4,24 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // 객체 매핑
-@Table(name="POST")
+@Table(name="post")
 @NoArgsConstructor
 @Getter
 public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "post_id")
+    @Column(name = "post_id", nullable = false)
     private Long postId;
+
+    // 일대다 단방향 -> Comment
+    @OneToMany(mappedBy = "post")
+    // @JoinColumn(name = "post_id") // Comment 테이블에 post_id 외래키 생성
+    private List<Comment> comments = new ArrayList<>();
 
     @Column(name = "post_category_id", nullable = false)
     private Long postCategoryId;
@@ -33,7 +41,7 @@ public class Post {
     @Column(name = "post_recommend", nullable = false)
     private Integer postRecommend;
 
-    @Column(name = "post_delete_yn", nullable = false)
+    @Column(name = "post_delete_yn", nullable = false, columnDefinition = "boolean default false")
     private Boolean postDeleteYn;
 
     @Column(name = "updated_at")
@@ -55,13 +63,14 @@ public class Post {
     }
 
 
-    public void update(String postTitle, String postContent, LocalDateTime updatedAt) {
+
+    public void update(String postTitle, String postContent) {
         this.postTitle = postTitle;
         this.postContent = postContent;
-        this.updatedAt = updatedAt;
+        this.updatedAt = LocalDateTime.now();
     }
 
-    public void delete(Boolean postDeleteYn) {
+    public void delete() {
         this.postDeleteYn = true;
     }
 

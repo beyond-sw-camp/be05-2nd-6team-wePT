@@ -6,9 +6,13 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity // 객체 매핑
 @NoArgsConstructor
 @Getter
+@Table(name = "postcategory")
 public class PostCategory {
 
     @Id

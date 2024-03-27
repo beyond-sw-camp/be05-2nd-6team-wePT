@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.encore.apartment.community.domain.post.data.entity.Post;
 
 import java.time.LocalDateTime;
 
@@ -11,10 +12,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentResponseDto {
 
-
     private Long commentIdx;
 
     private Long commentId;
+
+//    private Post post;
 
     private Long postId;
 
@@ -34,6 +36,10 @@ public class CommentResponseDto {
         this.commentIdx = commentIdx;
         this.commentId = commentId;
         this.postId = postId;
+//        if (post !=  null)
+//            this.postId = post.getPostId();
+//        else
+//            this.postId = 0L;
         this.commentContent = commentContent;
         this.commentWriterId = commentWriterId;
         this.commentDate = commentDate;

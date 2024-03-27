@@ -8,13 +8,16 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.encore.apartment.community.domain.post.data.entity.Comment;
 import org.encore.apartment.community.domain.post.data.entity.Post;
+import org.encore.apartment.community.domain.post.data.repository.PostRepository;
 
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
+@Setter
 public class CommentRequestDto {
 
     @NotBlank
@@ -23,6 +26,8 @@ public class CommentRequestDto {
     private Long commentId;
     @NotBlank
     private Long postId;
+//    @NotBlank
+//    private Post post;
     @NotBlank
     private String commentWriterId;
     @NotBlank
@@ -39,6 +44,7 @@ public class CommentRequestDto {
                              String commentContent, LocalDateTime commentDate, Boolean commentDeleteYn, LocalDateTime updatedAt){
         this.commentIdx = commentIdx;
         this.commentId = commentId;
+//        this.post = post;
         this.postId = postId;
         this.commentContent = commentContent;
         this.commentWriterId = commentWriterId;
@@ -47,11 +53,11 @@ public class CommentRequestDto {
         this.updatedAt = updatedAt;
     }
 
-    public Comment ToEntity(){
+    public Comment ToEntity(Post post){
         return Comment.builder()
                 .commentIdx(this.commentIdx)
                 .commentId(this.commentId)
-                .postId(this.postId)
+                .post(post)
                 .commentContent(this.commentContent)
                 .commentWriterId(this.commentWriterId)
                 .commentDate(this.commentDate)

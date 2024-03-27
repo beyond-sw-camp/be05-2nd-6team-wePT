@@ -13,13 +13,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentUpdateDto {
 
-    @NotBlank
+
     private Long commentIdx;
-    @NotBlank
+
     private String commentWriterId;
-    @NotBlank
+
     private String commentContent;
-    @NotBlank
+
     private LocalDateTime updatedAt;
 
 

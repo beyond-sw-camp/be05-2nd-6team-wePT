@@ -12,13 +12,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PostUpdateDto {
 
-    @NotBlank
+
     private Long postId;
-    @NotBlank
+
     private String postTitle;
-    @NotBlank
+
     private String postContent;
-    @NotBlank
+
     private LocalDateTime updatedAt;
 
     @Builder

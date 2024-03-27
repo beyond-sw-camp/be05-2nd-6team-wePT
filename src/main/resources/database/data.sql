@@ -21,4 +21,11 @@ INSERT INTO Apartment (apartment_name, apartment_address, apartment_total_househ
     ('서대문아파트', '서울특별시 서대문구 신촌로 1212', 100),
     ('강동아파트', '서울특별시 강동구 천호대로 1313', 140);
 
+insert into POSTCATEGORY (post_category_id, post_category_name) values
+    (1, '공지 게시판'),
+    (2, '자유 게시판'),
+    (3, '나눔 게시판'),
+    (4, '민원 게시판'),
+    (5, '분실/실종 게시판');
+
 

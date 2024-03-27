@@ -20,12 +20,16 @@ public interface PostService {
 
     public void savePost(PostRequestDto postRequestDto);
 
-    public List<PostResponseDto> getPostList(PostRequestDto postRequestDto);
+    public List<PostResponseDto> getPostListByCategory(Long postCategoryId);
+
+    public List<PostResponseDto> getPostList();
 
     public PostResponseDto getPost(Long postId);
 
-    public Long deletePost(Long postId, PostDeleteDto postDeleteDto);
+    public Long deletePost(Long postId);
 
     public Long updatePost(Long postId, PostUpdateDto postUpdateDto);
+
+
 
 }

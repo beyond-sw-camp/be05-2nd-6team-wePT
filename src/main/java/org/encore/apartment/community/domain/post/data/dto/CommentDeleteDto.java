@@ -11,11 +11,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentDeleteDto {
 
-    @NotBlank
     private Long commentIdx;
-    @NotBlank
+
     private String commentWriterId;
-    @NotBlank
+
     private Boolean commentDeleteYn;
 
 
@@ -28,11 +27,4 @@ public class CommentDeleteDto {
 
     }
 
-    public Comment ToEntity(){
-        return Comment.builder()
-                .commentIdx(this.commentIdx)
-                .commentWriterId(this.commentWriterId)
-                .commentDeleteYn(this.commentDeleteYn)
-                .build();
-    }
 }

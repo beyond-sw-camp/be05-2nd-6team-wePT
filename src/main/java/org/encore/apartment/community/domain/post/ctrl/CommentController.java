@@ -31,16 +31,21 @@ public class CommentController {
     }
 
     @PostMapping(value = "/save", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<CommentResponseDto> savePost(@RequestBody CommentRequestDto params) {
-
+    public ResponseEntity<CommentResponseDto> saveComment(@RequestBody CommentRequestDto params) {
         service.saveComment(params);
         return new ResponseEntity<CommentResponseDto>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/view/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public List<CommentRequestDto> viewCommentList(@RequestBody CommentRequestDto params){
-        service.getPostList(params);
-        return null;
+    @GetMapping(value = "/view", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CommentResponseDto>> viewCommentList(){
+        List<CommentResponseDto> list = service.getCommentList();
+        return new ResponseEntity<List<CommentResponseDto>>(list, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/view/{postId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<CommentResponseDto>> viewCommentListByPostId(@PathVariable("postId") Long postId){
+        List<CommentResponseDto> list = service.getCommentListByPostId(postId);
+        return new ResponseEntity<List<CommentResponseDto>>(list, HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -60,10 +65,9 @@ public class CommentController {
     }
 
     @PutMapping(value = "/delete/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public CommentDeleteDto deletePost(@PathVariable("id") Long commentIdx,
-                                    @RequestBody @Valid CommentDeleteDto commentDeleteDto){
+    public CommentDeleteDto deletePost(@PathVariable("id") Long commentIdx){
 
-        service.deleteComment(commentIdx, commentDeleteDto);
+        service.deleteComment(commentIdx);
         Optional<Comment> findComment = commentRepository.findById(commentIdx);
         Comment comment = findComment.get();
 
