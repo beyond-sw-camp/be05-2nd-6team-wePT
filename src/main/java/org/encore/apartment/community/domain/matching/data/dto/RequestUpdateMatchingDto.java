@@ -14,12 +14,5 @@ public class RequestUpdateMatchingDto {
 	@NotNull
 	private Integer matchingHeadCountLimit;
 
-	// public RequestUpdateMatchingDto(Matching params) {
-	//
-	// 	this.matchingCategoryId = params.getMatchingCategory().getMatchingCategoryId();
-	// 	this.matchingHeadCountLimit = params.getMatchingHeadCountLimit();
-	//
-	// }
-
 }
 

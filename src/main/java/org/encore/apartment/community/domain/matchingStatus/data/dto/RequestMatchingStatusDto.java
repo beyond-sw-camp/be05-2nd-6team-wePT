@@ -7,13 +7,6 @@ import lombok.Data;
 
 @Data
 public class RequestMatchingStatusDto {
-
 	@NotBlank
 	private User userId;
-
-	// public static MatchingStatus toEntity(RequestMatchingStatusDto dto) {
-	// 	return MatchingStatus.builder()
-	// 		.matchingStatusFollowerId(dto.matchingStatusFollowerId)
-	// 		.build();
-	// }
 }

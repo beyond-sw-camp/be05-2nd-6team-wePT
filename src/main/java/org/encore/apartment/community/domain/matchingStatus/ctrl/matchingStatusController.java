@@ -29,47 +29,48 @@ public class matchingStatusController {
 		return ApiResponse.createSuccessWithNoContent();
 	}
 
-	// @Operation(summary = "매칭에 참여한 인원이 발생할 경우 매칭참여정보테이블에 매칭에 지원한 인원의 user_id 삽입")
-	// @PostMapping("/insert")
-	// public ResponseEntity<Void> insertMatchingStatusInfo(@RequestBody RequestInsertMatchingStatusDto params) {
-	// 	service.insertMatchingStatusInfo(params);
-	// 	log.info("MatchingStatusController insertMatchingStatusInfo = {}", params);
-	//
-	// 	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	// }
+	/*@Operation(summary = "매칭에 참여한 인원이 발생할 경우 매칭참여정보테이블에 매칭에 지원한 인원의 user_id 삽입")
+	@PostMapping("/insert")
+	public ResponseEntity<Void> insertMatchingStatusInfo(@RequestBody RequestInsertMatchingStatusDto params) {
+		service.insertMatchingStatusInfo(params);
+		log.info("MatchingStatusController insertMatchingStatusInfo = {}", params);
 
-	// @GetMapping("/find/{id}")
-	// public ResponseEntity<Optional<ResponseMatchingStatusDto>> findMatchingStatusInfo(@PathVariable Long id) {
-	// 	Optional<ResponseMatchingStatusDto> dto = service.findMatchingStatusInfo(id);
-	// 	log.info("MatchingStatusController findMatchingStatusInfo = {}", dto);
-	//
-	// 	return new ResponseEntity<Optional<ResponseMatchingStatusDto>>(dto, HttpStatus.OK);
-	// }
-	//
-	// @GetMapping("/list")
-	// public ResponseEntity<List<ResponseMatchingStatusDto>> findMatchingStatusInfoList() {
-	// 	List<ResponseMatchingStatusDto> dto = service.findMatchingStatusInfoList();
-	// 	log.info("MatchingStatusController findMatchingStatusInfoList = {}", dto);
-	//
-	// 	return new ResponseEntity<List<ResponseMatchingStatusDto>>(dto, HttpStatus.OK);
-	// }
-	//
-	// @PostMapping("/update/{id}")
-	// public ResponseEntity<Void> updateMatchingStatusInfo(@PathVariable("id") Long id,
-	// 	@RequestBody UpdateMatchingStatusDto params) {
-	// 	log.info("MatchingStatusController updateMatchingStatusInfo = {}", params);
-	// 	service.updateMatchingStatusInfoById(id, params);
-	//
-	// 	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	// }
-	//
-	// @DeleteMapping("/delete/{id}")
-	// public ResponseEntity<Void> deleteMatchingStatusInfo(@PathVariable Long id) {
-	// 	log.info("MatchingStatusController deleteMatchingStatusInfo = {}", id);
-	// 	service.deleteMatchingStatusInfo(id);
-	//
-	// 	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	// }
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@GetMapping("/find/{id}")
+	public ResponseEntity<Optional<ResponseMatchingStatusDto>> findMatchingStatusInfo(@PathVariable Long id) {
+		Optional<ResponseMatchingStatusDto> dto = service.findMatchingStatusInfo(id);
+		log.info("MatchingStatusController findMatchingStatusInfo = {}", dto);
+
+		return new ResponseEntity<Optional<ResponseMatchingStatusDto>>(dto, HttpStatus.OK);
+	}
+
+	@GetMapping("/list")
+	public ResponseEntity<List<ResponseMatchingStatusDto>> findMatchingStatusInfoList() {
+		List<ResponseMatchingStatusDto> dto = service.findMatchingStatusInfoList();
+		log.info("MatchingStatusController findMatchingStatusInfoList = {}", dto);
+
+		return new ResponseEntity<List<ResponseMatchingStatusDto>>(dto, HttpStatus.OK);
+	}
+
+	@PostMapping("/update/{id}")
+	public ResponseEntity<Void> updateMatchingStatusInfo(@PathVariable("id") Long id,
+		@RequestBody UpdateMatchingStatusDto params) {
+		log.info("MatchingStatusController updateMatchingStatusInfo = {}", params);
+		service.updateMatchingStatusInfoById(id, params);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Void> deleteMatchingStatusInfo(@PathVariable Long id) {
+		log.info("MatchingStatusController deleteMatchingStatusInfo = {}", id);
+		service.deleteMatchingStatusInfo(id);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}*/
+
 }
 
 

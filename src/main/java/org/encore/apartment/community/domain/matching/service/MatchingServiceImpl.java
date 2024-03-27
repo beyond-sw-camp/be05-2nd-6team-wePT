@@ -51,7 +51,6 @@ public class MatchingServiceImpl implements MatchingService {
 	@Override
 	public ResponseMatchingDto findMatchingInfo(Long id) {
 		Optional<Matching> matching = matchingRepository.findById(id);
-
 		log.info("findMatchingInfo = {}", matching);
 
 		return new ResponseMatchingDto(matching.get());
@@ -111,7 +110,6 @@ public class MatchingServiceImpl implements MatchingService {
 		List<String> list = getUsersOfMatching(id);// 참여한 사용자의 id 리스트
 
 		log.info("findClosedMatchingInfoList={}", matching);
-		// return matching.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
 		ResponseClosedMatchingDto dto = new ResponseClosedMatchingDto();
 		dto.setMatchingId(id);
 		dto.setMatchingHeadCountLimit(matchingHeadCountLimit);

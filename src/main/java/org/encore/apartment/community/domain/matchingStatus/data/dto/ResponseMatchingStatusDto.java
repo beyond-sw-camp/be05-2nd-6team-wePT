@@ -20,7 +20,5 @@ public class ResponseMatchingStatusDto {
 	public ResponseMatchingStatusDto(MatchingStatus params) {
 		this.matchingId = params.getMatching();
 		this.userId = params.getUser();
-
 	}
-
 }

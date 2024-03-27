@@ -8,14 +8,13 @@ import org.encore.apartment.community.domain.matchingCategory.data.dto.ResponseM
 import org.encore.apartment.community.domain.matchingCategory.data.dto.UpdateMatchingCategoryDto;
 
 public interface MatchingCategoryService {
+	void insertMatchingCategoryInfo(RequestInsertMatchingCategoryDto params);
 
-	public void insertMatchingCategoryInfo(RequestInsertMatchingCategoryDto params);
+	Optional<ResponseMatchingCategoryDto> findMatchingCategoryInfo(Long id);
 
-	public Optional<ResponseMatchingCategoryDto> findMatchingCategoryInfo(Long id);
+	List<ResponseMatchingCategoryDto> findMatchingCategoryInfoList();
 
-	public List<ResponseMatchingCategoryDto> findMatchingCategoryInfoList();
+	void updateMatchingCategoryInfoById(Long id, UpdateMatchingCategoryDto params);
 
-	public void updateMatchingCategoryInfoById(Long id, UpdateMatchingCategoryDto params);
-
-	public void deleteMatchingCategoryInfo(Long id);
+	void deleteMatchingCategoryInfo(Long id);
 }

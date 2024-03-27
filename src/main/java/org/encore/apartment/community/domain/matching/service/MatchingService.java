@@ -8,7 +8,6 @@ import org.encore.apartment.community.domain.matching.data.dto.ResponseClosedMat
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 
 public interface MatchingService {
-
 	public void insertMatchingInfo(RequestInsertMatchingDto params);
 
 	public ResponseMatchingDto findMatchingInfo(Long id);

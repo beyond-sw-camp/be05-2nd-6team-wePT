@@ -5,17 +5,14 @@ import java.util.Optional;
 
 import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestInsertMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.ResponseMatchingStatusDto;
-import org.encore.apartment.community.domain.matchingStatus.data.dto.UpdateMatchingStatusDto;
 
 public interface MatchingStatusService {
 
-	public void insertMatchingStatusInfo(RequestInsertMatchingStatusDto params);
+	void insertMatchingStatusInfo(RequestInsertMatchingStatusDto params);
 
-	public Optional<ResponseMatchingStatusDto> findMatchingStatusInfo(Long id);
+	Optional<ResponseMatchingStatusDto> findMatchingStatusInfo(Long id);
 
-	public List<ResponseMatchingStatusDto> findMatchingStatusInfoList();
+	List<ResponseMatchingStatusDto> findMatchingStatusInfoList();
 
-	public void updateMatchingStatusInfoById(Long id, UpdateMatchingStatusDto params);
-
-	public void deleteMatchingStatusInfo(Long id);
+	void deleteMatchingStatusInfo(Long id);
 }

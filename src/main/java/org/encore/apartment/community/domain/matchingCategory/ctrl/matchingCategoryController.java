@@ -29,45 +29,48 @@ public class matchingCategoryController {
 		return ApiResponse.createSuccessWithNoContent();
 	}
 
-	// @Operation(summary = "매칭분류(category) 추가")
-	// @PostMapping("/insert")
-	// public ResponseEntity<Void> insertMatchingCategoryInfo(@RequestBody RequestInsertMatchingCategoryDto params) {
-	// 	service.insertMatchingCategoryInfo(params);
-	// 	log.info("MatchingCategoryController insertMatchingCategoryInfo = {}", params);
-	//
-	// 	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	// }
+	/*
+	* @Operation(summary = "매칭분류(category) 추가")
+	@PostMapping("/insert")
+	public ResponseEntity<Void> insertMatchingCategoryInfo(@RequestBody RequestInsertMatchingCategoryDto params) {
+		service.insertMatchingCategoryInfo(params);
+		log.info("MatchingCategoryController insertMatchingCategoryInfo = {}", params);
 
-	// @GetMapping("/find/{id}")
-	// public ResponseEntity<Optional<ResponseMatchingCategoryDto>> findMatchingCategoryInfo(@PathVariable Long id) {
-	// 	Optional<ResponseMatchingCategoryDto> dto = service.findMatchingCategoryInfo(id);
-	// 	log.info("MatchingCategoryController findMatchingCategoryInfo = {}", dto);
-	//
-	// 	return new ResponseEntity<Optional<ResponseMatchingCategoryDto>>(dto, HttpStatus.OK);
-	// }
-	//
-	// @GetMapping("/list")
-	// public ResponseEntity<List<ResponseMatchingCategoryDto>> findMatchingCategoryInfoList() {
-	// 	List<ResponseMatchingCategoryDto> dto = service.findMatchingCategoryInfoList();
-	// 	log.info("MatchingCategoryController findMatchingCategoryInfoList = {}", dto);
-	//
-	// 	return new ResponseEntity<List<ResponseMatchingCategoryDto>>(dto, HttpStatus.OK);
-	// }
-	//
-	// @PostMapping("/update/{id}")
-	// public ResponseEntity<Void> updateMatchingCategoryInfo(@PathVariable("id") Long id,
-	// 	@RequestBody UpdateMatchingCategoryDto params) {
-	// 	log.info("MatchingCategoryController updateMatchingCategoryInfo = {}", params);
-	// 	service.updateMatchingCategoryInfoById(id, params);
-	//
-	// 	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	// }
-	//
-	// @DeleteMapping("/delete/{id}")
-	// public ResponseEntity<Void> deleteMatchingCategoryInfo(@PathVariable Long id) {
-	// 	log.info("MatchingCategoryController deleteMatchingCategoryInfo = {}", id);
-	// 	service.deleteMatchingCategoryInfo(id);
-	//
-	// 	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	// }
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@GetMapping("/find/{id}")
+	public ResponseEntity<Optional<ResponseMatchingCategoryDto>> findMatchingCategoryInfo(@PathVariable Long id) {
+		Optional<ResponseMatchingCategoryDto> dto = service.findMatchingCategoryInfo(id);
+		log.info("MatchingCategoryController findMatchingCategoryInfo = {}", dto);
+
+		return new ResponseEntity<Optional<ResponseMatchingCategoryDto>>(dto, HttpStatus.OK);
+	}
+
+	@GetMapping("/list")
+	public ResponseEntity<List<ResponseMatchingCategoryDto>> findMatchingCategoryInfoList() {
+		List<ResponseMatchingCategoryDto> dto = service.findMatchingCategoryInfoList();
+		log.info("MatchingCategoryController findMatchingCategoryInfoList = {}", dto);
+
+		return new ResponseEntity<List<ResponseMatchingCategoryDto>>(dto, HttpStatus.OK);
+	}
+
+	@PostMapping("/update/{id}")
+	public ResponseEntity<Void> updateMatchingCategoryInfo(@PathVariable("id") Long id,
+		@RequestBody UpdateMatchingCategoryDto params) {
+		log.info("MatchingCategoryController updateMatchingCategoryInfo = {}", params);
+		service.updateMatchingCategoryInfoById(id, params);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Void> deleteMatchingCategoryInfo(@PathVariable Long id) {
+		log.info("MatchingCategoryController deleteMatchingCategoryInfo = {}", id);
+		service.deleteMatchingCategoryInfo(id);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	* */
+
 }

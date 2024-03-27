@@ -9,11 +9,4 @@ public class RequestSearchMatchingDto {
 	@NotNull
 	private Long matchingId;
 
-	// 	public static Matching toEntity(RequestSearchMatchingDto requestSearchMatchingDto) {
-	// 		return Matching.builder()
-	// //			.matchingId(requestSearchMatchingDto.getMatchingId())
-	// 			.build();
-	//
-	// 	}
-
 }

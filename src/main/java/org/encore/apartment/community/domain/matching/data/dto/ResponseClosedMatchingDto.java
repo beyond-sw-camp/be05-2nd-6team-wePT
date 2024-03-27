@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,10 +12,8 @@ import lombok.NoArgsConstructor;
 
 public class ResponseClosedMatchingDto {
 
-	@NotNull
 	private Long matchingId;
 
-	@NotNull
 	private Integer matchingHeadCountLimit;
 
 	private List<String> userIdList;

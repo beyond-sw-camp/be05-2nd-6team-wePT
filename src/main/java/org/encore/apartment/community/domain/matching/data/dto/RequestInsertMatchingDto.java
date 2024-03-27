@@ -15,13 +15,4 @@ public class RequestInsertMatchingDto {
 
 	@NotNull
 	private Integer matchingHeadCountLimit;
-
-	// public static Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
-	// 	return Matching.builder()
-	// 		.matchingAccomplishedYn(false)
-	// 		.matchingMatchingCategoryId(requestInsertMatchingDto.getMatchingMatchingCategoryId())
-	// 		.matchingOwnerId(requestInsertMatchingDto.getMatchingOwnerId())
-	// 		.matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
-	// 		.build();
-	// }
 }
