@@ -1,4 +1,7 @@
 # 🏡Team : wePT !
+<center><img src="https://github.com/OrangeVinyl/community/assets/155809042/4782d336-dae7-464b-9f9c-c39572ffe349.png" width="500" height="600"></center>
+
+
 '우리(**we**)'라는 단어 + 아파트를 나타내는 약어인 '**APT**'의 합성어이자,
 
 궁금한 모든 걸 알려주는 chatGPT와 같이, wePT를 사용한다면 아파트에 관한 모든 궁금증을 해결할 수 있다는 의미를 담았습니다.
