@@ -39,7 +39,7 @@ public class Matching {
 	private MatchingCategory matchingCategoryId;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User userId;
 
 	@Column(name = "matching_head_count_limit")
