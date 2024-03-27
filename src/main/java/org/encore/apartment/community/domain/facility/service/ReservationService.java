@@ -2,12 +2,13 @@ package org.encore.apartment.community.domain.facility.service;
 
 import java.util.List;
 
+import org.encore.apartment.community.domain.facility.data.dto.RequestReservationDto;
 import org.encore.apartment.community.domain.facility.data.dto.ReservationDto;
 
 public interface ReservationService {
 
 	/*예약서 작성 (예약 추가)*/
-	void createReservation(ReservationDto params);
+	void createReservation(RequestReservationDto params);
 
 	/*전체 예약목록 확인*/
 	List<ReservationDto> readAllReservation();
