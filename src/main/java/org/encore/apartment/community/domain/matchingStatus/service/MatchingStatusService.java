@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestInsertMatchingStatusDto;
-import org.encore.apartment.community.domain.matchingStatus.data.dto.RequestMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.ResponseMatchingStatusDto;
 import org.encore.apartment.community.domain.matchingStatus.data.dto.UpdateMatchingStatusDto;
 
