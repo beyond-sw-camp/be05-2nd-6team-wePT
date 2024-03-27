@@ -78,7 +78,9 @@
 * 아이디어 회의 : Slack
 <br/><br/>
 
-## 🌐시스템 아키텍쳐
+## :evergreen_tree:Project Tree
+
+
 
 ## 주요 기능
 [ 주요 기능 설명 ](https://github.com/OrangeVinyl/community/wiki/Page-contents)
