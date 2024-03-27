@@ -25,7 +25,7 @@ import java.util.Optional;
 
 @RestController
 /* swagger 에 명시하고 싶으면 RequestMapping 에 /api 를 명시 */
-@RequestMapping("/api/post")
+@RequestMapping("/post")
 public class PostController {
     private final PostServiceImpl service;
     private final PostRepository postRepository;
