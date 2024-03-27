@@ -1,10 +1,10 @@
 package org.encore.apartment.community.domain.post.data.dto;
 
-import jakarta.validation.constraints.NotBlank;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.encore.apartment.community.domain.post.data.entity.Post;
+
 
 import java.time.LocalDateTime;
 
@@ -16,11 +16,9 @@ public class CommentResponseDto {
 
     private Long commentId;
 
-//    private Post post;
-
     private Long postId;
 
-    private String commentWriterId;
+    private Long userIdx;
 
     private String commentContent;
 
@@ -31,18 +29,14 @@ public class CommentResponseDto {
     private LocalDateTime updatedAt;
 
     @Builder
-    public CommentResponseDto(Long commentIdx, Long commentId, Long postId, String commentWriterId,
+    public CommentResponseDto(Long commentIdx, Long commentId, Long postId, Long userIdx,
                              String commentContent, LocalDateTime commentDate, Boolean commentDeleteYn, LocalDateTime updatedAt){
         this.commentIdx = commentIdx;
         this.commentId = commentId;
         this.postId = postId;
-//        if (post !=  null)
-//            this.postId = post.getPostId();
-//        else
-//            this.postId = 0L;
-        this.commentContent = commentContent;
-        this.commentWriterId = commentWriterId;
+        this.userIdx = userIdx;
         this.commentDate = commentDate;
+        this.commentContent = commentContent;
         this.commentDeleteYn = commentDeleteYn;
         this.updatedAt = updatedAt;
     }

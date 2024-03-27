@@ -2,13 +2,13 @@ package org.encore.apartment.community.domain.post.data.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.encore.apartment.community.domain.user.data.entity.User;
 
 import java.time.LocalDateTime;
 
-@Entity // 객체 매핑
+@Entity
 @Table(name="comment")
 @NoArgsConstructor
 @Getter
@@ -21,15 +21,14 @@ public class Comment {
     @Column(name = "comment_id" ,nullable = false)
     private Long commentId;
 
-//    @Column(name = "post_id" ,nullable = false)
-//    private Long postId;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 
-    @Column(name = "comment_writer_id" ,nullable = false)
-    private String commentWriterId;
+    // 다대일 Comment -> User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_idx")
+    private User user;
 
     @Column(name = "comment_content", nullable = false)
     private String commentContent;
@@ -43,16 +42,13 @@ public class Comment {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-
-
     @Builder
-    public Comment(Long commentIdx,Post post, Long commentId, String commentWriterId, String commentContent,
+    public Comment(Long commentIdx,Post post, Long commentId, User user, String commentContent,
                    LocalDateTime commentDate, Boolean commentDeleteYn, LocalDateTime updatedAt){
         this.commentIdx = commentIdx;
         this.post = post;
-//        this.post = Post.builder().postId(postId).build();
         this.commentId = commentId;
-        this.commentWriterId = commentWriterId;
+        this.user = user;
         this.commentContent = commentContent;
         this.commentDate = commentDate;
         this.commentDeleteYn = commentDeleteYn;
@@ -64,8 +60,9 @@ public class Comment {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void delete( Boolean commentDeleteYn ){
+    public void delete( ){
         this.commentDeleteYn = true;
+        this.updatedAt = LocalDateTime.now();
     }
 
 

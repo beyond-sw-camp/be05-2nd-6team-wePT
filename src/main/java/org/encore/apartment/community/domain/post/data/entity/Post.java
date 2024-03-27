@@ -2,6 +2,7 @@ package org.encore.apartment.community.domain.post.data.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.encore.apartment.community.domain.user.data.entity.User;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,9 +19,8 @@ public class Post {
     @Column(name = "post_id", nullable = false)
     private Long postId;
 
-    // 일대다 단방향 -> Comment
+    // 일대다 단방향 Post -> Comment
     @OneToMany(mappedBy = "post")
-    // @JoinColumn(name = "post_id") // Comment 테이블에 post_id 외래키 생성
     private List<Comment> comments = new ArrayList<>();
 
     @Column(name = "post_category_id", nullable = false)
@@ -29,8 +29,10 @@ public class Post {
     @Column(name = "post_title", nullable = false)
     private String postTitle;
 
-    @Column(name = "post_writer_id", nullable = false)
-    private String postWriterId;
+    // 다대일 Post -> User
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_idx")
+    private User user;
 
     @Column(name = "post_content", nullable = false)
     private String postContent;
@@ -48,20 +50,19 @@ public class Post {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Post(Long postId, Long postCategoryId, String postTitle, String postWriterId
+    public Post(Long postId, Long postCategoryId, String postTitle
                 ,String postContent, LocalDateTime postDate, Integer postRecommend
-                ,Boolean postDeleteYn, LocalDateTime updatedAt ) {
+                ,Boolean postDeleteYn, LocalDateTime updatedAt , User user) {
         this.postId = postId;
         this.postCategoryId = postCategoryId;
         this.postTitle = postTitle;
-        this.postWriterId = postWriterId;
+        this.user = user;
         this.postContent = postContent;
         this.postDate = postDate;
         this.postRecommend = postRecommend;
         this.postDeleteYn = postDeleteYn;
         this.updatedAt = updatedAt;
     }
-
 
 
     public void update(String postTitle, String postContent) {
@@ -72,6 +73,7 @@ public class Post {
 
     public void delete() {
         this.postDeleteYn = true;
+        this.updatedAt = LocalDateTime.now();
     }
 
     public void recommend() {

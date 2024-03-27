@@ -13,32 +13,26 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class CommentUpdateDto {
 
-
     private Long commentIdx;
-
-    private String commentWriterId;
 
     private String commentContent;
 
     private LocalDateTime updatedAt;
 
 
-
-
     @Builder
-    public CommentUpdateDto(Long commentIdx, String commentWriterId, String commentContent, LocalDateTime updatedAt){
+    public CommentUpdateDto(Long commentIdx, String commentContent, LocalDateTime updatedAt){
         this.commentIdx = commentIdx;
-        this.commentWriterId = commentWriterId;
         this.commentContent = commentContent;
         this.updatedAt = updatedAt;
     }
     public Comment ToEntity(){
         return Comment.builder()
                 .commentIdx(this.commentIdx)
-                .commentWriterId(this.commentWriterId)
                 .commentContent(this.commentContent)
                 .updatedAt(this.updatedAt)
                 .build();
     }
+
 
 }

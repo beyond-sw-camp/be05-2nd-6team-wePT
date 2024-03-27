@@ -1,14 +1,15 @@
 package org.encore.apartment.community.domain.post.service;
 
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.encore.apartment.community.domain.post.data.dto.PostDeleteDto;
 import org.encore.apartment.community.domain.post.data.dto.PostRequestDto;
 import org.encore.apartment.community.domain.post.data.dto.PostResponseDto;
 import org.encore.apartment.community.domain.post.data.dto.PostUpdateDto;
 import org.encore.apartment.community.domain.post.data.entity.Post;
-import org.encore.apartment.community.domain.post.data.repository.PostCategoryRepositoty;
 import org.encore.apartment.community.domain.post.data.repository.PostRepository;
+import org.encore.apartment.community.domain.user.data.entity.User;
+import org.encore.apartment.community.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,14 +23,47 @@ public class PostServiceImpl implements PostService{
 
     private final PostRepository postRepository;
 
+    private final UserRepository userRepository;
+
     // category 연결
     // private final PostCategoryRepositoty postCategoryRepositoty;
+
+
 
     // create
     @Transactional
     @Override
     public void savePost(PostRequestDto postRequestDto) {
-        postRepository.save(postRequestDto.ToEntity());
+        Optional<User> optionalUser = userRepository.findByUserIdx(postRequestDto.getUserIdx());
+        postRepository.save(postRequestDto.ToEntity(optionalUser.get()));
+    }
+
+    // useridx를 통해서 User가 작성한 포스트의 리스트 저장 (출력용)
+    public List<PostResponseDto> getPostListByUserIdx(Long userIdx){
+
+        User user = userRepository.findByUserIdx(userIdx).get();
+        List<Post> all = postRepository.findAllByUser(user);
+        List<PostResponseDto> postDtoList = new ArrayList<>();
+
+        for(Post post : all){
+            if (post.getPostDeleteYn() == false) {
+                PostResponseDto postDto = PostResponseDto.builder()
+                        .postTitle(post.getPostTitle())
+                        .postContent(post.getPostContent())
+                        .userIdx(post.getUser().getUserIdx())
+                        .postRecommend(post.getPostRecommend())
+                        .postDeleteYn(post.getPostDeleteYn())
+                        .postCategoryId(post.getPostCategoryId())
+                        .postDate(post.getPostDate())
+                        .postId(post.getPostId())
+                        .build();
+
+                postDtoList.add(postDto);
+            }
+        }
+
+        return postDtoList;
+
     }
 
     // 카테고리 이름을 입력 받아서 해당하는 카테고리의 포스트만 리스트에 저장 (출력용)
@@ -44,7 +78,7 @@ public class PostServiceImpl implements PostService{
                 PostResponseDto postDto = PostResponseDto.builder()
                         .postTitle(post.getPostTitle())
                         .postContent(post.getPostContent())
-                        .postWriterId(post.getPostWriterId())
+                        .userIdx(post.getUser().getUserIdx())
                         .postRecommend(post.getPostRecommend())
                         .postDeleteYn(post.getPostDeleteYn())
                         .postCategoryId(post.getPostCategoryId())
@@ -72,7 +106,7 @@ public class PostServiceImpl implements PostService{
                 PostResponseDto postDto = PostResponseDto.builder()
                         .postTitle(post.getPostTitle())
                         .postContent(post.getPostContent())
-                        .postWriterId(post.getPostWriterId())
+                        .userIdx(post.getUser().getUserIdx())
                         .postRecommend(post.getPostRecommend())
                         .postDeleteYn(post.getPostDeleteYn())
                         .postCategoryId(post.getPostCategoryId())
@@ -87,6 +121,16 @@ public class PostServiceImpl implements PostService{
         return postDtoList;
     }
 
+    @Transactional
+    @Override
+    public void updatePostRecommend(Long postId){
+        Optional<Post> byId = postRepository.findById(postId);
+        Post post = byId.get();
+        post.recommend();
+        postRepository.save(post);
+    }
+
+    // postId로 post 확인
     @Override
     public PostResponseDto getPost(Long postId) {
 
@@ -96,9 +140,12 @@ public class PostServiceImpl implements PostService{
             return PostResponseDto.builder()
                     .postTitle(post.getPostTitle())
                     .postContent(post.getPostContent())
-                    .postWriterId(post.getPostWriterId())
-                    .postDate(post.getPostDate())
+                    .userIdx(post.getUser().getUserIdx())
                     .postRecommend(post.getPostRecommend())
+                    .postDeleteYn(post.getPostDeleteYn())
+                    .postCategoryId(post.getPostCategoryId())
+                    .postDate(post.getPostDate())
+                    .postId(post.getPostId())
                     .build();
         }else{
             return null;

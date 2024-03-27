@@ -1,13 +1,8 @@
 package org.encore.apartment.community.domain.post.service;
 
-import lombok.RequiredArgsConstructor;
-import org.encore.apartment.community.domain.post.data.dto.PostDeleteDto;
 import org.encore.apartment.community.domain.post.data.dto.PostRequestDto;
 import org.encore.apartment.community.domain.post.data.dto.PostResponseDto;
 import org.encore.apartment.community.domain.post.data.dto.PostUpdateDto;
-import org.encore.apartment.community.domain.post.data.entity.Post;
-import org.encore.apartment.community.domain.post.data.repository.PostRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,18 +13,20 @@ import java.util.Optional;
 @Service
 public interface PostService {
 
-    public void savePost(PostRequestDto postRequestDto);
+    void savePost(PostRequestDto postRequestDto);
 
-    public List<PostResponseDto> getPostListByCategory(Long postCategoryId);
+     List<PostResponseDto> getPostListByCategory(Long postCategoryId);
 
-    public List<PostResponseDto> getPostList();
+     List<PostResponseDto> getPostListByUserIdx(Long userIdx);
 
-    public PostResponseDto getPost(Long postId);
+     List<PostResponseDto> getPostList();
 
-    public Long deletePost(Long postId);
+     PostResponseDto getPost(Long postId);
 
-    public Long updatePost(Long postId, PostUpdateDto postUpdateDto);
+     Long deletePost(Long postId);
 
+     Long updatePost(Long postId, PostUpdateDto postUpdateDto);
 
+     void updatePostRecommend(Long id);
 
 }

@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class PostDeleteDto {
 
-
     private Long postId;
 
     private String postTitle;
@@ -21,11 +20,15 @@ public class PostDeleteDto {
 
     private Boolean postDeleteYn;
 
+    private LocalDateTime updatedAt;
+
     @Builder
-    public PostDeleteDto(Long postId, String postTitle, String postContent,Boolean postDeleteYn ) {
+    public PostDeleteDto(Long postId, String postTitle, String postContent,Boolean postDeleteYn , LocalDateTime updatedAt) {
         this.postId = postId;
         this.postTitle= postTitle;
         this.postContent = postContent;
         this.postDeleteYn = postDeleteYn;
+        this.updatedAt = updatedAt;
+
     }
 }

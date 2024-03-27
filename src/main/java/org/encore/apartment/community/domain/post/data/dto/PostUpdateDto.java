@@ -1,6 +1,5 @@
 package org.encore.apartment.community.domain.post.data.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +10,6 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class PostUpdateDto {
-
 
     private Long postId;
 

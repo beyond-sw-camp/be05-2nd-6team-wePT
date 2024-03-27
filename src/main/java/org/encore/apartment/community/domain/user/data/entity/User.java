@@ -1,24 +1,18 @@
 package org.encore.apartment.community.domain.user.data.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.*;
 import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
+import org.encore.apartment.community.domain.post.data.entity.Comment;
+import org.encore.apartment.community.domain.post.data.entity.Post;
 import org.encore.apartment.community.domain.user.common.UserType;
 import org.encore.apartment.community.domain.user.data.dto.UserUpdateRequestDto;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -80,11 +74,19 @@ public class User {
 	@JoinColumn(name = "apartment_id", nullable = false)
 	private Apartment apartment;
 
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Post> posts;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Comment> comments;
+
+
 	@Builder
 	public User(
 		String userId, String userPassword, String userNickname, String userEmail, String userMobile,
 		Integer userBuildingNumber, Integer userHouseNumber, Boolean userHeadHouseHoldYn, LocalDateTime createdAt,
-		LocalDateTime updatedAt, Boolean deleteYn, UserType userType) {
+		LocalDateTime updatedAt, Boolean deleteYn, UserType userType ) {
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userNickname = userNickname;

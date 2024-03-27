@@ -1,6 +1,8 @@
 package org.encore.apartment.community.domain.post.service;
 
-import jakarta.transaction.Transactional;
+import org.encore.apartment.community.domain.user.data.entity.User;
+import org.encore.apartment.community.domain.user.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.encore.apartment.community.domain.post.data.dto.*;
 import org.encore.apartment.community.domain.post.data.entity.Comment;
@@ -21,13 +23,16 @@ public class CommentServiceImpl implements CommentService {
 
     private final PostRepository postRepository;
 
+    private  final UserRepository userRepository;
+
     @Override
     @Transactional
     public void saveComment(CommentRequestDto commentRequestDto) {
 
         Optional<Post> optionalPost = postRepository.findById(commentRequestDto.getPostId());
+        Optional<User> optionalUser = userRepository.findByUserIdx(commentRequestDto.getUserIdx());
 
-        commentRepository.save(commentRequestDto.ToEntity(optionalPost.get()));
+        commentRepository.save(commentRequestDto.ToEntity(optionalPost.get(), optionalUser.get()));
     }
 
     //전체 댓글
@@ -40,8 +45,9 @@ public class CommentServiceImpl implements CommentService {
                 CommentResponseDto commentDto = CommentResponseDto.builder()
                         .commentIdx(comment.getCommentIdx())
                         .commentId(comment.getCommentId())
-                        .commentWriterId(comment.getCommentWriterId())
+//                        .commentWriterId(comment.getCommentWriterId())
 //                        .postId(comment.getPost().getPostId())
+                        .userIdx(comment.getUser().getUserIdx())
                         .postId(comment.getPost().getPostId())
                         .commentContent(comment.getCommentContent())
                         .commentDate(comment.getCommentDate())
@@ -67,8 +73,9 @@ public class CommentServiceImpl implements CommentService {
                 CommentResponseDto commentDto = CommentResponseDto.builder()
                         .commentIdx(comment.getCommentIdx())
                         .commentId(comment.getCommentId())
-                        .commentWriterId(comment.getCommentWriterId())
+//                        .commentWriterId(comment.getCommentWriterId())
 //                        .postId(comment.getPost().getPostId())
+                        .userIdx(comment.getUser().getUserIdx())
                         .postId(comment.getPost().getPostId())
                         .commentContent(comment.getCommentContent())
                         .commentDate(comment.getCommentDate())
@@ -83,6 +90,37 @@ public class CommentServiceImpl implements CommentService {
 
         return commentDtoList;
     }
+
+    // userIdx에 해당하는 댓글들 출력
+    @Override
+    public List<CommentResponseDto> getCommentListByUserIdx(Long userIdx){
+        List<Comment> all = commentRepository.findAllByUser(userRepository.findByUserIdx(userIdx).get());
+        List<CommentResponseDto> commentDtoList = new ArrayList<>();
+        for(Comment comment : all){
+            if(comment.getCommentDeleteYn() == false){
+                CommentResponseDto commentDto = CommentResponseDto.builder()
+                        .commentIdx(comment.getCommentIdx())
+                        .commentId(comment.getCommentId())
+//                        .commentWriterId(comment.getCommentWriterId())
+//                        .postId(comment.getPost().getPostId())
+                        .userIdx(comment.getUser().getUserIdx())
+                        .postId(comment.getPost().getPostId())
+                        .commentContent(comment.getCommentContent())
+                        .commentDate(comment.getCommentDate())
+                        .commentDeleteYn(comment.getCommentDeleteYn())
+                        .updatedAt(comment.getUpdatedAt())
+                        .build();
+
+                commentDtoList.add(commentDto);
+            }
+
+        }
+
+        return commentDtoList;
+    }
+
+
+
 
     @Transactional
     @Override
@@ -101,7 +139,7 @@ public class CommentServiceImpl implements CommentService {
         Optional<Comment> byId = commentRepository.findById(commentIdx);
         Comment comment = byId.get();
 
-        comment.delete(comment.getCommentDeleteYn());
+        comment.delete();
 
         return commentIdx;
     }
