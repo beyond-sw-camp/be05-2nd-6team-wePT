@@ -27,9 +27,9 @@ public class MatchingStatusServiceImpl implements MatchingStatusService {
 
 	public MatchingStatus toEntity(RequestInsertMatchingStatusDto requestInsertMatchingStatusDto) {
 		return MatchingStatus.builder()
-			.matchingId(
+			.matching(
 				matchingRepository.findById(requestInsertMatchingStatusDto.getMatchingId()).get())
-			.userId(
+			.user(
 				userRepository.findByUserId(requestInsertMatchingStatusDto.getUserId()).get())
 			.build();
 	}

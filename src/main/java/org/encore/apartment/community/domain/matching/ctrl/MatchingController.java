@@ -1,13 +1,13 @@
 package org.encore.apartment.community.domain.matching.ctrl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseClosedMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.service.MatchingService;
+import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -32,7 +33,7 @@ public class MatchingController {
 
 	@Operation(summary = "매칭정보 등록")
 	@PostMapping("/insert")
-	public ResponseEntity<Void> insertMatchingInfo(@RequestBody RequestInsertMatchingDto params) {
+	public ResponseEntity<Void> insertMatchingInfo(@Valid @RequestBody RequestInsertMatchingDto params) {
 		service.insertMatchingInfo(params);
 		log.info("MatchingController insertMatchingInfo = {}", params);
 
@@ -50,11 +51,11 @@ public class MatchingController {
 
 	@Operation(summary = "매칭id로 매칭정보 확인")
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<ResponseMatchingDto>> findMatchingInfo(@PathVariable(value = "id") Long id) {
-		Optional<ResponseMatchingDto> dto = service.findMatchingInfo(id);
+	public ApiResponse<ResponseMatchingDto> findMatchingInfo(@PathVariable(value = "id") Long id) {
+		ResponseMatchingDto dto = service.findMatchingInfo(id);
 		log.info("MatchingController findMatchingInfo = {}", dto);
 
-		return new ResponseEntity<Optional<ResponseMatchingDto>>(dto, HttpStatus.OK);
+		return ApiResponse.createSuccess(dto);
 	}
 
 	@Operation(summary = " 매칭정보 일괄확인")

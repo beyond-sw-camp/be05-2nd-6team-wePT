@@ -7,5 +7,5 @@ import org.encore.apartment.community.domain.matchingStatus.data.entity.Matching
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MatchingStatusRepository extends JpaRepository<MatchingStatus, Long> {
-	public List<MatchingStatus> findAllByMatchingId(Matching MatchingId);
+	public List<MatchingStatus> findAllByMatching(Matching Matching);
 }

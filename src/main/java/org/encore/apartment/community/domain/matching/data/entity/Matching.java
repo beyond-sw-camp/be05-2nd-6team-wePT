@@ -2,7 +2,6 @@ package org.encore.apartment.community.domain.matching.data.entity;
 
 import java.sql.Timestamp;
 
-import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
 import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
 import org.encore.apartment.community.domain.user.data.entity.User;
 import org.hibernate.annotations.ColumnDefault;
@@ -36,21 +35,16 @@ public class Matching {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "matchingCategory_id", referencedColumnName = "matchingCategory_id")
-	private MatchingCategory matchingCategoryId;
+	private MatchingCategory matchingCategory;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	private User userId;
+	private User user;
 
 	@Column(name = "matching_head_count_limit")
 	private Integer matchingHeadCountLimit;
 
-	//	@Column(name = "matching_accomplished_yn",   columnDefinition = "boolean default false")
-	//	private Boolean matchingAccomplishedYn;
-
-	@Column(name = "matching_accomplished_yn"
-		, columnDefinition = "boolean default false"
-	)
+	@Column(name = "matching_accomplished_yn", columnDefinition = "boolean default false")
 	@ColumnDefault("false")
 	private Boolean matchingAccomplishedYn;
 
@@ -64,29 +58,20 @@ public class Matching {
 
 	@Builder
 	public Matching(
-		Long matchingId, MatchingCategory matchingCategoryId, User userId,
-		Integer matchingHeadCountLimit,
+		Long matchingId,
+		Integer matchingHeadCountLimit, MatchingCategory matchingCategory, User user,
 		Boolean matchingAccomplishedYn, Timestamp matchingCreatedAt, Timestamp matchingUpdatedAt) {
 		this.matchingId = matchingId;
-		this.matchingCategoryId = matchingCategoryId;
-		this.userId = userId;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
+		this.matchingCategory = matchingCategory;
+		this.user = user;
 		this.matchingAccomplishedYn = matchingAccomplishedYn;
 		this.matchingCreatedAt = matchingCreatedAt;
 		this.matchingUpdatedAt = matchingUpdatedAt;
 	}
 
-	public void update(MatchingCategory matchingCategoryId, Integer matchingHeadCountLimit) {
-		this.matchingCategoryId = matchingCategoryId;
+	public void update(MatchingCategory matchingCategory, Integer matchingHeadCountLimit) {
+		this.matchingCategory = matchingCategory;
 		this.matchingHeadCountLimit = matchingHeadCountLimit;
-
 	}
-
-	public void insert(RequestInsertMatchingDto params) {
-		this.matchingCategoryId = matchingCategoryId;
-		this.userId = userId;
-		this.matchingHeadCountLimit = matchingHeadCountLimit;
-
-	}
-
 }

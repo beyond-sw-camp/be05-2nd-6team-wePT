@@ -33,9 +33,9 @@ public class MatchingServiceImpl implements MatchingService {
 	public Matching toEntity(RequestInsertMatchingDto requestInsertMatchingDto) {
 		return Matching.builder()
 			.matchingAccomplishedYn(false)
-			.matchingCategoryId(
+			.matchingCategory(
 				matchingCategoryRepository.findById(requestInsertMatchingDto.getMatchingCategoryId()).get())
-			.userId(userRepository.findByUserId(requestInsertMatchingDto.getUserId()).get())
+			.user(userRepository.findByUserId(requestInsertMatchingDto.getUserId()).get())
 			.matchingHeadCountLimit(requestInsertMatchingDto.getMatchingHeadCountLimit())
 			.build();
 	}
@@ -48,11 +48,14 @@ public class MatchingServiceImpl implements MatchingService {
 	}
 
 	@Override
-	public Optional<ResponseMatchingDto> findMatchingInfo(Long id) {
+	public ResponseMatchingDto findMatchingInfo(Long id) {
 		Optional<Matching> matching = matchingRepository.findById(id);
+
 		log.info("findMatchingInfo = {}", matching);
 
-		return matching.map(ResponseMatchingDto::new);
+		// return matching.map(ResponseMatchingDto::new);
+
+		return new ResponseMatchingDto(matching.get());
 
 	}
 
@@ -71,7 +74,7 @@ public class MatchingServiceImpl implements MatchingService {
 		//		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
 
 		//		update가 안되어 matching에 setter 추가하고 아래와 같이 새로운 3개 line 추가함
-		matching.setMatchingCategoryId((params.getMatchingCategoryId()));
+		matching.setMatchingCategory((params.getMatchingCategoryId()));
 		matching.setMatchingHeadCountLimit(params.getMatchingHeadCountLimit());
 		matchingRepository.save(matching);
 		log.info("updateApartmentInfo = {}", params);
@@ -93,10 +96,10 @@ public class MatchingServiceImpl implements MatchingService {
 
 	public List<String> getUsersOfMatching(Long matchingId) {
 		Matching matching = matchingRepository.findById(matchingId).get();
-		List<MatchingStatus> tmp = matchingStatusRepository.findAllByMatchingId(matching);
+		List<MatchingStatus> tmp = matchingStatusRepository.findAllByMatching(matching);
 		List<String> list = new ArrayList<>();
 		for (MatchingStatus matchingStatus : tmp) {
-			list.add(matchingStatus.getUserId().getUserId());
+			list.add(matchingStatus.getUser().getUserId());
 		}
 
 		return list;

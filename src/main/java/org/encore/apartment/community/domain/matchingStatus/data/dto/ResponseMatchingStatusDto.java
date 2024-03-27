@@ -18,8 +18,8 @@ public class ResponseMatchingStatusDto {
 	private User userId;
 
 	public ResponseMatchingStatusDto(MatchingStatus params) {
-		this.matchingId = params.getMatchingId();
-		this.userId = params.getUserId();
+		this.matchingId = params.getMatching();
+		this.userId = params.getUser();
 
 	}
 
