@@ -88,7 +88,6 @@ public class MatchingController {
 	@DeleteMapping("/delete/{id}")
 	public ApiResponse<?> deleteMatchingInfo(@PathVariable(value = "id") Long id) {
 		log.info("MatchingController deleteMatchingInfo = {}", id);
-		System.out.println("DEBUG MatchingController::deleteMatchingInfo");
 		service.deleteMatchingInfo(id);
 
 		return ApiResponse.createSuccessWithNoContent();

@@ -54,8 +54,6 @@ public class MatchingServiceImpl implements MatchingService {
 
 		log.info("findMatchingInfo = {}", matching);
 
-		// return matching.map(ResponseMatchingDto::new);
-
 		return new ResponseMatchingDto(matching.get());
 
 	}
@@ -83,11 +81,8 @@ public class MatchingServiceImpl implements MatchingService {
 
 	@Override
 	public void deleteMatchingInfo(Long id) {
-		System.out.println("DEBUG MatchingService::deleteMatchingInfo Before FindById");
 		Optional<Matching> entity = matchingRepository.findById(id);
-		System.out.println("DEBUG MatchingService::deleteMatchingInfo After FindById" + entity.isEmpty());
 		matchingRepository.delete(entity.get());
-		System.out.println("DEBUG MatchingService::deleteMatchingInfo After Delete");
 		log.info("deleteMatchingInfo = {}", id);
 	}
 
