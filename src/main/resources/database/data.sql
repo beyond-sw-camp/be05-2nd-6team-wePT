@@ -114,3 +114,39 @@ VALUES
     ('logan_chen_2', 'passwordjkl', 'LoganChen', 'logan2@example.com', '010-4775-3456', 39, 239, true, CURRENT_TIMESTAMP, NULL, false,5, 'MEMBER'),
     ('charlotte_li_2', 'passwordmno', 'CharlotteLi', 'charlotte2@example.com', '010-3063-4567', 41, 240, true, CURRENT_TIMESTAMP,NULL, false, 11, 'MEMBER'),
     ('admin', 'adminPassword123', '관리자', 'admin@encore.com', '010-0000-0000', '999', '999', true, CURRENT_TIMESTAMP, NULL, false, 12, 'ADMIN');
+
+
+-- MatchingCategory 더미데이터
+
+INSERT INTO matching_category (matching_category_name)
+VALUES
+    ('배달'),
+    ('공구'),
+    ('스터디');
+
+
+-- Matching더미데이터
+INSERT INTO matching (matching_accomplished_yn,matching_head_count_limit, matching_category_id,
+                      matching_created_at,matching_updated_at,user_id)
+VALUES
+    (false,10,1,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'john_doe'),
+    (false,5,2,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'jane_smith'),
+    (false,3,3,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,'mike_jones');
+
+
+-- MatchingStatus더미데이터
+INSERT INTO matching_status (matching_id, user_id)
+
+VALUES
+    (1,'john_doe'),
+    (1,'jane_smith'),
+    (1,'mike_jones'),
+    (2,'sara_brown'),
+    (2,'alex_clark'),
+    (2,'emily_white'),
+    (2,'matt_taylor'),
+    (2,'olivia_thomas'),
+    (3,'william_lee'),
+    (3,'sophia_kim'),
+    (3,'ethan_hall');
+
