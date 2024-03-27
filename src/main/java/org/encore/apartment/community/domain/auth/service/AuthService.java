@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -42,5 +44,19 @@ public class AuthService {
 			);
 
 		return new SignInResponseDto(member.getUserIdx(), member.getUserId(), member.getUserType(), accessToken, refreshToken);
+	}
+
+
+	@Transactional
+	public void signOut(String accessToken) {
+		String userId = tokenProvider.validateTokenAndGetSubject(accessToken).split(":")[0];
+		log.info("==== signOut userId: {}", userId);
+
+		// 사용자를 가져와서 사용자의 idx를 얻기
+		User user = userRepository.findByUserId(userId)
+			.orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+		// 사용자와 연관된 리프레시 토큰을 삭제
+		userRefreshTokenRepository.deleteByUserIdx(user.getUserIdx());
 	}
 }
