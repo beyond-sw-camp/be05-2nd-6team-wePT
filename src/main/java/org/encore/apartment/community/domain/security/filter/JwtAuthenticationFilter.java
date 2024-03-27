@@ -22,10 +22,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Order(0) // int 범위 내에서 의존성 주입 우선순위를 정함
-@RequiredArgsConstructor
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private final TokenProvider tokenProvider;
 
@@ -36,19 +38,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			String accessToken = parseBearerToken(request, HttpHeaders.AUTHORIZATION);
 			User user = parseUserSpecification(accessToken);
 
-			System.out.println("::::::::::::: doFilterInternal ::::::::::::::");
-			System.out.println("request = " + request);
-			System.out.println("response = " + response);
-			System.out.println("accessToken = " + accessToken);
-			System.out.println("user = " + user);
+			log.info("==== doFilterInternal ====");
+			log.info("==== request = {}", request);
+			log.info("==== response = {}", response);
+			log.info("==== accessToken = {}", accessToken);
+			log.info("==== user = " + user);
 
 			AbstractAuthenticationToken authenticated = UsernamePasswordAuthenticationToken.authenticated(user, accessToken, user.getAuthorities());
 			authenticated.setDetails(new WebAuthenticationDetails(request));
 			SecurityContextHolder.getContext().setAuthentication(authenticated);
 
-			System.out.println("::::::::::::: doFilterInternal End ::::::::::::::");
+			log.info("===== doFilterInternal End =====");
 		} catch (ExpiredJwtException e) {
-			System.out.println("::::::::::::::: reissueAccessToken :::::::::::::::::");
 			reissueAccessToken(request, response, e);
 		} catch (Exception e) {
 			request.setAttribute("exception", e); // try-catch 로 예외를 감지하여 request 에 저장
@@ -84,23 +85,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	private void reissueAccessToken(HttpServletRequest request, HttpServletResponse response, Exception exception) {
 		try {
 			String refreshToken = parseBearerToken(request, "Refresh-Token");
-			System.out.println("::::::::::::: reissueAccessToken " + refreshToken);
+			log.info("==== reissueAccessToken {}", refreshToken);
 
 			if (refreshToken == null) {
-				System.out.println("에러");
+				log.info("==== refreshToken is null");
 				throw exception;
 			}
 
-
-
 			String oldAccessToken = parseBearerToken(request, HttpHeaders.AUTHORIZATION);
 			tokenProvider.validateRefreshToken(refreshToken, oldAccessToken);
-			System.out.println(":::::::::::: tokenProvider.validateRefreshToken(refreshToken, oldAccessToken); ::::::::::::::");
 			String newAccessToken = tokenProvider.recreateAccessToken(oldAccessToken);
-			System.out.println("tokenProvider.recreateAccessToken(newAccessToken) :::::::::::::: " + newAccessToken);
-			User user = parseUserSpecification(newAccessToken);
 
-			System.out.println("::::::::::::: reUser " + user);
+			log.info("==== tokenProvider.validateRefreshToken(refreshToken, oldAccessToken) success");
+			log.info("==== tokenProvider.recreateAccessToken(newAccessToken) : {} ", newAccessToken);
+
+			User user = parseUserSpecification(newAccessToken);
 
 			AbstractAuthenticationToken authenticated = UsernamePasswordAuthenticationToken.authenticated(user, newAccessToken, user.getAuthorities());
 			authenticated.setDetails(new WebAuthenticationDetails(request));

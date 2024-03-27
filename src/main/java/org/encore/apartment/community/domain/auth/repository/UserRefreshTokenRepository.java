@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRefreshTokenRepository extends JpaRepository<UserRefreshToken, Long> {
 	Optional<UserRefreshToken> findByUserIdxAndReissueCountLessThan(Long userIdx, long reissueCount);
+
+	void deleteByUserIdx(Long userIdx);
 }
