@@ -6,6 +6,7 @@ import org.encore.apartment.community.domain.facility.data.dto.FacilityDto;
 import org.encore.apartment.community.domain.maintenance.data.dto.MaintenanceCompDto;
 import org.encore.apartment.community.domain.maintenance.data.dto.MaintenanceDto;
 import org.encore.apartment.community.domain.maintenance.data.dto.MaintenancePerDto;
+import org.encore.apartment.community.domain.maintenance.data.entity.Maintenance;
 import org.encore.apartment.community.domain.maintenance.service.MaintenanceService;
 import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.http.MediaType;
@@ -32,9 +33,10 @@ public class MaintenanceController {
 
     @Operation(summary = "관리비 조회")
     @GetMapping(value = "/info/{userIdx}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ApiResponse<List<MaintenanceDto>> readMyMaintenance(@PathVariable("userIdx") Long userIdx) {
+    public ApiResponse<MaintenanceDto> readMyMaintenance(@PathVariable("userIdx") Long userIdx) {
         List<MaintenanceDto> list = service.readMyMaintenance(userIdx);
-        return ApiResponse.createSuccess(list);
+        MaintenanceDto res = list.get(list.size() - 1);
+        return ApiResponse.createSuccess(res);
     }
 
     @Operation(summary = "내 관리비 총합 (가장 최근 달)")
