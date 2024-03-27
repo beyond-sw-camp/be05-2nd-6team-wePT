@@ -1,53 +1,60 @@
 package org.encore.apartment.community.domain.facility.ctrl;
 
-
-import jakarta.annotation.Resource;
-import org.encore.apartment.community.domain.facility.data.dto.FacilityDto;
-import org.encore.apartment.community.domain.facility.data.dto.ReservationDto;
-import org.encore.apartment.community.domain.facility.service.ReservationService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
+import org.encore.apartment.community.domain.facility.data.dto.ReservationDto;
+import org.encore.apartment.community.domain.facility.service.ReservationService;
+import org.encore.apartment.community.global.util.api.ApiResponse;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
+
 @RestController
-/* swagger 에 명시하고 싶으면 RequestMapping 에 /api 를 명시 */
-@RequestMapping("/api/reservation")
+@RequestMapping("/reservation")
 public class ReservationController {
-    // 작성, 조회, 삭제
 
-    @Resource(name = "reservation")
-    private ReservationService service;
+	@Resource(name = "reservation")
+	private ReservationService service;
 
-    //예약서 작성
-    @PostMapping(value = "/add-reservation", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ReservationDto> createReservation(@RequestBody ReservationDto params) {
-        service.createReservation(params);
+	@Operation(summary = "예약 추가")
+	@PostMapping(value = "/add-reservation", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ApiResponse<ReservationDto> createReservation(@Valid @RequestBody ReservationDto params) {
+		service.createReservation(params);
 
-        return new ResponseEntity<ReservationDto>(HttpStatus.OK);
-    }
+		return ApiResponse.createSuccess(params);
+	}
 
-    //전체 예약목록 확인
-    @GetMapping(value = "/info", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<ReservationDto>> readAllReservation() {
-        List<ReservationDto> list = service.readAllReservation();
-        return new ResponseEntity<List<ReservationDto>>(list, HttpStatus.OK);
-    }
+	@Operation(summary = "예약 정보 조회")
+	@GetMapping(value = "/info", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ApiResponse<List<ReservationDto>> readAllReservation() {
+		List<ReservationDto> list = service.readAllReservation();
 
-    //본인 예약목록 확인
-    @GetMapping(value = "/myinfo/{reservationUserId}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<ReservationDto>> readMyReservation(@PathVariable("reservationUserId") String reservationUserId ) {
-        List<ReservationDto> list = service.readMyReservation(reservationUserId);
-        return new ResponseEntity<List<ReservationDto>>(list, HttpStatus.OK);
-    }
+		return ApiResponse.createSuccess(list);
+	}
 
-    //본인 에약목록 삭제 (deleteYn update)
-    @PostMapping(value = "/delete/{reservationUserId}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Void> deleteMyReservation(@PathVariable("reservationUserId") String reservationUserId){
-        service.deleteReservation(reservationUserId);
-        return new ResponseEntity<Void>(HttpStatus.OK);
-    }
+	@Operation(summary = "본인 예약 정보 조회")
+	@GetMapping(value = "/myinfo/{reservationUserId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ApiResponse<List<ReservationDto>> readMyReservation(
+		@PathVariable("reservationUserId") String reservationUserId) {
+		List<ReservationDto> list = service.readMyReservation(reservationUserId);
+
+		return ApiResponse.createSuccess(list);
+	}
+
+	@Operation(summary = "예약 삭제")
+	@PostMapping(value = "/delete/{reservationUserId}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ApiResponse<Void> deleteMyReservation(@PathVariable("reservationUserId") String reservationUserId) {
+		service.deleteReservation(reservationUserId);
+
+		return ApiResponse.createSuccess(null);
+	}
 
 }

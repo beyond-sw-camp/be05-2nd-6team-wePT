@@ -5,11 +5,11 @@ import org.encore.apartment.community.domain.user.data.dto.UserResponseDto;
 import org.encore.apartment.community.domain.user.data.dto.UserUpdateRequestDto;
 
 public interface UserService {
-	public Long createUser(UserRequestDto params);
+	Long createUser(UserRequestDto params);
 
-	public UserResponseDto findUserInfo(String userId);
+	UserResponseDto findUserInfo(String userId);
 
-	public Long updateUserInfo(String userId, UserUpdateRequestDto params);
+	Long updateUserInfo(String userId, UserUpdateRequestDto params);
 
-	public Long deleteUser(Long idx);
+	Long deleteUser(Long idx);
 }
