@@ -29,7 +29,7 @@ INSERT INTO Apartment (apartment_name, apartment_address, apartment_total_househ
 --     reservation_end_time    datetime(6)  not null,
 --     reservation_start_time  datetime(6)  not null,
 --     reservation_user_id     varchar(255) not null
-INSERT INTO reservation (reservation_facility_id, reservation_start_time, reservation_end_time,
+INSERT INTO Reservation (reservation_facility_id, reservation_start_time, reservation_end_time,
                          reservation_user_id, reservation_headcount)
 VALUES
     (4, '2024-03-22 02:25:49', '2024-03-24 02:25:49', 'string', 2),
@@ -47,8 +47,8 @@ VALUES
 --     facility_membership_yn             varchar(255) not null,
 --     facility_name                      varchar(255) not null
 --      수영장0, 헬스장0, 스크린골프장, 테니스장, 바베큐장, 영화관, 독서실0, 회의실
-INSERT INTO facility (facility_id, facility_name,
-                             facility_reservation_availble_time, facility_operating_time,
+INSERT INTO Facility (facility_id, facility_name,
+                      facility_reservation_available_time, facility_operating_time,
                              facility_membership_yn, facility_fee)
 VALUES
     (1, '수영장', 24, 522, true, 100000),
@@ -64,7 +64,7 @@ VALUES
 --     realtime_facility_current_users int not null,
 --     realtime_facility_id            int not null
 
-INSERT INTO realtime_facility (realtime_facility_id, realtime_facility_current_users)
+INSERT INTO Realtime_facility (realtime_facility_id, realtime_facility_current_users)
 VALUES
     (1, 0),
     (2, 0),

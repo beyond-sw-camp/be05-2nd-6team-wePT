@@ -2,6 +2,7 @@ package org.encore.apartment.community.domain.facility.ctrl;
 
 
 import jakarta.annotation.Resource;
+import org.encore.apartment.community.domain.facility.data.dto.RequestReservationDto;
 import org.encore.apartment.community.domain.facility.data.dto.ReservationDto;
 import org.encore.apartment.community.domain.facility.service.ReservationService;
 import org.springframework.http.MediaType;
@@ -28,7 +29,7 @@ public class ReservationController {
 
 	@Operation(summary = "예약 추가")
 	@PostMapping(value = "/add-reservation", produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ApiResponse<ReservationDto> createReservation(@Valid @RequestBody ReservationDto params) {
+	public ApiResponse<RequestReservationDto> createReservation(@Valid @RequestBody RequestReservationDto params) {
 		service.createReservation(params);
 
 		return ApiResponse.createSuccess(params);
