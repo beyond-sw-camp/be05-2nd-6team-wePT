@@ -1,4 +1,4 @@
-# 🏡Team : wePT !
+# 🏡Team : wePT
 <center><img src="https://github.com/OrangeVinyl/community/assets/155809042/4782d336-dae7-464b-9f9c-c39572ffe349.png" width="500" height="600"></center>
 
 
