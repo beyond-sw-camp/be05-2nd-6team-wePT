@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -32,19 +33,18 @@ public class UserController {
 
 	@Operation(summary = "회원 가입")
 	@PostMapping(value = "/sign-up", produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ApiResponse<Map<String, Long>> createUser(@RequestBody UserRequestDto params) {
+	public ApiResponse<Map<String, Long>> createUser(@Valid @RequestBody UserRequestDto params) {
 		Long idx = service.createUser(params);
 		Map<String, Long> map = Map.of("userIdx", idx);
 
 		return ApiResponse.createSuccess(map);
 	}
 
-
 	@Operation(summary = "회원 정보 조회")
 	@GetMapping(value = "/info", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@MemberAuthorize
-	public ApiResponse<UserResponseDto> getUserInfo(@AuthenticationPrincipal org.springframework.security.core.userdetails.User user) {
-		System.out.println("::::::::::::controller " + user.getUsername());
+	public ApiResponse<UserResponseDto> getUserInfo(
+		@AuthenticationPrincipal org.springframework.security.core.userdetails.User user) {
 		log.info("getUserInfo = {} ", user.getUsername());
 		UserResponseDto entity = service.findUserInfo(user.getUsername());
 
@@ -54,14 +54,16 @@ public class UserController {
 	@Operation(summary = "회원 정보 수정")
 	@PostMapping(value = "/update", produces = {MediaType.APPLICATION_JSON_VALUE})
 	@MemberAuthorize
-	public ApiResponse<Map<String, Long>> updateUserInfo(@AuthenticationPrincipal org.springframework.security.core.userdetails.User user, @RequestBody UserUpdateRequestDto params) {
+	public ApiResponse<Map<String, Long>> updateUserInfo(
+		@AuthenticationPrincipal org.springframework.security.core.userdetails.User user,
+		@Valid @RequestBody UserUpdateRequestDto params) {
 		Long idx = service.updateUserInfo(user.getUsername(), params);
 		Map<String, Long> map = Map.of("userIdx", idx);
 
 		return ApiResponse.createSuccess(map);
 	}
 
-	@Operation(summary = "회원 삭제")
+	@Operation(summary = "회원 탈퇴")
 	@DeleteMapping("/delete")
 	@MemberAuthorize
 	public ApiResponse<Map<String, Long>> deleteUser(@AuthenticationPrincipal User user) {

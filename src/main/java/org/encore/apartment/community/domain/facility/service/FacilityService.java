@@ -1,12 +1,11 @@
 package org.encore.apartment.community.domain.facility.service;
 
-import org.encore.apartment.community.domain.facility.data.dto.FacilityDto;
-
 import java.util.List;
 
-public interface FacilityService {
-    public void createFacility(FacilityDto params);
+import org.encore.apartment.community.domain.facility.data.dto.FacilityDto;
 
-    //전체
-    public List<FacilityDto> readAllFacility();
+public interface FacilityService {
+	void createFacility(FacilityDto params);
+
+	List<FacilityDto> readAllFacility();
 }
