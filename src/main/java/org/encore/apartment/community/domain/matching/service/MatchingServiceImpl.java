@@ -88,8 +88,7 @@ public class MatchingServiceImpl implements MatchingService {
 
 		System.out.println("::::::::::::::::::::;" + matching);
 		log.info("findClosedMatchingInfoList={}", matching);
-		// return matching.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
-		return null;
+		return matching.stream().map(ResponseClosedMatchingDto::new).collect(Collectors.toList());
 	}
 
 }

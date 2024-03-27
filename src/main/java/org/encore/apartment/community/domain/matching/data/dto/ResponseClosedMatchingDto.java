@@ -1,13 +1,14 @@
 package org.encore.apartment.community.domain.matching.data.dto;
 
+import org.encore.apartment.community.domain.matching.data.entity.Matching;
+
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class ResponseClosedMatchingDto {
 
 	@NotNull
@@ -18,10 +19,14 @@ public class ResponseClosedMatchingDto {
 
 	// private List<MatchingStatus> userId;
 
-	public ResponseClosedMatchingDto(ResponseClosedMatchingDto responseClosedMatchingDto) {
-		this.matchingId = responseClosedMatchingDto.getMatchingId();
-		this.matchingHeadCountLimit = responseClosedMatchingDto.getMatchingHeadCountLimit();
+	public ResponseClosedMatchingDto(Long matchingId, Integer matchingHeadCountLimit) {
+		this.matchingId = matchingId;
+		this.matchingHeadCountLimit = matchingHeadCountLimit;
 
 	}
 
+	public ResponseClosedMatchingDto(Matching matching) {
+		this.matchingId = matching.getMatchingId();
+		this.matchingHeadCountLimit = matching.getMatchingHeadCountLimit();
+	}
 }
