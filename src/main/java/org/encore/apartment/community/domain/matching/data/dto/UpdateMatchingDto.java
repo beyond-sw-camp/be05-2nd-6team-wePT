@@ -1,6 +1,6 @@
 package org.encore.apartment.community.domain.matching.data.dto;
 
-import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
+import org.encore.apartment.community.domain.matching.data.entity.Matching;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,9 +9,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UpdateMatchingDto {
 
-	private MatchingCategory matchingCategoryId;
+	private Long matchingCategoryId;
 
 	private Integer matchingHeadCountLimit;
+
+	public UpdateMatchingDto(Matching params) {
+
+		this.matchingCategoryId = params.getMatchingCategory().getMatchingCategoryId();
+		this.matchingHeadCountLimit = params.getMatchingHeadCountLimit();
+
+	}
 
 }
 
