@@ -6,11 +6,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.RequestUpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseClosedMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
-import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.entity.Matching;
 import org.encore.apartment.community.domain.matching.data.repository.MatchingRepository;
+import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
 import org.encore.apartment.community.domain.matchingCategory.data.repository.MatchingCategoryRepository;
 import org.encore.apartment.community.domain.matchingStatus.data.entity.MatchingStatus;
 import org.encore.apartment.community.domain.matchingStatus.data.repository.MatchingStatusRepository;
@@ -68,22 +69,25 @@ public class MatchingServiceImpl implements MatchingService {
 	}
 
 	@Override
-	public void updateMatchingInfoById(Long id, UpdateMatchingDto params) {
+	public void updateMatchingInfoById(Long id, RequestUpdateMatchingDto params) {
 		Matching matching = matchingRepository.findById(id)
 			.orElseThrow(() -> new IllegalArgumentException("해당 매칭 정보가 없습니다."));
-		//		matching.update(matching.getMatchingMatchingCategoryId(), matching.getMatchingHeadCountLimit());
 
-		//		update가 안되어 matching에 setter 추가하고 아래와 같이 새로운 3개 line 추가함
-		matching.setMatchingCategory();
-		matching.setMatchingHeadCountLimit(params.getMatchingHeadCountLimit());
+		Optional<MatchingCategory> matchingCategoryEntity = matchingCategoryRepository.findById(
+			params.getMatchingCategoryId());
+
+		matching.update(matchingCategoryEntity.get(), params.getMatchingHeadCountLimit());
+
 		matchingRepository.save(matching);
-		log.info("updateApartmentInfo = {}", params);
-
 	}
 
 	@Override
 	public void deleteMatchingInfo(Long id) {
-		matchingRepository.deleteById(id);
+		System.out.println("DEBUG MatchingService::deleteMatchingInfo Before FindById");
+		Optional<Matching> entity = matchingRepository.findById(id);
+		System.out.println("DEBUG MatchingService::deleteMatchingInfo After FindById" + entity.isEmpty());
+		matchingRepository.delete(entity.get());
+		System.out.println("DEBUG MatchingService::deleteMatchingInfo After Delete");
 		log.info("deleteMatchingInfo = {}", id);
 	}
 

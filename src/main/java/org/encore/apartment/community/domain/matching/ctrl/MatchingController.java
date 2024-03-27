@@ -3,9 +3,9 @@ package org.encore.apartment.community.domain.matching.ctrl;
 import java.util.List;
 
 import org.encore.apartment.community.domain.matching.data.dto.RequestInsertMatchingDto;
+import org.encore.apartment.community.domain.matching.data.dto.RequestUpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseClosedMatchingDto;
 import org.encore.apartment.community.domain.matching.data.dto.ResponseMatchingDto;
-import org.encore.apartment.community.domain.matching.data.dto.UpdateMatchingDto;
 import org.encore.apartment.community.domain.matching.service.MatchingService;
 import org.encore.apartment.community.global.util.api.ApiResponse;
 import org.springframework.http.HttpStatus;
@@ -33,11 +33,11 @@ public class MatchingController {
 
 	@Operation(summary = "매칭정보 등록")
 	@PostMapping("/insert")
-	public ResponseEntity<Void> insertMatchingInfo(@Valid @RequestBody RequestInsertMatchingDto params) {
+	public ApiResponse<?> insertMatchingInfo(@Valid @RequestBody RequestInsertMatchingDto params) {
 		service.insertMatchingInfo(params);
 		log.info("MatchingController insertMatchingInfo = {}", params);
 
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return ApiResponse.createSuccessWithNoContent();
 	}
 
 	// @Operation(summary = "매칭정보 등록")
@@ -69,18 +69,19 @@ public class MatchingController {
 
 	@Operation(summary = "매칭id로 매칭정보 수정")
 	@PostMapping("/update/{id}")
-	public ResponseEntity<Void> updateMatchingInfo(@PathVariable(value = "id") Long id,
-		@RequestBody UpdateMatchingDto params) {
+	public ApiResponse<?> updateMatchingInfo(@PathVariable(value = "id") Long id,
+		@RequestBody RequestUpdateMatchingDto params) {
 		log.info("MatchingController updateMatchingInfo = {}", params);
 		service.updateMatchingInfoById(id, params);
 
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return ApiResponse.createSuccessWithNoContent();
 	}
 
 	@Operation(summary = "매칭id로 매칭정보 삭제")
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> deleteMatchingInfo(@PathVariable(value = "id") Long id) {
 		log.info("MatchingController deleteMatchingInfo = {}", id);
+		System.out.println("DEBUG MatchingController::deleteMatchingInfo");
 		service.deleteMatchingInfo(id);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -1,8 +1,11 @@
 package org.encore.apartment.community.domain.matching.data.entity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.encore.apartment.community.domain.matchingCategory.data.entity.MatchingCategory;
+import org.encore.apartment.community.domain.matchingStatus.data.entity.MatchingStatus;
 import org.encore.apartment.community.domain.user.data.entity.User;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,6 +18,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -55,6 +59,9 @@ public class Matching {
 	@Column(name = "matching_updated_at", columnDefinition = "timestamp default CURRENT_TIMESTAMP")
 	@CreationTimestamp
 	private Timestamp matchingUpdatedAt;
+
+	@OneToMany(mappedBy = "matching", orphanRemoval = true)
+	private List<MatchingStatus> matchingStatuses = new ArrayList<>();
 
 	@Builder
 	public Matching(
