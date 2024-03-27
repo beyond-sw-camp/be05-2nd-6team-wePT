@@ -75,7 +75,7 @@
 * Server :
 * DataBase : MySQL
 * WS/WAS : Tomcat
-* 아이디어 회의 : Slack, in Person
+* 아이디어 회의 : Slack
 <br/><br/>
 
 ## 🌐시스템 아키텍쳐
