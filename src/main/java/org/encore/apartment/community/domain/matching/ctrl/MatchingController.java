@@ -18,17 +18,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/matching")
+@RequestMapping("/matching")
 public class MatchingController {
 
 	@Resource(name = "matching")
 	private MatchingService service;
 
+	@Operation(summary = "매칭정보 등록")
 	@PostMapping("/insert")
 	public ResponseEntity<Void> insertMatchingInfo(@RequestBody RequestInsertMatchingDto params) {
 		service.insertMatchingInfo(params);
