@@ -1,19 +1,23 @@
 package org.encore.apartment.community.domain.user.data.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.persistence.*;
+import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
+import org.encore.apartment.community.domain.post.data.entity.Comment;
+import org.encore.apartment.community.domain.post.data.entity.Post;
+import org.encore.apartment.community.domain.user.common.UserType;
+import org.encore.apartment.community.domain.user.data.dto.UserUpdateRequestDto;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Entity
@@ -22,58 +26,67 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idx;
+	@Column(name = "user_idx")
+	private Long userIdx;
 
-	@NotNull
-	@Column(name = "user_id")
+	@Column(name = "user_id", unique = true, nullable = false)
 	private String userId;
 
-	@NotNull
-	@Column(name = "user_password")
+	@Column(name = "user_password", nullable = false)
 	private String userPassword;
 
-	@NotNull
-	@Column(name = "user_nickname")
+	@Column(name = "user_nickname", nullable = false)
 	private String userNickname;
 
-
-	@NotNull
-	@Email
-	@Column(name = "user_email")
+	@Column(name = "user_email", nullable = false, unique = true)
 	private String userEmail;
 
-	@NotNull
-	@Column(name =  "user_mobile")
-	@Pattern(regexp = "^010-\\d{4}-\\d{4}$", message = "전화번호는 010-XXXX-XXXX 형식이어야 합니다.")
+	@Column(name = "user_mobile", unique = true, nullable = false)
 	private String userMobile;
 
-	@NotNull
-	@Column(name = "user_building_number")
+	@Column(name = "user_building_number", nullable = false)
 	private Integer userBuildingNumber;
 
-	@NotNull
-	@Column(name = "user_house_number")
+	@Column(name = "user_house_number", nullable = false)
 	private Integer userHouseNumber;
 
-	@NotNull
-	@Column(name = "user_head_household_yn", columnDefinition = "boolean default true")
+	@Column(name = "user_head_household_yn", nullable = false, columnDefinition = "boolean default true")
+	@ColumnDefault("true")
 	private Boolean userHeadHouseHoldYn;
 
-	@Column(name = "created_at")
+	@Column(name = "created_at", nullable = false, columnDefinition = "timestamp default CURRENT_TIMESTAMP")
+	@CreationTimestamp
 	private LocalDateTime createdAt;
 
 	@Column(name = "updated_at")
+	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 
 	@Column(name = "delete_yn", columnDefinition = "boolean default false")
 	private Boolean deleteYn;
 
+	@Column(name = "user_type")
+	@Enumerated(EnumType.STRING)
+	private UserType userType;
+
+	@Setter
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "apartment_id", nullable = false)
+	private Apartment apartment;
+
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Post> posts;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Comment> comments;
+
+
 	@Builder
 	public User(
-		Long idx, String userId, String userPassword, String userNickname, String userEmail, String userMobile,
+		String userId, String userPassword, String userNickname, String userEmail, String userMobile,
 		Integer userBuildingNumber, Integer userHouseNumber, Boolean userHeadHouseHoldYn, LocalDateTime createdAt,
-		LocalDateTime updatedAt, Boolean deleteYn) {
-		this.idx = idx;
+		LocalDateTime updatedAt, Boolean deleteYn, UserType userType ) {
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userNickname = userNickname;
@@ -84,6 +97,20 @@ public class User {
 		this.userHeadHouseHoldYn = userHeadHouseHoldYn;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.userType = userType;
 		this.deleteYn = deleteYn;
+	}
+
+	public void update(UserUpdateRequestDto params) {
+		this.userNickname = params.getUserNickname();
+		this.userEmail = params.getUserEmail();
+		this.userMobile = params.getUserMobile();
+
+		this.updatedAt = LocalDateTime.now();
+	}
+
+	public void updateDeleteYn() {
+		this.deleteYn = true;
+		this.updatedAt = LocalDateTime.now();
 	}
 }
