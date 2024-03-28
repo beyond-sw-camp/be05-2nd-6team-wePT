@@ -1,6 +1,6 @@
 # 🏡Team : wePT
 
-<center><img src="https://github.com/OrangeVinyl/community/assets/155809042/4782d336-dae7-464b-9f9c-c39572ffe349.png" width="500" height="600"></center>
+<div align="center"><img src="https://github.com/OrangeVinyl/community/assets/155809042/4782d336-dae7-464b-9f9c-c39572ffe349.png" width="500" height="600"></div>
 
 
 '우리(**we**)'라는 단어 + 아파트를 나타내는 약어인 '**APT**'의 합성어이자,
@@ -69,237 +69,113 @@
 </table>
 <br/><br/>
 
-### 개발 환경
+### ⚙️ 개발 환경
 
 * Version : Java 17
-* IDE : IntelliJ
+* IDE : IntelliJ | VSCode
 * Framework : SpringBoot 3.2.3
 * ORM : JPA
-  <br/><br/>
 
-### 기술 스택
+### 🛠️ 기술 스택
 
-* Server :
-* DataBase : MySQL
-* WS/WAS : Tomcat
-* 아이디어 회의 : Slack
-  <br/><br/>
+- Spring Boot
+- Spring Data JPA
+- DB
+    - Mysql
+    - H2 (Testcase)
+    - Redis (Email Certification)
+- LogBack / Slf4j
+- Spring Security (JWT Refresh Token, access Token)
+- Swagger (API Documentation)
 
-### 디렉토리 구조
+### 📦 디렉토리 구조
 
 ```
 📦community
  ┣ 📂domain
  ┃ ┣ 📂apartment
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┗ 📜ApartmentController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜RequestApartmentDto.java
- ┃ ┃ ┃ ┃ ┣ 📜ResponseApartmentDto.java
- ┃ ┃ ┃ ┃ ┗ 📜UpdateRequestApartmentDto.java
  ┃ ┃ ┃ ┗ 📂entity
- ┃ ┃ ┃ ┃ ┗ 📜Apartment.java
  ┃ ┃ ┣ 📂repository
- ┃ ┃ ┃ ┗ 📜ApartmentRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┣ 📜ApartmentService.java
- ┃ ┃ ┃ ┗ 📜ApartmentServiceImpl.java
  ┃ ┣ 📂auth
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┗ 📜AuthController.java
  ┃ ┃ ┣ 📂dto
  ┃ ┃ ┃ ┣ 📂entity
- ┃ ┃ ┃ ┃ ┗ 📜UserRefreshToken.java
- ┃ ┃ ┃ ┣ 📜SignInRequestDto.java
- ┃ ┃ ┃ ┗ 📜SignInResponseDto.java
  ┃ ┃ ┣ 📂repository
- ┃ ┃ ┃ ┗ 📜UserRefreshTokenRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┗ 📜AuthService.java
  ┃ ┣ 📂facility
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┣ 📜FacilityController.java
- ┃ ┃ ┃ ┣ 📜LogController.java
- ┃ ┃ ┃ ┣ 📜RealtimeFacilityController.java
- ┃ ┃ ┃ ┗ 📜ReservationController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜FacilityDto.java
- ┃ ┃ ┃ ┃ ┣ 📜LogDto.java
- ┃ ┃ ┃ ┃ ┣ 📜RealtimeFacilityDto.java
- ┃ ┃ ┃ ┃ ┣ 📜RequestReservationDto.java
- ┃ ┃ ┃ ┃ ┣ 📜ReservationAllDto.java
- ┃ ┃ ┃ ┃ ┗ 📜ReservationDto.java
  ┃ ┃ ┃ ┣ 📂entity
- ┃ ┃ ┃ ┃ ┣ 📜Facility.java
- ┃ ┃ ┃ ┃ ┣ 📜Log.java
- ┃ ┃ ┃ ┃ ┣ 📜RealtimeFacility.java
- ┃ ┃ ┃ ┃ ┗ 📜Reservation.java
  ┃ ┃ ┃ ┗ 📂repository
- ┃ ┃ ┃ ┃ ┣ 📜FacilityRepository.java
- ┃ ┃ ┃ ┃ ┣ 📜LogRepository.java
- ┃ ┃ ┃ ┃ ┣ 📜RealtimeFacilityRepository.java
- ┃ ┃ ┃ ┃ ┗ 📜ReservationRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┣ 📜FacilityService.java
- ┃ ┃ ┃ ┣ 📜FacilityServiceImpl.java
- ┃ ┃ ┃ ┣ 📜LogService.java
- ┃ ┃ ┃ ┣ 📜LogServiceImpl.java
- ┃ ┃ ┃ ┣ 📜RealtimeFacilityService.java
- ┃ ┃ ┃ ┣ 📜RealtimeFacilityServiceImpl.java
- ┃ ┃ ┃ ┣ 📜ReservationService.java
- ┃ ┃ ┃ ┗ 📜ReservationServiceImpl.java
  ┃ ┣ 📂maintenance
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┗ 📜MaintenanceController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜MaintenanceCompDto.java
- ┃ ┃ ┃ ┃ ┣ 📜MaintenanceDto.java
- ┃ ┃ ┃ ┃ ┗ 📜MaintenancePerDto.java
  ┃ ┃ ┃ ┣ 📂entity
- ┃ ┃ ┃ ┃ ┗ 📜Maintenance.java
  ┃ ┃ ┃ ┗ 📂repository
- ┃ ┃ ┃ ┃ ┗ 📜MaintenanceRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┣ 📜MaintenanceService.java
- ┃ ┃ ┃ ┗ 📜MaintenanceServiceImpl.java
  ┃ ┣ 📂matching
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┗ 📜MatchingController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜RequestInsertMatchingDto.java
- ┃ ┃ ┃ ┃ ┣ 📜RequestSearchMatchingDto.java
- ┃ ┃ ┃ ┃ ┣ 📜RequestUpdateMatchingDto.java
- ┃ ┃ ┃ ┃ ┣ 📜ResponseClosedMatchingDto.java
- ┃ ┃ ┃ ┃ ┗ 📜ResponseMatchingDto.java
  ┃ ┃ ┃ ┣ 📂entity
- ┃ ┃ ┃ ┃ ┗ 📜Matching.java
  ┃ ┃ ┃ ┗ 📂repository
- ┃ ┃ ┃ ┃ ┗ 📜MatchingRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┣ 📜MatchingService.java
- ┃ ┃ ┃ ┗ 📜MatchingServiceImpl.java
  ┃ ┣ 📂matchingCategory
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┗ 📜matchingCategoryController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜RequestInsertMatchingCategoryDto.java
- ┃ ┃ ┃ ┃ ┣ 📜RequestMatchingCategoryDto.java
- ┃ ┃ ┃ ┃ ┣ 📜ResponseMatchingCategoryDto.java
- ┃ ┃ ┃ ┃ ┗ 📜UpdateMatchingCategoryDto.java
  ┃ ┃ ┃ ┣ 📂entity
- ┃ ┃ ┃ ┃ ┗ 📜MatchingCategory.java
  ┃ ┃ ┃ ┗ 📂repository
- ┃ ┃ ┃ ┃ ┗ 📜MatchingCategoryRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┣ 📜MatchingCategoryService.java
- ┃ ┃ ┃ ┗ 📜MatchingCategoryServiceImpl.java
  ┃ ┣ 📂matchingStatus
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┗ 📜matchingStatusController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜RequestInsertMatchingStatusDto.java
- ┃ ┃ ┃ ┃ ┣ 📜RequestMatchingStatusDto.java
- ┃ ┃ ┃ ┃ ┣ 📜ResponseMatchingStatusDto.java
- ┃ ┃ ┃ ┃ ┗ 📜UpdateMatchingStatusDto.java
  ┃ ┃ ┃ ┣ 📂entity
- ┃ ┃ ┃ ┃ ┗ 📜MatchingStatus.java
  ┃ ┃ ┃ ┗ 📂repository
- ┃ ┃ ┃ ┃ ┗ 📜MatchingStatusRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┣ 📜MatchingStatusService.java
- ┃ ┃ ┃ ┗ 📜MatchingStatusServiceImpl.java
  ┃ ┣ 📂membership
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┗ 📜MembershipController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┗ 📜MembershipResponseDto.java
  ┃ ┃ ┃ ┗ 📂entity
- ┃ ┃ ┃ ┃ ┗ 📜Membership.java
  ┃ ┃ ┣ 📂repository
- ┃ ┃ ┃ ┗ 📜MembershipRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┗ 📜MembershipService.java
  ┃ ┣ 📂post
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┣ 📜CommentController.java
- ┃ ┃ ┃ ┗ 📜PostController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜CommentDeleteDto.java
- ┃ ┃ ┃ ┃ ┣ 📜CommentRequestDto.java
- ┃ ┃ ┃ ┃ ┣ 📜CommentResponseDto.java
- ┃ ┃ ┃ ┃ ┣ 📜CommentUpdateDto.java
- ┃ ┃ ┃ ┃ ┣ 📜PostDeleteDto.java
- ┃ ┃ ┃ ┃ ┣ 📜PostRequestDto.java
- ┃ ┃ ┃ ┃ ┣ 📜PostResponseDto.java
- ┃ ┃ ┃ ┃ ┗ 📜PostUpdateDto.java
  ┃ ┃ ┃ ┣ 📂entity
- ┃ ┃ ┃ ┃ ┣ 📜Comment.java
- ┃ ┃ ┃ ┃ ┣ 📜Post.java
- ┃ ┃ ┃ ┃ ┗ 📜PostCategory.java
  ┃ ┃ ┃ ┗ 📂repository
- ┃ ┃ ┃ ┃ ┣ 📜CommentRepository.java
- ┃ ┃ ┃ ┃ ┣ 📜PostCategoryRepositoty.java
- ┃ ┃ ┃ ┃ ┗ 📜PostRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┣ 📜CommentService.java
- ┃ ┃ ┃ ┣ 📜CommentServiceImpl.java
- ┃ ┃ ┃ ┣ 📜PostService.java
- ┃ ┃ ┃ ┗ 📜PostServiceImpl.java
  ┃ ┣ 📂security
  ┃ ┃ ┣ 📂filter
- ┃ ┃ ┃ ┗ 📜JwtAuthenticationFilter.java
  ┃ ┃ ┣ 📂provider
- ┃ ┃ ┃ ┗ 📜TokenProvider.java
- ┃ ┃ ┗ 📜JwtAuthenticationEntryPoint.java
  ┃ ┗ 📂user
  ┃ ┃ ┣ 📂common
- ┃ ┃ ┃ ┗ 📜UserType.java
  ┃ ┃ ┣ 📂ctrl
- ┃ ┃ ┃ ┗ 📜UserController.java
  ┃ ┃ ┣ 📂data
  ┃ ┃ ┃ ┣ 📂dto
- ┃ ┃ ┃ ┃ ┣ 📜UserRequestDto.java
- ┃ ┃ ┃ ┃ ┣ 📜UserResponseDto.java
- ┃ ┃ ┃ ┃ ┗ 📜UserUpdateRequestDto.java
  ┃ ┃ ┃ ┗ 📂entity
- ┃ ┃ ┃ ┃ ┗ 📜User.java
  ┃ ┃ ┣ 📂repository
- ┃ ┃ ┃ ┗ 📜UserRepository.java
  ┃ ┃ ┗ 📂service
- ┃ ┃ ┃ ┣ 📜UserService.java
- ┃ ┃ ┃ ┗ 📜UserServiceImpl.java
  ┣ 📂email
  ┃ ┣ 📂controller
- ┃ ┃ ┣ 📜ExControllerAdvice.java
- ┃ ┃ ┗ 📜MailController.java
  ┃ ┣ 📂dto
- ┃ ┃ ┣ 📜EmailCheckDto.java
- ┃ ┃ ┗ 📜EmailRequestDto.java
  ┃ ┣ 📂service
- ┃ ┃ ┗ 📜MailService.java
- ┃ ┗ 📜ErrorResult.java
  ┣ 📂global
  ┃ ┣ 📂annotation
- ┃ ┃ ┣ 📜AdminAuthorize.java
- ┃ ┃ ┗ 📜MemberAuthorize.java
  ┃ ┣ 📂config
- ┃ ┃ ┣ 📜EmailConfig.java
- ┃ ┃ ┣ 📜RedisUtil.java
- ┃ ┃ ┣ 📜SecurityConfig.java
- ┃ ┃ ┗ 📜SwaggerConfig.java
  ┃ ┣ 📂handler
- ┃ ┃ ┗ 📜ExceptionResponseHandler.java
  ┃ ┗ 📂util
  ┃ ┃ ┣ 📂api
- ┃ ┃ ┃ ┗ 📜ApiResponse.java
  ┃ ┃ ┗ 📂const
  ┗ 📜CommunityApplication.java
 ```
@@ -319,11 +195,11 @@
 
 ## 주요 기능
 
-[ 주요 기능 설명 ](https://github.com/OrangeVinyl/community/wiki/Page-contents)
+[ 주요 기능 설명 ](https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/wiki/Page-contents)
 
 ## 운영 정책
 
-[ 운영 정책 설명 ](https://github.com/OrangeVinyl/community/wiki/Policy)
+[ 운영 정책 설명 ](https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/wiki/Policy)
 
 ## ERD
 
@@ -331,14 +207,13 @@
 
 ## WBS
 
-[ WBS ](https://docs.google.com/spreadsheets/d/1Ffqo8JrjYhdHzeVf6qYqTs8XtUGNUl021muCPGRxwH4/edit?pli=1#gid=1819782736)
+[ WBS ](https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/wiki/WBS)
 
 ## 요구사항 명세서
 
-[ 요구사항 명세서 ](https://docs.google.com/spreadsheets/d/1Ffqo8JrjYhdHzeVf6qYqTs8XtUGNUl021muCPGRxwH4/edit?pli=1#gid=75571384)
+[ 요구사항 명세서 ](https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/wiki/SRS)
 
 ## 테스트 케이스
 
-[ 테스트 케이스 ](https://docs.google.com/spreadsheets/d/1Ffqo8JrjYhdHzeVf6qYqTs8XtUGNUl021muCPGRxwH4/edit?pli=1#gid=780888939)
+[ 테스트 케이스 ](https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/wiki/Test-case)
 
-## API
