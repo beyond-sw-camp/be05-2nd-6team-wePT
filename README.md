@@ -1,5 +1,3 @@
-![header](https://capsule-render.vercel.app/api?type=venom&color=auto&height=300&section=header&text=wePT%20&fontSize=90)
-
 # 🏡Team : wePT
 <center><img src="https://github.com/OrangeVinyl/community/assets/155809042/4782d336-dae7-464b-9f9c-c39572ffe349.png" width="500" height="600"></center>
 
