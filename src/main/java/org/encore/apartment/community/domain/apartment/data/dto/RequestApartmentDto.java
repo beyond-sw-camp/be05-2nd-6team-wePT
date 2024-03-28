@@ -3,7 +3,6 @@ package org.encore.apartment.community.domain.apartment.data.dto;
 import org.encore.apartment.community.domain.apartment.data.entity.Apartment;
 
 import jakarta.validation.constraints.NotBlank;
-
 import lombok.Data;
 
 @Data

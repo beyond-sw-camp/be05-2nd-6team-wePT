@@ -37,13 +37,11 @@ public class ReservationAllDto {
 
 	public static Reservation toEntity(ReservationAllDto reservationAllDto) {
 		return Reservation.builder()
-			.reservationId(reservationAllDto.getReservationId())
 			.reservationUserId(reservationAllDto.getReservationUserId())
 			.reservationFacilityId(reservationAllDto.getReservationFacilityId())
 			.reservationStartTime(reservationAllDto.getReservationStartTime())
 			.reservationEndTime(reservationAllDto.getReservationEndTime())
 			.reservationHeadcount(reservationAllDto.getReservationHeadcount())
-			.deleteYn(reservationAllDto.getDeleteYn())
 			.build();
 	}//
 

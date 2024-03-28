@@ -36,15 +36,12 @@ public class ReservationDto {
 	@Builder
 	public static Reservation toEntity(ReservationDto reservationDto) {
 		return Reservation.builder()
-			.reservationId(reservationDto.getReservationId())
-			.reservationUserId(reservationDto.getReservationUserId())
 			.reservationFacilityId(reservationDto.getReservationFacilityId())
 			.reservationStartTime(reservationDto.getReservationStartTime())
 			.reservationEndTime(reservationDto.getReservationEndTime())
 			.reservationHeadcount(reservationDto.getReservationHeadcount())
-			.deleteYn(false)
 			.build();
-	}
+	}//.reservationId(reservationDto.getReservationId())
 
 	@Builder
 	public ReservationDto(Reservation reservation) {

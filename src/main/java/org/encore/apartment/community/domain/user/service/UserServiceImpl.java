@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Long deleteUser(Long idx) {
-		Optional<User> user = userRepository.findById(idx);
+	public Long deleteUser(String userId) {
+		Optional<User> user = userRepository.findByUserId(userId);
 		user.get().updateDeleteYn();
 		userRepository.save(user.get());
 

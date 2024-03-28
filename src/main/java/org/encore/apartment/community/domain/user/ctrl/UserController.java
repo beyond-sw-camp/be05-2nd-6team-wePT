@@ -5,7 +5,6 @@ import java.util.Map;
 import org.encore.apartment.community.domain.user.data.dto.UserRequestDto;
 import org.encore.apartment.community.domain.user.data.dto.UserResponseDto;
 import org.encore.apartment.community.domain.user.data.dto.UserUpdateRequestDto;
-import org.encore.apartment.community.domain.user.data.entity.User;
 import org.encore.apartment.community.domain.user.service.UserService;
 import org.encore.apartment.community.global.annotation.MemberAuthorize;
 import org.encore.apartment.community.global.util.api.ApiResponse;
@@ -66,8 +65,9 @@ public class UserController {
 	@Operation(summary = "회원 탈퇴")
 	@DeleteMapping("/delete")
 	@MemberAuthorize
-	public ApiResponse<Map<String, Long>> deleteUser(@AuthenticationPrincipal User user) {
-		Long userIdx = service.deleteUser(user.getUserIdx());
+	public ApiResponse<Map<String, Long>> deleteUser(
+		@AuthenticationPrincipal org.springframework.security.core.userdetails.User user) {
+		Long userIdx = service.deleteUser(user.getUsername());
 		Map<String, Long> map = Map.of("userIdx", userIdx);
 
 		return ApiResponse.createSuccess(map);

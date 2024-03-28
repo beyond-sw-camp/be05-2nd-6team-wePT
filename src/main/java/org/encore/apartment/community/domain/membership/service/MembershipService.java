@@ -49,6 +49,7 @@ public class MembershipService {
 			Optional<User> user = userRepository.findById(membership.getUser().getUserIdx());
 			return new MembershipResponseDto(membership, user.get().getUserId(), user.get().getUserNickname());
 		}).collect(Collectors.toList());
+
 	}
 
 	public MembershipResponseDto updateMembership(Long idx) {

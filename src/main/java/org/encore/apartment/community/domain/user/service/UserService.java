@@ -11,5 +11,5 @@ public interface UserService {
 
 	Long updateUserInfo(String userId, UserUpdateRequestDto params);
 
-	Long deleteUser(Long idx);
+	Long deleteUser(String userId);
 }

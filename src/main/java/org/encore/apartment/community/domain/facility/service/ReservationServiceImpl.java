@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.encore.apartment.community.domain.facility.data.dto.RequestReservationDto;
 import org.encore.apartment.community.domain.facility.data.dto.ReservationDto;
 import org.encore.apartment.community.domain.facility.data.entity.Reservation;
 import org.encore.apartment.community.domain.facility.data.repository.ReservationRepository;
@@ -23,8 +24,8 @@ public class ReservationServiceImpl implements ReservationService {
 
 	/*예약서 작성 (추가)*/
 	@Override
-	public void createReservation(ReservationDto params) {
-		Reservation reservation = ReservationDto.toEntity(params);
+	public void createReservation(RequestReservationDto params) {
+		Reservation reservation = RequestReservationDto.toEntity(params);
 		reservationRepository.save(reservation);
 		log.info("facility saved : {}", reservation);
 	}
@@ -71,16 +72,8 @@ public class ReservationServiceImpl implements ReservationService {
 				.atZone(ZoneId.systemDefault())
 				.toLocalDateTime();
 			if (starttime.isAfter(LocalDateTime.now())) {
-				Reservation input = Reservation.builder()
-					.reservationId(res.getReservationId())
-					.reservationUserId(res.getReservationUserId())
-					.reservationFacilityId(res.getReservationId())
-					.reservationStartTime(res.getReservationStartTime())
-					.reservationEndTime(res.getReservationEndTime())
-					.reservationHeadcount(res.getReservationHeadcount())
-					.deleteYn(true)
-					.build();
-				reservationRepository.save(input);
+				res.update();
+				reservationRepository.save(res);
 			}
 		}
 	}
