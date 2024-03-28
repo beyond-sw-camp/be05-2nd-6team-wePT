@@ -9,7 +9,7 @@
 <br/> <br/> <br/>
 </div>
 
-### 프로젝트 소개
+## 프로젝트 소개
 
 1. 분류 : 아파트 단지 내 주민들을 위한 **종합적인 모바일 아파트 커뮤니티 플랫폼**
 2. 목적 : <br/>
@@ -41,7 +41,7 @@
 
 <br/> <br/>
 
-### 팀 소개
+## 팀 소개
 <table>
   <tbody>
     <tr>
@@ -70,14 +70,16 @@
 <br/><br/>
 
 
-### ⚙️ 개발 환경
+## ⚙️ 개발 환경
 
 * Version : Java 17
 * IDE : IntelliJ | VSCode
 * Framework : SpringBoot 3.2.3
 * ORM : JPA
 
-### 🛠️ 기술 스택
+<br/>
+
+## 🛠️ 기술 스택
 
 - Spring Boot
 - Spring Data JPA
@@ -89,8 +91,22 @@
 - Spring Security (JWT Refresh Token, access Token)
 - Swagger (API Documentation)
 
-### 📦 디렉토리 구조
+<br/>
 
+## 🚨 SET UP
+### dir: main/resources/application.properties
+```
+...(중략)
+## === MySQL ====
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:{DatabasePort}/{DatabaseName}?serverTimezone=Asia/Seoul
+spring.datasource.username={userName}
+spring.datasource.password={password}
+spring.datasource.hikari.connection-test-query=SELECT NOW() FROM DUAL
+```
+<br/>
+
+## 📦 디렉토리 구조
 ```
 📦community
  ┣ 📂domain
@@ -193,6 +209,8 @@
  ┗ 📜logback-spring.xml
 
 ```
+
+<br/>
 
 ## 주요 기능
 
