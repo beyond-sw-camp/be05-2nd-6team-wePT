@@ -1,12 +1,13 @@
-# 🏡Team : wePT
+# 🏡wePT
 
-<div align="center"><img src="https://github.com/OrangeVinyl/community/assets/155809042/4782d336-dae7-464b-9f9c-c39572ffe349.png" width="500" height="600"></div>
+<div align="center"><img src="https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/assets/105047091/4b7fff2a-1de5-4e91-9976-557a9d7ddb1f.png" width="500" height="600"></div>
 
-
-'우리(**we**)'라는 단어 + 아파트를 나타내는 약어인 '**APT**'의 합성어이자,
+<div align="center">
+'우리(we)'라는 단어 + 아파트를 나타내는 약어인 APT 의 합성어이자,
 
 궁금한 모든 걸 알려주는 chatGPT와 같이, wePT를 사용한다면 아파트에 관한 모든 궁금증을 해결할 수 있다는 의미를 담았습니다.
 <br/> <br/> <br/>
+</div>
 
 ### 프로젝트 소개
 
@@ -41,15 +42,14 @@
 <br/> <br/>
 
 ### 팀 소개
-
 <table>
   <tbody>
     <tr>
-      <td align="center"><a href=""><img src="" width="200px;" alt=""/><br /><sub><b>신민형</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="200px;" alt=""/><br /><sub><b>전예은</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="https://avatars.githubusercontent.com/u/155809042?v=4" width="200px;" alt=""/><br /><sub><b> 정민지 </b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="200px;" alt=""/><br /><sub><b>정현진</b></sub></a><br /></td>
-      <td align="center"><a href=""><img src="" width="200px;" alt=""/><br /><sub><b>최수환</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/assets/105047091/64cf9833-f46e-452e-8cc4-dd71e8b3adc8.png" width="250px;" height="200px;" alt=""/><br /><sub><b>신민형</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/assets/105047091/b2395378-aa90-41a9-8d29-75291e1d2dc4.png" width="250px;" height="200px" alt=""/><br /><sub><b>전예은</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://avatars.githubusercontent.com/u/155809042?v=4" width="250px;" height="200px;" alt=""/><br /><sub><b> 정민지 </b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/assets/105047091/4f56a693-2c0d-4104-9d82-7224e7338909.png" width="250px;" alt=""/><br /><sub><b>정현진</b></sub></a><br /></td>
+      <td align="center"><a href=""><img src="https://github.com/beyond-sw-camp/be05-2nd-6team-wePT/assets/105047091/3d74be94-62d1-49ce-868d-129782404795" width="250px;" height="200px;" alt=""/><br /><sub><b>최수환</b></sub></a><br /></td>
     </tr>
     <tr>
       <td align="center">팀원</td>
@@ -68,6 +68,7 @@
   </tbody>
 </table>
 <br/><br/>
+
 
 ### ⚙️ 개발 환경
 
